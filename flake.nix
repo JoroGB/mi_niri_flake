@@ -40,7 +40,7 @@
       fenix.overlays.default
     ];
     # home manager settings
-    mi_home_manager = home-manager.nixosModules.home-manager{
+    mi_home_manager = {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.extraSpecialArgs = { inherit inputs; };  # ← Esto pasa inputs a home.nix
@@ -48,19 +48,17 @@
     };
 
   in {
-    nixosConfiguration = {
-
-      pc = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.pc = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        SpecialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs;};
         modules = [
           ./config/configuration.nix
           ./config/hardware-configuration.nix
           {nixpkgs.config.allowUnfree = true;}
           {nixpkgs.overlays = overlays_flake;}
+          home-manager.nixosModules.home-manager
           mi_home_manager
         ];
-      };
     };
   };
 }
