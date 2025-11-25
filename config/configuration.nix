@@ -29,30 +29,30 @@
      "nvidia-drm.modeset=1"
      "nvidia-drm.fbdev=1"
    ];
-   # environment.etc."nvidia/nvidia-application-profiles-rc.d/niri-vram-fix.conf".text = ''
-   #   {
-   #     "profiles": [
-   #       {
-   #         "name": "niri",
-   #         "settings": [
-   #           {
-   #             "key": "__GL_HEAP_ALLOC_POLICY",
-   #             "value": 1
-   #           }
-   #         ]
-   #       }
-   #     ],
-   #     "rules": [
-   #       {
-   #         "pattern": {
-   #           "feature": "procname",
-   #           "matches": "niri"
-   #         },
-   #         "profile": "niri"
-   #       }
-   #     ]
-   #   }
-   # '';
+   environment.etc."nvidia/nvidia-application-profiles-rc.d/niri-vram-fix.conf".text = ''
+     {
+       "profiles": [
+         {
+           "name": "niri",
+           "settings": [
+             {
+               "key": "__GL_HEAP_ALLOC_POLICY",
+               "value": 1
+             }
+           ]
+         }
+       ],
+       "rules": [
+         {
+           "pattern": {
+             "feature": "procname",
+             "matches": "niri"
+           },
+           "profile": "niri"
+         }
+       ]
+     }
+   '';
   # Configuración de Niri
   programs.niri = {
     enable = true;
@@ -67,7 +67,7 @@
     enable = true;
     xkb = {
       layout = "us,es";
-      options = "grp:alt_shift_toggle";
+      options = "grp:win_space_toggle";
     };
 
   };
@@ -169,7 +169,12 @@
     dedicatedServer.openFirewall = true;
     gamescopeSession.enable = true;
   };
-
+  fonts = {
+    enableDefaultPackages = true;
+    fontconfig = {
+      enable = true;
+    };
+  };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # nixpkgs.config.allowUnfree = true;

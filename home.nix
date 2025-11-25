@@ -1,6 +1,7 @@
 { config, pkgs, inputs, ... }:
 {
   imports =[
+    inputs.zen-browser.homeModules.twilight
     inputs.niri-flake.homeModules.niri
     ./desktop/niri_custom.nix
 
@@ -10,6 +11,7 @@
 
     ./programs/fenix.nix
   ];
+  programs.zen-browser.enable = true;
 
 
     # wayland.windowManager.sway = {
@@ -25,6 +27,10 @@
     grim
     slurp
     libnotify
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    noto-fonts-color-emoji
   ];
 
 
