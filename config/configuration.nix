@@ -54,13 +54,13 @@
      }
    '';
   # Configuración de Niri
-  # programs.niri = {
-  #   enable = true;
+  programs.niri = {
+    enable = true;
     # Sobrescribir el paquete para deshabilitar tests
     # package = inputs.niri.packages.${pkgs.system}.niri-stable.overrideAttrs (oldAttrs: {
       # doCheck = false;  # ← Deshabilitar tests que fallan
     # });
-  # };
+  };
 
   # Habilitar Wayland y sesión de login
   services.xserver = {
