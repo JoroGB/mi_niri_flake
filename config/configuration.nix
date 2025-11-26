@@ -54,21 +54,21 @@
      }
    '';
   # Configuración de Niri
-  programs.niri = {
-    enable = true;
+  # programs.niri = {
+  #   enable = true;
     # Sobrescribir el paquete para deshabilitar tests
     # package = inputs.niri.packages.${pkgs.system}.niri-stable.overrideAttrs (oldAttrs: {
       # doCheck = false;  # ← Deshabilitar tests que fallan
     # });
-  };
+  # };
 
   # Habilitar Wayland y sesión de login
   services.xserver = {
     enable = true;
-    xkb = {
-      layout = "us,es";
-      options = "grp:win_space_toggle";
-    };
+    # xkb = {
+    #   layout = "us,es";
+    #   options = "grp:win_space_toggle";
+    # };
 
   };
 
@@ -229,5 +229,5 @@
 
   services.openssh.enable = true;
 
-  system.stateVersion = "25.05";  # ← Versión correcta
+  system.stateVersion = "25.05";  # pkgs version
 }

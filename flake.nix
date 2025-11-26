@@ -52,12 +52,12 @@
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
-          ./config/configuration.nix
-          ./config/hardware-configuration.nix
           {nixpkgs.config.allowUnfree = true;}
           {nixpkgs.overlays = overlays_flake;}
           home-manager.nixosModules.home-manager
           mi_home_manager
+          ./config/configuration.nix
+          ./config/hardware-configuration.nix
         ];
     };
   };

@@ -3,7 +3,11 @@
 {
   programs.niri = {
     enable = true;
-    package = pkgs.niri-stable;
+    # package = pkgs.niri-stable;
+    # De tener problemas al hacer test cambiar "Package" por esto
+    package = inputs.niri-flake.packages.${pkgs.system}.niri-stable.overrideAttrs (oldAttrs: {
+    doCheck = false;  # ← Deshabilitar tests que fallan
+    });
 
     settings = {
       environment  ={
@@ -53,12 +57,10 @@
       # Input
       input = {
         focus-follows-mouse.enable = true;
-        # keyboard.xkb = {
-        #   layout = "us,es";
-        #   options = "grp:alt_shift_toggle";
-        # };
-
-
+        keyboard.xkb = {
+          layout = "us,es";
+          options = "grp:win_space_toggle";
+        };
         mouse = {
           accel-speed = 0.0;
         };
