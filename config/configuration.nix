@@ -13,8 +13,20 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # NVIDIA drivers para Wayland
-  hardware.graphics.enable = true;
-  hardware.graphics.enable32Bit = true;
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+
+    # ← AGREGA ESTOS PAQUETES:
+    extraPackages = with pkgs; [
+      nvidia-vaapi-driver
+      libvdpau-va-gl
+    ];
+    extraPackages32 = with pkgs.pkgsi686Linux; [
+      nvidia-vaapi-driver
+      libvdpau-va-gl
+    ];
+  };
 
   hardware.nvidia = {
     modesetting.enable = true;  # ← CRÍTICO para Wayland
@@ -23,6 +35,8 @@
     open = false;
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.production;
+
+    forceFullCompositionPipeline = true;
   };
 
   boot.kernelParams = [
@@ -79,31 +93,14 @@
   };
 
 
-  xdg = {
-      portal = {
-        enable = true;
-
-        # Portales correctos para Niri
-        extraPortals = with pkgs; [
-          xdg-desktop-portal-gnome  # ← Principal para Niri
-          xdg-desktop-portal-gtk    # ← Fallback
-        ];
-
-        # Configuración para Niri
-        config = {
-          niri = {  # ← Cambiar de  "niri"
-            default = [ "gnome" "gtk" ];
-            "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
-            "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
-          };
-
-          # Configuración común como fallback
-          common = {
-            default = [ "gnome" "gtk" ];
-          };
-        };
-      };
-    };
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk
+    ];
+    config.common.default = [ "gnome" "gtk" ];
+  };
 
     # Servicios necesarios
     services.dbus.enable = true;
@@ -114,9 +111,16 @@
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";  # Para apps Electron/Chromium en Wayland
     WLR_NO_HARDWARE_CURSORS = "1";  #Fix para cursores en NVIDIA
-    GBM_BACKEND = "nvidia-drm";
+    # GBM_BACKEND = "nvidia-drm";
+
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    NIXPKGS_ALLOW_UNFREE=1;
+    LIBVA_DRIVER_NAME = "nvidia";
+    NVD_BACKEND = "direct";
+    # Para Xwayland
+    #
+    GBM_BACKEND = "nvidia-drm";
+    __GL_GSYNC_ALLOWED = "1";
+    __GL_VRR_ALLOWED = "1";
   };
   environment.pathsToLink = [ "/share/applications" "/share/xdg-desktop-portal" ];
   networking.hostName = "nixos";
