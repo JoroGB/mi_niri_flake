@@ -4,12 +4,15 @@
     inputs.zen-browser.homeModules.twilight
 
     inputs.niri-flake.homeModules.niri
-    ./desktop/niri_custom.nix
+    ./desktop/niri/niri_custom.nix
 
     inputs.noctalia.homeModules.default
-    ./desktop/noctalia.nix
+    ./desktop/niri/noctalia.nix
 
     ./programs/fenix.nix
+    # ./programs/neovim.nix
+
+    ./desktop/hyprland/hyprland_custom.nix
   ];
   programs.zen-browser.enable = true;
 

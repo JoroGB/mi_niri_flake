@@ -21,6 +21,9 @@
        url = "github:noctalia-dev/noctalia-shell";
        inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland = {
+     url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    };
     zen-browser = {
         url = "github:0xc000022070/zen-browser-flake";
         inputs = {
@@ -32,12 +35,16 @@
       };
   };
 #                                                             Para poder usar inputs dentro de SpecialArgs
-  outputs = { self, nixpkgs, home-manager, niri-flake, fenix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, niri-flake, fenix,hyprland, ... }@inputs:
   let
     #overlays
     overlays_flake = [
       niri-flake.overlays.niri
       fenix.overlays.default
+
+
+
+
     ];
     # home manager settings
     mi_home_manager = {
@@ -46,6 +53,7 @@
       home-manager.extraSpecialArgs = { inherit inputs; };  # ← Esto pasa inputs a home.nix
       home-manager.users.joronix = import ./home.nix;
     };
+
 
   in {
     nixosConfigurations.pc = nixpkgs.lib.nixosSystem {
