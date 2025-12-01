@@ -324,7 +324,7 @@
           qt = false;
           kcolorscheme = false;
           alacritty = true;
-          kitty = true;
+          kitty = false;
           ghostty = false;
           foot = false;
           wezterm = false;

@@ -2,11 +2,12 @@
 { inputs, pkgs, ... }:
 {
   imports =[
-    ./wofi.nix
+    ./rofi.nix
     ./waybar.nix
   ];
   wayland.windowManager.hyprland = {
     enable = true;
+    xwayland.enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 
     # Usar systemd para iniciar Hyprland
@@ -18,14 +19,23 @@
       # ───────────────────────────────────
       # VARIABLES DE ENTORNO
       # ───────────────────────────────────
+      # Variables de entorno para modo oscuro
       env = [
+        "GTK_THEME,Adwaita:dark"
+        "QT_QPA_PLATFORMTHEME,qt5ct"
+        "QT_STYLE_OVERRIDE,Adwaita-Dark"
+        "XCURSOR_SIZE,24"
+        "XCURSOR_THEME,Bibata-Modern-Classic"
+        # NVIDIA
         "LIBVA_DRIVER_NAME,nvidia"
         "GBM_BACKEND,nvidia-drm"
         "__GLX_VENDOR_LIBRARY_NAME,nvidia"
         "WLR_NO_HARDWARE_CURSORS,1"
-        "XCURSOR_SIZE,24"
+        # XDG
+        "XDG_CURRENT_DESKTOP,Hyprland"
+        "XDG_SESSION_TYPE,wayland"
+        "XDG_SESSION_DESKTOP,Hyprland"
       ];
-
       # ───────────────────────────────────
       # MONITORES
       # ───────────────────────────────────
@@ -148,12 +158,19 @@
       "$mod" = "SUPER";
 
       bind = [
+        # Rofi launchers
+        # "$Mod, D, exec, rofi -show drun"
+        "$Mod SHIFT, R, exec, rofi -show run"
+        "$Mod SHIFT, E, exec, rofi -show filebrowser"
+        "$Mod SHIFT, S, exec, rofi -show ssh"
+
         # Aplicaciones
         "$mod, Return, exec, alacritty"
         "$mod, Q, killactive"
         "$mod, M, exit"
         "$mod, F, fullscreen"
         "$mod, V, togglefloating"
+        "$mod, R, exec, rofi --show drun"
         "$mod, D, exec, wofi --show drun"
         "$mod, B, exec, brave"
 
@@ -223,6 +240,8 @@
       exec-once = [
         "waybar"
         "mako"
+        "hyprpaper"
+        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
         # "swww init"
         # "nm-applet"
       ];
@@ -257,38 +276,7 @@
     background-color = "#1e1e2e";
     };
   };
-  programs.wofi.settings = {
-    # General settings
-    prompt = "Run Application:";
-    width = "30%";
-    height = "50%";
-    normal-window = true;
-    sort-mode = "alpha"; # Sort applications alphabetically
 
-    # Dmenu mode specific options (example)
-    dmenu-parse_action = true;
-  };
-
-  # Define CSS style inline
-  programs.wofi.style = ''
-    window {
-      margin: 5px;
-      background-color: #2e3440; /* Example color */
-      opacity: 0.9;
-      font-size: 14px;
-      font-family: sans-serif;
-      border-radius: 10px;
-      border: 2px solid #a3acdf; /* Example border color */
-    }
-    input {
-      background-color: #3b4252;
-      color: #eceff4;
-    }
-    #entry:selected {
-      background-color: #88c0d0;
-      color: #2e3440;
-    }
-  '';
 
 
 }

@@ -68,55 +68,25 @@
   };
 
 
-  # XDG Portals para ambos compositores
-   # xdg.portal = {
-   #   enable = true;
-   #   extraPortals = with pkgs; [
-   #    inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland # Para Hyprland
-   #     xdg-desktop-portal-gnome     # Para Niri
-   #     xdg-desktop-portal-gtk       # Fallback
-   #   ];
-   #   config = {
-   #     # Configuración para Hyprland
-   #     hyprland = {
-   #       default = [ "hyprland" "gtk" ];
-   #       "org.freedesktop.impl.portal.Screenshot" = [ "hyprland" ];
-   #       "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
-   #     };
-   #     # Configuración para Niri
-   #     niri = {
-   #       default = [ "gnome" "gtk" ];
-   #       "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
-   #       "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
-   #     };
-   #     # Fallback común
-   #     common = {
-   #       default = [ "gtk" ];
-   #     };
-   #   };
-   # };
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome  # Para Niri
+      xdg-desktop-portal-gtk    # Fallback
+    ];
 
-   # xdg.portal = {
-   #   enable = true;
+    config = {
+      hyprland = {
+        default = [ "hyprland" "gtk" ];
+      };
 
-   #   extraPortals = with pkgs; [
-   #     inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
-   #     xdg-desktop-portal-gtk  # Para apps GTK
-   #   ];
+      niri = {
+        default = [ "gnome" "gtk" ];
+      };
+    };
 
-   #   config = {
-   #     common = {
-   #       default = [ "gtk" ];
-   #     };
-   #     hyprland = {
-   #       default = [ "hyprland" "gtk" ];
-   #     };
-   #   };
-
-   #   # Deshabilitar portales problemáticos
-   #   wlr.enable = false;
-   #   xdgOpenUsePortal = false;
-   # };
+    wlr.enable = false;
+  };
 
     # Servicios necesarios
     services.dbus.enable = true;
@@ -234,21 +204,21 @@
 
     # tool niri
     fuzzel      # Launcher para Niri
-    mako        # Notificaciones
+    # mako        # Notificaciones
 
     # tool hp
-    hyprpaper    # Wallpapers
-    hyprlock     # Lockscreen
-    hypridle     # Idle management
-    hyprpicker   # Color picker
-    wofi         # Launcher alternativo
+    # hyprpaper    # Wallpapers
+    # hyprlock     # Lockscreen
+    # hypridle     # Idle management
+    # hyprpicker   # Color picker
+    # wofi         # Launcher alternativo
     rofi          # Launcher con más features
-    waybar       # Status bar
-    dunst        # Notificaciones alternativas
+    # waybar       # Status bar
+    # dunst        # Notificaciones alternativas
     swaylock     # Lockscreen alternativo
     swayidle     # Idle alternativo
-    grim         # Screenshots
-    slurp        # Screen area selector
+    # grim         # Screenshots
+    # slurp        # Screen area selector
 
     # apps
     discord-ptb
