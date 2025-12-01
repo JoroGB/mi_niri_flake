@@ -35,6 +35,9 @@
         "XDG_CURRENT_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
+        "XDG_CACHE_HOME,$HOME/.cache"
+        "XDG_CONFIG_HOME,$HOME/.config"
+        "XDG_DATA_HOME,$HOME/.local/share"
       ];
       # ───────────────────────────────────
       # MONITORES
@@ -159,10 +162,10 @@
 
       bind = [
         # Rofi launchers
-        # "$Mod, D, exec, rofi -show drun"
-        "$Mod SHIFT, R, exec, rofi -show run"
-        "$Mod SHIFT, E, exec, rofi -show filebrowser"
-        "$Mod SHIFT, S, exec, rofi -show ssh"
+        # "$mod, D, exec, rofi -show drun"
+        # "$mod SHIFT, R, exec, rofi -show drun"
+        "$mod SHIFT, E, exec, rofi -show filebrowser"
+        "$mod SHIFT, S, exec, rofi -show ssh"
 
         # Aplicaciones
         "$mod, Return, exec, alacritty"
@@ -170,8 +173,8 @@
         "$mod, M, exit"
         "$mod, F, fullscreen"
         "$mod, V, togglefloating"
-        "$mod, R, exec, rofi --show drun"
-        "$mod, D, exec, wofi --show drun"
+        "$mod, D, exec, rofi -show drun"
+        # "$mod, R, exec, wofi --show drun"
         "$mod, B, exec, brave"
 
         # Focus
@@ -238,7 +241,6 @@
       # AUTOSTART
       # ───────────────────────────────────
       exec-once = [
-        "waybar"
         "mako"
         "hyprpaper"
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"

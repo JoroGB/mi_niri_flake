@@ -1,8 +1,8 @@
 { ... }: {
 
   programs.waybar = {
-     # enable = true;
-     # systemd.enable = true;
+     enable = true;
+     systemd.enable = true;
      settings = [{
        layer = "top";
        position = "top";
@@ -22,10 +22,6 @@
          format-alt = "{:%Y-%m-%d}";
        };
 
-       battery = {
-         format = "{capacity}% {icon}";
-         format-icons = [ "" "" "" "" "" ];
-       };
 
        network = {
          format-wifi = " {signalStrength}%";
@@ -65,7 +61,7 @@
          background: rgba(137, 180, 250, 0.3);
        }
 
-       #clock, #battery, #cpu, #memory, #network, #pulseaudio, #tray {
+       #clock, #cpu, #memory, #network, #pulseaudio, #tray {
          padding: 0 10px;
          margin: 0 5px;
        }

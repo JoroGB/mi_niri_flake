@@ -43,7 +43,7 @@
             ];
             center = [
               {
-                id = "Workspace";
+                id = "Clock";
               }
             ];
             right = [
@@ -67,7 +67,7 @@
                 id = "Brightness";
               }
               {
-                id = "Clock";
+                id = "Workspace";
               }
             ];
           };
