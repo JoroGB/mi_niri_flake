@@ -1,7 +1,11 @@
 # desktop/niri_custom.nix
 { config, pkgs, inputs, ... }:
 {
+  home.sessionVariables = {
+     _JAVA_AWT_WM_NONREPARENTING = "1";
+   };
   programs.niri = {
+
     enable = true;
     # package = pkgs.niri-stable;
     # De tener problemas al hacer test cambiar "Package" por esto
@@ -102,6 +106,8 @@
         "Mod+T".action = spawn "alacritty";
         "Mod+D".action = spawn "fuzzel";
         "Mod+Tab".action = open-overview;
+        "Mod+Semicolon".action = spawn-sh "rofi -show window";
+        "Mod+P".action = spawn-sh "rofi -show drun";
 
         #Mostrar hotkeys
         "Mod+Shift+Slash".action = show-hotkey-overlay;
@@ -263,6 +269,13 @@
             top-right = 12.0;
           };
           clip-to-geometry = true;
+        }
+
+        {
+          matches = [
+            { app-id = "^jetbrains-.*"; }
+          ];
+          # Puedes agregar reglas específicas aquí si es necesario
         }
       ];
 
