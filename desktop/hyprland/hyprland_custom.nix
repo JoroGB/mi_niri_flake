@@ -256,20 +256,20 @@
   # ═══════════════════════════════════════
 
 
-  # Alacritty
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      window = {
-        opacity = 0.80;
-        padding = {
-          x = 10;
-          y = 10;
-        };
-      };
-      font.size = 11;
-    };
-  };
+  # # Alacritty
+  # programs.alacritty = {
+  #   enable = true;
+  #   settings = {
+  #     window = {
+  #       opacity = 0.80;
+  #       padding = {
+  #         x = 10;
+  #         y = 10;
+  #       };
+  #     };
+  #     font.size = 11;
+  #   };
+  # };
 
   services.mako = {
     enable = true;

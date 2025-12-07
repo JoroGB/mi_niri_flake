@@ -13,9 +13,10 @@
     # ./programs/neovim.nix
 
     ./desktop/hyprland/hyprland_custom.nix
+    ./desktop/swaylock.nix
+    # ./desktop/alacritty_config.nix
   ];
   programs.zen-browser.enable = true;
-
 
   home.username = "joronix";
   home.homeDirectory = "/home/joronix";
