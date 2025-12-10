@@ -67,7 +67,6 @@
     wayland.enable = true;
   };
 
-
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
@@ -127,6 +126,8 @@
     password = "fungy2005";  #  CAMBIAR ESTO - no pongas passwords en plain text
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" ];
+    shell = pkgs.nushell;
+
     packages = with pkgs; [
       tree
       nushell
@@ -148,23 +149,30 @@
     package = pkgs.mysql84;
   };
 
-  programs.firefox.enable = true;
-  programs.xwayland.enable = true;
+
 
   # Terminal para Wayland en lugar de gnome-terminal
   # Kitty ya está en environment.systemPackages y funciona con Wayland
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    gamescopeSession.enable = true;
+
+  programs = {
+    xwayland.enable = true;
+    firefox.enable = true;
+    steam = {
+        enable = true;
+        remotePlay.openFirewall = true;
+        dedicatedServer.openFirewall = true;
+        gamescopeSession.enable = true;
+      };
   };
   fonts = {
     enableDefaultPackages = true;
     fontconfig = {
       enable = true;
     };
+    packages = with pkgs; [
+      nerd-fonts.jetbrains-mono
+    ];
   };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -215,7 +223,6 @@
     rofi          # Launcher con más features
     # waybar       # Status bar
     # dunst        # Notificaciones alternativas
-    swaylock     # Lockscreen alternativo
     swayidle     # Idle alternativo
     # grim         # Screenshots
     # slurp        # Screen area selector

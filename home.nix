@@ -13,10 +13,21 @@
     # ./programs/neovim.nix
 
     ./desktop/hyprland/hyprland_custom.nix
-    ./desktop/swaylock.nix
-    # ./desktop/alacritty_config.nix
+    ./desktop/alacritty_config.nix
   ];
-  programs.zen-browser.enable = true;
+  programs = {
+    zen-browser.enable = true;
+    git = {
+      enable = true;
+      userEmail = "134667974+JoroGB@users.noreply.github.com";
+      userName = "JoroGB";
+      extraConfig = {
+        init  = {
+          defaultBranch = "main";
+        };
+      };
+    };
+  };
 
   home.username = "joronix";
   home.homeDirectory = "/home/joronix";
