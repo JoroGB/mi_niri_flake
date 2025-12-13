@@ -133,6 +133,7 @@
       nushell
       neovim
       zellij
+      yazi
     ];
   };
 

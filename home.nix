@@ -21,7 +21,7 @@
       enable = true;
       userEmail = "134667974+JoroGB@users.noreply.github.com";
       userName = "JoroGB";
-      extraConfig = {
+      settings = {
         init  = {
           defaultBranch = "main";
         };
