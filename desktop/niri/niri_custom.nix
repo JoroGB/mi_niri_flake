@@ -105,6 +105,7 @@
         "Mod+Shift+Tab".action = spawn-sh "kitty";
         "Mod+T".action = spawn "alacritty";
         "Mod+D".action = spawn "fuzzel";
+        "Mod+Shift+D".action = spawn-sh "alacritty -e yazi";
         "Mod+Tab".action = open-overview;
         "Mod+Semicolon".action = spawn-sh "rofi -show window";
         "Mod+P".action = spawn-sh "rofi -show drun";

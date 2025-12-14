@@ -1,4 +1,9 @@
-{ config, lib, pkgs, inputs, ... }:  # ← Agregar inputs aquí
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}: # ← Agregar inputs aquí
 {
   imports = [
     ./hardware-configuration.nix
@@ -38,10 +43,10 @@
   };
 
   boot.kernelParams = [
-     "nvidia-drm.modeset=1"
-     "nvidia-drm.fbdev=1"
+    "nvidia-drm.modeset=1"
+    "nvidia-drm.fbdev=1"
 
-   ];
+  ];
   # Configuración de Niri
   programs.niri = {
     enable = true;
@@ -57,7 +62,7 @@
   services.xserver = {
     enable = true;
   };
-  services.udisks2 ={
+  services.udisks2 = {
     enable = true;
   };
 
@@ -70,29 +75,33 @@
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
-      xdg-desktop-portal-gnome  # Para Niri
-      xdg-desktop-portal-gtk    # Fallback
+      xdg-desktop-portal-gnome # Para Niri
+      xdg-desktop-portal-gtk # Fallback
     ];
 
     config = {
       hyprland = {
-        default = [ "hyprland" "gtk" ];
+        default = [
+          "hyprland"
+          "gtk"
+        ];
       };
 
       niri = {
-        default = [ "gnome" "gtk" ];
+        default = [
+          "gnome"
+          "gtk"
+        ];
       };
     };
 
     wlr.enable = false;
   };
 
-    # Servicios necesarios
-    services.dbus.enable = true;
-    services.gnome.gnome-keyring.enable = true;
-    # security.polkit.enable = true;
-
-
+  # Servicios necesarios
+  services.dbus.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+  # security.polkit.enable = true;
 
   # Variables de entorno para NVIDIA + Wayland
   environment.sessionVariables = {
@@ -115,17 +124,20 @@
     XCURSOR_SIZE = "24";
   };
 
-  environment.pathsToLink = [ "/share/applications" "/share/xdg-desktop-portal" ];
-
-
-
+  environment.pathsToLink = [
+    "/share/applications"
+    "/share/xdg-desktop-portal"
+  ];
 
   services.flatpak.enable = true;
 
   users.users.joronix = {
-    password = "fungy2005";  #  CAMBIAR ESTO - no pongas passwords en plain text
+    password = "fungy2005"; # CAMBIAR ESTO - no pongas passwords en plain text
     isNormalUser = true;
-    extraGroups = [ "wheel" "docker" ];
+    extraGroups = [
+      "wheel"
+      "docker"
+    ];
     shell = pkgs.nushell;
 
     packages = with pkgs; [
@@ -150,21 +162,18 @@
     package = pkgs.mysql84;
   };
 
-
-
   # Terminal para Wayland en lugar de gnome-terminal
   # Kitty ya está en environment.systemPackages y funciona con Wayland
-
 
   programs = {
     xwayland.enable = true;
     firefox.enable = true;
     steam = {
-        enable = true;
-        remotePlay.openFirewall = true;
-        dedicatedServer.openFirewall = true;
-        gamescopeSession.enable = true;
-      };
+      enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+      gamescopeSession.enable = true;
+    };
   };
   fonts = {
     enableDefaultPackages = true;
@@ -175,12 +184,15 @@
       nerd-fonts.jetbrains-mono
     ];
   };
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    (callPackage ./pear_desktop.nix{})
+    (callPackage ./pear_desktop.nix { })
     gcc
     vim
     wget
@@ -212,7 +224,7 @@
     bibata-cursors
 
     # tool niri
-    fuzzel      # Launcher para Niri
+    fuzzel # Launcher para Niri
     # mako        # Notificaciones
 
     # tool hp
@@ -221,10 +233,10 @@
     # hypridle     # Idle management
     # hyprpicker   # Color picker
     # wofi         # Launcher alternativo
-    rofi          # Launcher con más features
+    rofi # Launcher con más features
     # waybar       # Status bar
     # dunst        # Notificaciones alternativas
-    swayidle     # Idle alternativo
+    swayidle # Idle alternativo
     # grim         # Screenshots
     # slurp        # Screen area selector
 
@@ -252,5 +264,5 @@
 
   services.openssh.enable = true;
 
-  system.stateVersion = "25.05";  # pkgs version
+  system.stateVersion = "25.05"; # pkgs version
 }

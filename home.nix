@@ -1,6 +1,11 @@
-{ config, pkgs, inputs, ... }:
 {
-  imports =[
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
+{
+  imports = [
     inputs.zen-browser.homeModules.twilight
 
     inputs.niri-flake.homeModules.niri
@@ -10,7 +15,7 @@
     ./desktop/niri/noctalia.nix
 
     ./programs/fenix.nix
-    # ./programs/neovim.nix
+    ./programs/neovim.nix
 
     ./desktop/hyprland/hyprland_custom.nix
     ./desktop/alacritty_config.nix
@@ -19,10 +24,12 @@
     zen-browser.enable = true;
     git = {
       enable = true;
-      userEmail = "134667974+JoroGB@users.noreply.github.com";
-      userName = "JoroGB";
       settings = {
-        init  = {
+        user = {
+          name = "JoroGB";
+          email = "134667974+JoroGB@users.noreply.github.com";
+        };
+        init = {
           defaultBranch = "main";
         };
       };
