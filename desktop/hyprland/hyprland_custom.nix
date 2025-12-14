@@ -1,7 +1,6 @@
-
 { inputs, pkgs, ... }:
 {
-  imports =[
+  imports = [
     ./rofi.nix
     ./waybar.nix
   ];
@@ -203,16 +202,20 @@
         ", Print, exec, grim -g $(slurp) - | wl-copy"
       ]
       # WORKSPACES - Usando el método del ejemplo
-      ++ (
-        builtins.concatLists (builtins.genList (i:
-          let ws = i + 1;
-          in [
+      ++ (builtins.concatLists (
+        builtins.genList (
+          i:
+          let
+            ws = i + 1;
+          in
+          [
             # Cambiar a workspace
             "$mod, ${toString ws}, workspace, ${toString ws}"
             # Mover ventana a workspace
             "$mod SHIFT, ${toString ws}, movetoworkspace, ${toString ws}"
           ]
-        ) 8)  # 8 workspaces (1-8)
+        ) 8
+      ) # 8 workspaces (1-8)
       );
 
       # ───────────────────────────────────
@@ -255,7 +258,6 @@
   # PROGRAMAS ADICIONALES
   # ═══════════════════════════════════════
 
-
   # # Alacritty
   # programs.alacritty = {
   #   enable = true;
@@ -274,12 +276,10 @@
   services.mako = {
     enable = true;
     settings = {
-    default-timeout = 5000;
-    text-color = "#cdd6f4";
-    background-color = "#1e1e2e";
+      default-timeout = 5000;
+      text-color = "#cdd6f4";
+      background-color = "#1e1e2e";
     };
   };
-
-
 
 }

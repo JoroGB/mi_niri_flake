@@ -16,6 +16,7 @@
 
     ./programs/fenix.nix
     ./programs/neovim.nix
+    ./programs/obs.nix
 
     ./desktop/hyprland/hyprland_custom.nix
     ./desktop/alacritty_config.nix

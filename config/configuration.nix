@@ -16,6 +16,19 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Módulo del kernel para cámara virtual de OBS
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    v4l2loopback
+  ];
+
+  # Cargar el módulo al inicio
+  boot.kernelModules = [ "v4l2loopback" ];
+
+  # Configuración del módulo v4l2loopback
+  boot.extraModprobeConfig = ''
+    options v4l2loopback devices=1 video_nr=10 card_label="OBS Virtual Camera" exclusive_caps=1
+  '';
+
   # NVIDIA drivers para Wayland
   hardware.graphics = {
     enable = true;
@@ -136,6 +149,7 @@
     extraGroups = [
       "wheel"
       "docker"
+      "video"
     ];
     shell = pkgs.nushell;
 
