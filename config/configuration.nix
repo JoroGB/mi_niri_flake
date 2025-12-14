@@ -12,7 +12,6 @@
   networking.hostName = "nixos";
   time.timeZone = "America/Costa_Rica";
   time.hardwareClockInLocalTime = true;
-  i18n.defaultLocale = "en_US.UTF-8";
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -174,6 +173,13 @@
       dedicatedServer.openFirewall = true;
       gamescopeSession.enable = true;
     };
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        glibc
+        gcc
+      ];
+    };
   };
   fonts = {
     enableDefaultPackages = true;
@@ -201,6 +207,7 @@
     nodejs
     unzip
     lldb
+    vscode-extensions.vadimcn.vscode-lldb
     nixos-shell
     direnv
     cron
