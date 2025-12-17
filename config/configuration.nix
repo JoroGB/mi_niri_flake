@@ -213,6 +213,8 @@
 
   environment.systemPackages = with pkgs; [
     (callPackage ./pear_desktop.nix { })
+    openssl
+    openssl.dev
     gcc
     vim
     wget

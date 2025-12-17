@@ -219,6 +219,7 @@
 
       #Move the focused window between the floating and the tiling layout.
       "Mod+Alt+V".action       = toggle-window-floating;
+      "Mod+0".action       = toggle-window-floating;
       "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
 
       # Toggle tabbed column display mode.
