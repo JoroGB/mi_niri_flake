@@ -36,7 +36,13 @@
       };
     };
   };
+  xdg.configFile = {
+    "nushell/config.nu" = {
+      source = ./programs/config_files/config.nu;
+      force = true;
+    };
 
+  };
   home.username = "joronix";
   home.homeDirectory = "/home/joronix";
   home.stateVersion = "25.05";
