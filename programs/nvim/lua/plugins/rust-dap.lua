@@ -2,10 +2,10 @@
 return {
   -- Importar el extra de Rust de LazyVim
   { import = "lazyvim.plugins.extras.lang.rust" },
-  
+
   -- Importar el extra de DAP
   { import = "lazyvim.plugins.extras.dap.core" },
-  
+
   -- Configuración de Mason para instalar codelldb
   {
     "jay-babu/mason-nvim-dap.nvim",
@@ -16,7 +16,7 @@ return {
         function(config)
           require("mason-nvim-dap").default_setup(config)
         end,
-        
+
         -- Handler específico para codelldb/Rust
         codelldb = function(config)
           config.adapters = {
@@ -27,7 +27,7 @@ return {
               args = { "--port", "${port}" },
             },
           }
-          
+
           config.configurations = {
             {
               name = "Launch Rust Program",
@@ -52,11 +52,9 @@ return {
                 else
                   vim.fn.system("cargo test --no-run")
                 end
-                
+
                 -- Encuentra el último ejecutable de test compilado
-                local test_binary = vim.fn.system(
-                  "ls -t target/debug/deps/*-* | grep -v '\\.d$' | head -n1"
-                )
+                local test_binary = vim.fn.system("ls -t target/debug/deps/*-* | grep -v '\\.d$' | head -n1")
                 return vim.trim(test_binary)
               end,
               cwd = "${workspaceFolder}",
@@ -64,19 +62,19 @@ return {
               args = {},
             },
           }
-          
+
           require("mason-nvim-dap").default_setup(config)
         end,
       },
     },
   },
-  
+
   -- Configuración adicional de nvim-dap para Rust
   {
     "mfussenegger/nvim-dap",
     opts = function()
       local dap = require("dap")
-      
+
       -- Configuración adicional del adaptador si es necesario
       if not dap.adapters["codelldb"] then
         dap.adapters["codelldb"] = {
@@ -88,7 +86,7 @@ return {
           },
         }
       end
-      
+
       -- Asegurar que las configuraciones de Rust estén disponibles
       if not dap.configurations.rust then
         dap.configurations.rust = {
@@ -106,7 +104,7 @@ return {
       end
     end,
   },
-  
+
   -- Opcional: rustaceanvim para mejor integración con Rust
   {
     "mrcjkb/rustaceanvim",

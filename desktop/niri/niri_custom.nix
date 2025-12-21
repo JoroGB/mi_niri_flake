@@ -1,43 +1,48 @@
 # desktop/niri_custom.nix
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   home.sessionVariables = {
-     _JAVA_AWT_WM_NONREPARENTING = "1";
-   };
+    _JAVA_AWT_WM_NONREPARENTING = "1";
+  };
   programs.niri = {
 
     enable = true;
     # package = pkgs.niri-stable;
     # De tener problemas al hacer test cambiar "Package" por esto
     package = inputs.niri-flake.packages.${pkgs.system}.niri-stable.overrideAttrs (oldAttrs: {
-    doCheck = false;  # ← Deshabilitar tests que fallan
+      doCheck = false; # ← Deshabilitar tests que fallan
     });
 
     settings = {
-      environment  ={
+      environment = {
         DISPLAY = ":0";
         XCURSOR_THEME = "Bibata-Modern-Classic";
         XCURSOR_SIZE = "24";
       };
 
-      outputs ={
-        "DP-3"={
+      outputs = {
+        "DP-3" = {
           focus-at-startup = true;
           mode = {
             width = 2560;
             height = 1080;
             refresh = 99.943;
-            };
+          };
         };
-        "HDMI-A-1"={
+        "HDMI-A-1" = {
           position = {
             x = 0;
-            y=-400;
+            y = -400;
           };
-          transform.rotation=270;
+          transform.rotation = 270;
           mode = {
-          width = 1920;
-          height = 1080;
+            width = 1920;
+            height = 1080;
           };
         };
       };
@@ -45,14 +50,19 @@
       layout = {
         background-color = "transparent";
         gaps = 6;
-       focus-ring = {
-         width = 1.5;
-        } ;
+        focus-ring = {
+          width = 1.5;
+        };
       };
       # Lanzar Noctalia al inicio:
       spawn-at-startup = [
         { command = [ "noctalia-shell" ]; }
-        { command = [ "xwayland-satellite" ":0"]; }
+        {
+          command = [
+            "xwayland-satellite"
+            ":0"
+          ];
+        }
       ];
 
       # Configuración básica
@@ -86,8 +96,8 @@
         #Multimedia
         "XF86AudioRaiseVolume".action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+";
         "XF86AudioLowerVolume".action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-";
-        "XF86AudioMute".action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle" ;
-        "XF86AudioMicMute".action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle" ;
+        "XF86AudioMute".action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
+        "XF86AudioMicMute".action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
 
         "XF86AudioPlay".action = spawn-sh "playerctl play-pause";
         "XF86AudioNext".action = spawn-sh "playerctl next";
@@ -95,12 +105,13 @@
         "XF86AudioStop".action = spawn-sh "playerctl stop";
 
         # "Print".action = screenshot;
-        "Mod+V".action  = spawn-sh "noctalia-shell ipc call launcher clipboard";
+        "Mod+V".action = spawn-sh "noctalia-shell ipc call launcher clipboard";
         "Print".action.spawn = [
-          "sh" "-c"
+          "sh"
+          "-c"
           "grim -g \"$(slurp)\" - | wl-copy && notify-send 'Screenshot copiado'"
         ];
-          # Aplicaciones
+        # Aplicaciones
         "Mod+Shift+T".action = spawn-sh "warp-terminal";
         "Mod+Shift+Tab".action = spawn-sh "kitty";
         "Mod+T".action = spawn "alacritty";
@@ -117,31 +128,29 @@
         "Mod+Q".action = close-window;
         # "Mod+F".action = fullscreen-window;
         # "Mod+M".action = maximize-column;
-        "Mod+BracketLeft".action  = consume-or-expel-window-left;
+        "Mod+BracketLeft".action = consume-or-expel-window-left;
         "Mod+BracketRight".action = consume-or-expel-window-right;
-        "Mod+Ctrl+B".action  =  expel-window-from-column;
-
+        "Mod+Ctrl+B".action = expel-window-from-column;
 
         # Navegación
 
-       "Mod+Left".action = focus-column-left;
-       "Mod+Down".action = focus-window-down;
-       "Mod+Up".action   = focus-window-up;
-       "Mod+Right".action= focus-column-right;
-       "Mod+H".action    = focus-column-left;
-       "Mod+J".action    = focus-window-down;
-       "Mod+K".action    = focus-window-up;
-       "Mod+L".action    = focus-column-right;
+        "Mod+Left".action = focus-column-left;
+        "Mod+Down".action = focus-window-down;
+        "Mod+Up".action = focus-window-up;
+        "Mod+Right".action = focus-column-right;
+        "Mod+H".action = focus-column-left;
+        "Mod+J".action = focus-window-down;
+        "Mod+K".action = focus-window-up;
+        "Mod+L".action = focus-column-right;
 
-       "Mod+Shift+Left".action = move-column-left;
-       "Mod+Shift+Down".action = move-window-down;
-       "Mod+Shift+Up".action   = move-window-up;
-       "Mod+Shift+Right".action= move-column-right;
-       "Mod+Shift+H".action    = move-column-left;
-       "Mod+Shift+J".action    = move-window-down;
-       "Mod+Shift+K".action    = move-window-up;
-       "Mod+Shift+L".action    = move-column-right;
-
+        "Mod+Shift+Left".action = move-column-left;
+        "Mod+Shift+Down".action = move-window-down;
+        "Mod+Shift+Up".action = move-window-up;
+        "Mod+Shift+Right".action = move-column-right;
+        "Mod+Shift+H".action = move-column-left;
+        "Mod+Shift+J".action = move-window-down;
+        "Mod+Shift+K".action = move-window-up;
+        "Mod+Shift+L".action = move-column-right;
 
         # Mover ventanas
         "Mod+Ctrl+H".action = move-column-to-monitor-left;
@@ -171,30 +180,29 @@
         "Mod+Alt+L".action = focus-monitor-right;
         "Mod+Alt+Right".action = focus-monitor-right;
 
-       "Mod+Shift+Ctrl+Left".action  = move-column-to-monitor-left;
-       "Mod+Shift+Ctrl+Down".action  = move-column-to-monitor-down;
-       "Mod+Shift+Ctrl+Up".action    = move-column-to-monitor-up;
-       "Mod+Shift+Ctrl+Right".action = move-column-to-monitor-right;
-       "Mod+Shift+Ctrl+H".action     = move-column-to-monitor-left;
-       "Mod+Shift+Ctrl+J".action     = move-column-to-monitor-down;
-       "Mod+Shift+Ctrl+K".action     = move-column-to-monitor-up;
-       "Mod+Shift+Ctrl+L".action     = move-column-to-monitor-right;
+        "Mod+Shift+Ctrl+Left".action = move-column-to-monitor-left;
+        "Mod+Shift+Ctrl+Down".action = move-column-to-monitor-down;
+        "Mod+Shift+Ctrl+Up".action = move-column-to-monitor-up;
+        "Mod+Shift+Ctrl+Right".action = move-column-to-monitor-right;
+        "Mod+Shift+Ctrl+H".action = move-column-to-monitor-left;
+        "Mod+Shift+Ctrl+J".action = move-column-to-monitor-down;
+        "Mod+Shift+Ctrl+K".action = move-column-to-monitor-up;
+        "Mod+Shift+Ctrl+L".action = move-column-to-monitor-right;
 
-
-         # Mover a workspace
-        "Mod+Page_Down".action     = focus-workspace-down;
-        "Mod+Page_Up".action       = focus-workspace-up;
-        "Mod+U".action             = focus-workspace-down;
-        "Mod+I".action             = focus-workspace-up;
-        "Mod+Ctrl+Page_Down".action= move-column-to-workspace-down;
-        "Mod+Ctrl+Page_Up".action  = move-column-to-workspace-up;
-        "Mod+Ctrl+U".action        = move-column-to-workspace-down;
-        "Mod+Ctrl+I".action        = move-column-to-workspace-up;
+        # Mover a workspace
+        "Mod+Page_Down".action = focus-workspace-down;
+        "Mod+Page_Up".action = focus-workspace-up;
+        "Mod+U".action = focus-workspace-down;
+        "Mod+I".action = focus-workspace-up;
+        "Mod+Ctrl+Page_Down".action = move-column-to-workspace-down;
+        "Mod+Ctrl+Page_Up".action = move-column-to-workspace-up;
+        "Mod+Ctrl+U".action = move-column-to-workspace-down;
+        "Mod+Ctrl+I".action = move-column-to-workspace-up;
 
         "Mod+Shift+Page_Down".action = move-workspace-down;
-        "Mod+Shift+Page_Up".action   = move-workspace-up;
-        "Mod+Shift+U".action         = move-workspace-down;
-        "Mod+Shift+I".action         = move-workspace-up;
+        "Mod+Shift+Page_Up".action = move-workspace-up;
+        "Mod+Shift+U".action = move-workspace-down;
+        "Mod+Shift+I".action = move-workspace-up;
 
         # expel
         "Mod+Comma".action = consume-window-into-column;
@@ -202,12 +210,12 @@
         "Mod+R".action = switch-preset-column-width;
 
         "Mod+Shift+R".action = switch-preset-window-height;
-        "Mod+Ctrl+R".action  = reset-window-height;
-        "Mod+F".action       = maximize-column;
+        "Mod+Ctrl+R".action = reset-window-height;
+        "Mod+F".action = maximize-column;
         "Mod+Shift+F".action = fullscreen-window;
 
         #Expand focused column
-        "Mod+Ctrl+F".action =  expand-column-to-available-width;
+        "Mod+Ctrl+F".action = expand-column-to-available-width;
 
         "Mod+C".action = center-column;
         "Mod+Ctrl+C".action = center-visible-columns;
@@ -217,31 +225,29 @@
         "Mod+Shift+Minus".action.set-window-height = "-10%";
         "Mod+Shift+Equal".action.set-window-height = "+10%";
 
-      #Move the focused window between the floating and the tiling layout.
-      "Mod+Alt+V".action       = toggle-window-floating;
-      "Mod+0".action       = toggle-window-floating;
-      "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
+        #Move the focused window between the floating and the tiling layout.
+        "Mod+Alt+V".action = toggle-window-floating;
+        "Mod+0".action = toggle-window-floating;
+        "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
 
-      # Toggle tabbed column display mode.
-      # Windows in this column will appear as vertical tabs,
-      # rather than stacked on top of each other.
-      "Mod+W".action = toggle-column-tabbed-display;
+        # Toggle tabbed column display mode.
+        # Windows in this column will appear as vertical tabs,
+        # rather than stacked on top of each other.
+        "Mod+W".action = toggle-column-tabbed-display;
 
+        # ERROR
+        # "Print".action = screenshot;
+        # "Ctrl+Print".action = screenshot-screen;
+        # "Alt+Print".action = screenshot-window;
 
-       # ERROR
-       # "Print".action = screenshot;
-       # "Ctrl+Print".action = screenshot-screen;
-       # "Alt+Print".action = screenshot-window;
+        "Ctrl+Alt+Delete".action = quit;
 
+        # Powers off the monitors. To turn them back on, do any input like
+        # moving the mouse or pressing any other key.
+        "Mod+Shift+P".action = power-off-monitors;
 
-      "Ctrl+Alt+Delete".action =   quit;
-
-       # Powers off the monitors. To turn them back on, do any input like
-       # moving the mouse or pressing any other key.
-      "Mod+Shift+P".action  = power-off-monitors;
-
-      # Sistema
-      "Mod+Shift+E".action = quit;
+        # Sistema
+        "Mod+Shift+E".action = quit;
         # "Mod+Shift+R".action = spawn "sh" "-c" "niri msg action quit; niri";
 
         #  Finer height adjustments when in column with other windows.
@@ -259,7 +265,6 @@
       overview = {
         workspace-shadow.enable = false;
       };
-
 
       # Ventanas flotantes
       window-rules = [
@@ -282,8 +287,8 @@
       ];
 
       debug = {
-      honor-xdg-activation-with-invalid-serial = {};
-    };
+        honor-xdg-activation-with-invalid-serial = { };
+      };
 
       # debug.honor-xdg-activation-with-invalid-serial = true;
     };

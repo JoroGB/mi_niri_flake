@@ -9,7 +9,18 @@
     ./hardware-configuration.nix
   ];
 
-  networking.hostName = "nixos";
+  networking = {
+    hostName = "nixos";
+    wireless = {
+      enable = true;
+      networks = {
+        DOMA = {
+          ssid = "DOMA";
+          pskRaw = "8ac2623ddfaabbe16e42dbb624a803fd9fcd36dd510b7dacc126758cf9cc4c92";
+        };
+      };
+    };
+  };
   time.timeZone = "America/Costa_Rica";
   time.hardwareClockInLocalTime = true;
 
