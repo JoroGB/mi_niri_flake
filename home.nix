@@ -35,6 +35,16 @@
         };
       };
     };
+    bash = {
+      enable = true;
+      historyControl = [
+        "ignoredups"
+        "ignorespace"
+      ];
+      initExtra = ''
+        shopt -u histappend
+      '';
+    };
   };
   xdg.configFile = {
     "nushell/config.nu" = {
@@ -42,7 +52,16 @@
       force = true;
     };
 
+    "alacritty/alacritty.toml" = {
+      force = true;
+    };
+
+    # "joronix/.profile" = {
+    # force = true;
+    # };
+
   };
+  home.file.".profile".force = true;
   home.username = "joronix";
   home.homeDirectory = "/home/joronix";
   home.stateVersion = "25.05";
