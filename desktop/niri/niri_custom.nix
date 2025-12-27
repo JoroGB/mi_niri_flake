@@ -26,7 +26,7 @@
       };
 
       outputs = {
-        "DP-3" = {
+        "DP-1" = {
           focus-at-startup = true;
           mode = {
             width = 2560;
