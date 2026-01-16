@@ -14,9 +14,10 @@
     inputs.noctalia.homeModules.default
     ./desktop/niri/noctalia.nix
 
-    ./programs/fenix.nix
-    ./programs/neovim.nix
-    ./programs/obs.nix
+    ./pkgs/fenix.nix
+    ./pkgs/neovim.nix
+    ./pkgs/obs.nix
+    ./pkgs/rofi.nix
 
     # ./desktop/hyprland/hyprland_custom.nix
     ./desktop/alacritty_config.nix
@@ -48,7 +49,7 @@
   };
   xdg.configFile = {
     "nushell/config.nu" = {
-      source = ./programs/config_files/config.nu;
+      source = ./pkgs/config_files/config.nu;
       force = true;
     };
 
@@ -85,8 +86,7 @@
 
     # Utils
     wl-clipboard
-    # playerctl
-    # pavucontrol
+    pavucontrol
 
     # Temas
     adwaita-qt

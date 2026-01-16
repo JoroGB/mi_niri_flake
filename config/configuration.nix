@@ -289,7 +289,7 @@
     postgresql_17_jit
     jetbrains-toolbox
     # zed-editor
-    # playerctl
+    playerctl
     (writeShellScriptBin "brave-safe" ''
       ${brave}/bin/brave \
         --disable-gpu \
