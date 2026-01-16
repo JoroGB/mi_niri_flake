@@ -18,7 +18,7 @@
     ./programs/neovim.nix
     ./programs/obs.nix
 
-    ./desktop/hyprland/hyprland_custom.nix
+    # ./desktop/hyprland/hyprland_custom.nix
     ./desktop/alacritty_config.nix
   ];
   programs = {
@@ -67,10 +67,10 @@
   home.stateVersion = "25.05";
 
   home.packages = with pkgs; [
-    hyprpaper
-    hyprlock
-    hypridle
-    hyprpicker
+    # hyprpaper
+    # hyprlock
+    # hypridle
+    # hyprpicker
 
     # Launchers y notificaciones
     # rofi
@@ -85,8 +85,8 @@
 
     # Utils
     wl-clipboard
-    playerctl
-    pavucontrol
+    # playerctl
+    # pavucontrol
 
     # Temas
     adwaita-qt

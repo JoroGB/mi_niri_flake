@@ -87,12 +87,15 @@
   };
   services.udisks2 = {
     enable = true;
+
   };
 
-  # Necesario para display manager
+  # Necesario para display manager  / Screen Lock
   services.displayManager.sddm = {
     enable = true;
-    wayland.enable = true;
+    theme = "sugar-dark";
+    package = pkgs.kdePackages.sddm;
+    # wayland.enable = true;
   };
 
   xdg.portal = {
@@ -224,6 +227,8 @@
 
   environment.systemPackages = with pkgs; [
     (callPackage ./pear_desktop.nix { })
+    sddm-sugar-dark
+
     openssl
     openssl.dev
     gcc
@@ -270,7 +275,6 @@
     rofi # Launcher con más features
     # waybar       # Status bar
     # dunst        # Notificaciones alternativas
-    swayidle # Idle alternativo
     # grim         # Screenshots
     # slurp        # Screen area selector
 
@@ -284,8 +288,8 @@
     vscode
     postgresql_17_jit
     jetbrains-toolbox
-    zed-editor
-    playerctl
+    # zed-editor
+    # playerctl
     (writeShellScriptBin "brave-safe" ''
       ${brave}/bin/brave \
         --disable-gpu \

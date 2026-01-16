@@ -22,7 +22,7 @@
       environment = {
         DISPLAY = ":0";
         XCURSOR_THEME = "Bibata-Modern-Classic";
-        XCURSOR_SIZE = "24";
+        XCURSOR_SIZE = "20";
       };
 
       outputs = {
@@ -70,7 +70,7 @@
 
       # Input
       input = {
-        focus-follows-mouse.enable = true;
+        focus-follows-mouse.enable = false;
         keyboard.xkb = {
           layout = "us,es";
           options = "grp:win_space_toggle";
