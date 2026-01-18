@@ -233,11 +233,6 @@
   environment.systemPackages = with pkgs; [
     (callPackage ./pear_desktop.nix { })
     sddm-sugar-dark
-    # Dependencias Qt5 necesarias para el tema
-    libsForQt5.qt5.qtgraphicaleffects
-    libsForQt5.qt5.qtquickcontrols2
-    libsForQt5.qt5.qtsvg
-    libsForQt5.qt5.qtdeclarative
 
     openssl
     openssl.dev

@@ -158,7 +158,6 @@
   home.sessionVariables = {
     XDG_CACHE_HOME = "${config.home.homeDirectory}/.cache";
     GTK_THEME = "Adwaita:dark";
-    QT_QPA_PLATFORMTHEME = "qt5ct";
     QT_STYLE_OVERRIDE = "Adwaita-Dark";
     XCURSOR_THEME = "Bibata-Modern-Classic";
     XCURSOR_SIZE = "24";
