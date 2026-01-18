@@ -93,10 +93,15 @@
   # Necesario para display manager  / Screen Lock
   services.displayManager.sddm = {
     enable = true;
-    theme = "sugar-dark";
     package = pkgs.kdePackages.sddm;
     # wayland.enable = true;
   };
+  environment.etc."sddm.conf.d/theme.conf".text = ''
+    [Theme]
+    Current=sugar-dark
+    CursorTheme=Bibata-Modern-Classic
+    CursorSize=24
+  '';
 
   xdg.portal = {
     enable = true;
@@ -228,6 +233,11 @@
   environment.systemPackages = with pkgs; [
     (callPackage ./pear_desktop.nix { })
     sddm-sugar-dark
+    # Dependencias Qt5 necesarias para el tema
+    libsForQt5.qt5.qtgraphicaleffects
+    libsForQt5.qt5.qtquickcontrols2
+    libsForQt5.qt5.qtsvg
+    libsForQt5.qt5.qtdeclarative
 
     openssl
     openssl.dev
@@ -243,6 +253,7 @@
     nixos-shell
     direnv
     cron
+    glances
     python3
 
     # Terminal

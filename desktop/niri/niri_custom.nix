@@ -22,7 +22,7 @@
       environment = {
         DISPLAY = ":0";
         XCURSOR_THEME = "Bibata-Modern-Classic";
-        XCURSOR_SIZE = "20";
+        XCURSOR_SIZE = "24";
       };
 
       outputs = {
@@ -155,8 +155,8 @@
         # Mover ventanas
         "Mod+Ctrl+H".action = move-column-to-monitor-left;
         "Mod+Ctrl+L".action = move-column-to-monitor-right;
-        # "Mod+Shift+J".action = move-window-down-or-to-workspace-down;
-        # "Mod+Shift+K".action = move-window-up-or-to-workspace-up;
+        "Mod+Ctrl+Down".action = move-window-down-or-to-workspace-down;
+        "Mod+Ctrl+Up".action = move-window-up-or-to-workspace-up;
 
         # Workspaces
         "Mod+1".action = focus-workspace 1;
@@ -176,24 +176,27 @@
         #Monitores
         "Mod+Alt+H".action = focus-monitor-left;
         "Mod+Alt+Left".action = focus-monitor-left;
-
         "Mod+Alt+L".action = focus-monitor-right;
         "Mod+Alt+Right".action = focus-monitor-right;
 
-        "Mod+Shift+Ctrl+Left".action = move-column-to-monitor-left;
-        "Mod+Shift+Ctrl+Down".action = move-column-to-monitor-down;
-        "Mod+Shift+Ctrl+Up".action = move-column-to-monitor-up;
-        "Mod+Shift+Ctrl+Right".action = move-column-to-monitor-right;
-        "Mod+Shift+Ctrl+H".action = move-column-to-monitor-left;
-        "Mod+Shift+Ctrl+J".action = move-column-to-monitor-down;
-        "Mod+Shift+Ctrl+K".action = move-column-to-monitor-up;
+        "Mod+Ctrl+Left".action = move-column-to-monitor-left;
+        "Mod+Ctrl+Right".action = move-column-to-monitor-right;
+
+        # "Mod+Ctrl+Down".action = move-column-to-monitor-down;
+        # "Mod+Ctrl+Up".action = move-column-to-monitor-up;
+
         "Mod+Shift+Ctrl+L".action = move-column-to-monitor-right;
+        "Mod+Shift+Ctrl+H".action = move-column-to-monitor-left;
 
         # Mover a workspace
+        "Mod+Shift+Ctrl+J".action = move-column-to-workspace-down;
+        "Mod+Shift+Ctrl+K".action = move-column-to-workspace-up;
+
         "Mod+Page_Down".action = focus-workspace-down;
         "Mod+Page_Up".action = focus-workspace-up;
         "Mod+U".action = focus-workspace-down;
         "Mod+I".action = focus-workspace-up;
+
         "Mod+Ctrl+Page_Down".action = move-column-to-workspace-down;
         "Mod+Ctrl+Page_Up".action = move-column-to-workspace-up;
         "Mod+Ctrl+U".action = move-column-to-workspace-down;

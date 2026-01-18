@@ -101,7 +101,6 @@
     noto-fonts-cjk-serif
     noto-fonts-color-emoji
   ];
-  home.sessionVariables.XDG_CACHE_HOME = "${config.home.homeDirectory}/.cache";
 
   gtk = {
     enable = true;
@@ -138,13 +137,6 @@
     style.name = "Adwaita-Dark";
   };
 
-  # Variables de entorno
-  home.sessionVariables = {
-    GTK_THEME = "Adwaita:dark";
-    QT_QPA_PLATFORMTHEME = "qt5ct";
-    QT_STYLE_OVERRIDE = "Adwaita-Dark";
-  };
-
   # Configuración de Hyprpaper
   services.hyprpaper = {
     enable = true;
@@ -153,6 +145,23 @@
       wallpaper = [ "desktop/niri/city_night.jpg" ];
       splash = false;
     };
+  };
+  # Configuración del cursor
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 24;
+  };
+
+  # Asegurar que las variables de entorno se configuren
+  home.sessionVariables = {
+    XDG_CACHE_HOME = "${config.home.homeDirectory}/.cache";
+    GTK_THEME = "Adwaita:dark";
+    QT_QPA_PLATFORMTHEME = "qt5ct";
+    QT_STYLE_OVERRIDE = "Adwaita-Dark";
+    XCURSOR_THEME = "Bibata-Modern-Classic";
+    XCURSOR_SIZE = "24";
   };
 
 }

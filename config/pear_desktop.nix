@@ -1,4 +1,4 @@
-{ pkgs, stdenv, fetchurl, appimageTools }:
+{ fetchurl, appimageTools }:
 
 let
   pname = "pear-desktop";
@@ -14,27 +14,27 @@ appimageTools.wrapType2 {
   };
 
   extraInstallCommands = ''
-    # Crea los directorios necesarios
-    mkdir -p $out/share/applications
-    mkdir -p $out/share/icons/hicolor/256x256/apps
+        # Crea los directorios necesarios
+        mkdir -p $out/share/applications
+        mkdir -p $out/share/icons/hicolor/256x256/apps
 
-    # Instala el icono desde el mismo directorio
-    install -Dm644 ${icon} $out/share/icons/hicolor/256x256/apps/${pname}.png
+        # Instala el icono desde el mismo directorio
+        install -Dm644 ${icon} $out/share/icons/hicolor/256x256/apps/${pname}.png
 
-    # Crea el archivo .desktop
-    cat > $out/share/applications/${pname}.desktop <<EOF
-[Desktop Entry]
-Name=Pear Desktop
-Comment=YouTube Music Desktop Player
-Exec=$out/bin/${pname} %U
-Icon=${pname}
-Terminal=false
-Type=Application
-Categories=AudioVideo;Audio;Player;Music;
-MimeType=x-scheme-handler/peardesktop;
-StartupWMClass=pear-desktop
-StartupNotify=true
-EOF
+        # Crea el archivo .desktop
+        cat > $out/share/applications/${pname}.desktop <<EOF
+    [Desktop Entry]
+    Name=Pear Desktop
+    Comment=YouTube Music Desktop Player
+    Exec=$out/bin/${pname} %U
+    Icon=${pname}
+    Terminal=false
+    Type=Application
+    Categories=AudioVideo;Audio;Player;Music;
+    MimeType=x-scheme-handler/peardesktop;
+    StartupWMClass=pear-desktop
+    StartupNotify=true
+    EOF
   '';
 
 }
