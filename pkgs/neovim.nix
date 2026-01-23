@@ -35,12 +35,12 @@
     lazygit
   ];
 
-  home.file = {
-    ".config/nvim" = {
-      source = ./pkgs/config_files/nvim;
-      recursive = true;
-    };
-  };
+  # home.file = {
+  #   ".config/nvim" = {
+  #     source = ./pkgs/config_files/nvim;
+  #     recursive = true;
+  #   };
+  # };
 
   # ruta de configuracion de nvim
   # home.file.".config/nvim" = {

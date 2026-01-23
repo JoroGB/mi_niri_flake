@@ -18,7 +18,7 @@
     ./pkgs/neovim.nix
     ./pkgs/obs.nix
     ./pkgs/rofi.nix
-
+    ./pkgs/zellij.nix
     # ./desktop/hyprland/hyprland_custom.nix
     ./desktop/alacritty_config.nix
   ];

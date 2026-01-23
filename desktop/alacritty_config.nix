@@ -7,8 +7,13 @@
       window = {
         opacity = 0.90;
         padding = {
-          x = 10;
-          y = 10;
+          x = 1;
+          y = 0;
+        };
+        # decorations = "";
+        dynamic_padding = true;
+        dimensions = {
+          columns = 0;
         };
       };
       font = {
