@@ -4,7 +4,7 @@
 
     settings = {
       theme = "nord";
-      simplified_ui = true;
+      simplified_ui = true; # este ajuste muestra los atajos en el el button bar
       default_layout = "compact";
     };
   };
@@ -19,15 +19,14 @@
         }
       }
 
-      tab name="main" focus=true {
-        pane split_direction="vertical" {
-          pane size="70%"
-          pane split_direction="horizontal" {
-            pane size="50%"
-            pane size="50%"
-          }
-        }
+      tab name="nvim" focus=true {
+        pane
       }
+      tab name="logs" {
+        pane
+      }
+
+
 
       tab name="dev" {
         pane split_direction="vertical" {
@@ -39,9 +38,7 @@
         }
       }
 
-      tab name="logs" {
-        pane
-      }
+      
     }
   '';
 

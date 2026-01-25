@@ -53,6 +53,16 @@
         focus-ring = {
           width = 1.5;
         };
+
+        tab-indicator = {
+          # Esquinas redondeadas
+          corner-radius = 4;
+
+          # Colores
+          active.color = "#66F1C2";
+          inactive.color = "#505050";
+          urgent.color = "#9b0000";
+        };
       };
       # Lanzar Noctalia al inicio:
       spawn-at-startup = [

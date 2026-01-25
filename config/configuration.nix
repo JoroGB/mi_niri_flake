@@ -8,18 +8,25 @@
   imports = [
     ./hardware-configuration.nix
   ];
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
 
   networking = {
+
     hostName = "nixos";
-    wireless = {
+    networkmanager = {
       enable = true;
-      networks = {
-        DOMA = {
-          ssid = "DOMA";
-          pskRaw = "8ac2623ddfaabbe16e42dbb624a803fd9fcd36dd510b7dacc126758cf9cc4c92";
-        };
-      };
     };
+    # wireless = {
+    #
+    #   enable = false;
+    #   networks = {
+    #     DOMA = {
+    #       ssid = "DOMA";
+    #       pskRaw = "8ac2623ddfaabbe16e42dbb624a803fd9fcd36dd510b7dacc126758cf9cc4c92";
+    #     };
+    #   };
+    # };
   };
   time.timeZone = "America/Costa_Rica";
   time.hardwareClockInLocalTime = true;
@@ -169,6 +176,7 @@
       "wheel"
       "docker"
       "video"
+      "networkmanager"
     ];
     shell = pkgs.nushell;
 
