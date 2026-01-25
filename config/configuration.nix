@@ -77,12 +77,6 @@
     enable = true;
   };
 
-  # programs.hyprland = {
-  #   enable = true;
-  #   # set the flake package
-  #   package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-  # };
-
   # Habilitar Wayland y sesión de login
   services.xserver = {
     enable = true;
@@ -96,7 +90,6 @@
   services.displayManager.sddm = {
     enable = true;
     package = pkgs.kdePackages.sddm;
-    # wayland.enable = true;
   };
   environment.etc."sddm.conf.d/theme.conf".text = ''
     [Theme]
@@ -113,12 +106,6 @@
     ];
 
     config = {
-      hyprland = {
-        default = [
-          "hyprland"
-          "gtk"
-        ];
-      };
 
       niri = {
         default = [
@@ -171,7 +158,6 @@
       "wheel"
       "docker"
       "video"
-      # "networkmanager"
     ];
     shell = pkgs.nushell;
 
@@ -273,19 +259,7 @@
 
     # tool niri
     fuzzel # Launcher para Niri
-    # mako        # Notificaciones
-
-    # tool hp
-    # hyprpaper    # Wallpapers
-    # hyprlock     # Lockscreen
-    # hypridle     # Idle management
-    # hyprpicker   # Color picker
-    # wofi         # Launcher alternativo
     rofi # Launcher con más features
-    # waybar       # Status bar
-    # dunst        # Notificaciones alternativas
-    # grim         # Screenshots
-    # slurp        # Screen area selector
 
     # apps
     discord-ptb

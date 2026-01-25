@@ -19,7 +19,6 @@
     ./pkgs/obs.nix
     ./pkgs/rofi.nix
     ./pkgs/zellij.nix
-    # ./desktop/hyprland/hyprland_custom.nix
     ./desktop/alacritty_config.nix
   ];
   programs = {
@@ -57,10 +56,6 @@
       force = true;
     };
 
-    # "joronix/.profile" = {
-    # force = true;
-    # };
-
   };
   home.file.".profile".force = true;
   home.username = "joronix";
@@ -68,13 +63,7 @@
   home.stateVersion = "25.05";
 
   home.packages = with pkgs; [
-    # hyprpaper
-    # hyprlock
-    # hypridle
-    # hyprpicker
-
     # Launchers y notificaciones
-    # rofi
     wofi
     waybar
     mako
