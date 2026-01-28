@@ -47,7 +47,7 @@ return {
     optional = true,
     dependencies = {
       {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         opts = function(_, opts)
           opts.ensure_installed = opts.ensure_installed or {}
           vim.list_extend(opts.ensure_installed, { "js-debug-adapter" })
@@ -58,35 +58,35 @@ return {
       local dap = require("dap")
 
       -- Configuración para Node.js
-      dap.adapters["pwa-node"] = {
-        type = "server",
-        host = "localhost",
-        port = "${port}",
-        executable = {
-          command = "node",
-          args = {
-            require("mason-registry").get_package("js-debug-adapter"):get_install_path()
-              .. "/js-debug/src/dapDebugServer.js",
-            "${port}",
-          },
-        },
-      }
-
-      -- Configuración para Chrome/Edge
-      dap.adapters["pwa-chrome"] = {
-        type = "server",
-        host = "localhost",
-        port = "${port}",
-        executable = {
-          command = "node",
-          args = {
-            require("mason-registry").get_package("js-debug-adapter"):get_install_path()
-              .. "/js-debug/src/dapDebugServer.js",
-            "${port}",
-          },
-        },
-      }
-
+      -- dap.adapters["pwa-node"] = {
+      --   type = "server",
+      --   host = "localhost",
+      --   port = "${port}",
+      --   executable = {
+      --     command = "node",
+      --     args = {
+      --       require("mason-registry").get_package("js-debug-adapter"):get_install_path()
+      --         .. "/js-debug/src/dapDebugServer.js",
+      --       "${port}",
+      --     },
+      --   },
+      -- }
+      --
+      -- -- -- Configuración para Chrome/Edge
+      -- dap.adapters["pwa-chrome"] = {
+      --   type = "server",
+      --   host = "localhost",
+      --   port = "${port}",
+      --   executable = {
+      --     command = "node",
+      --     args = {
+      --       require("mason-registry").get_package("js-debug-adapter"):get_install_path()
+      --         .. "/js-debug/src/dapDebugServer.js",
+      --       "${port}",
+      --     },
+      --   },
+      -- }
+      --
       -- Configuraciones de debug
       for _, language in ipairs({ "typescript", "javascript", "typescriptreact", "javascriptreact" }) do
         dap.configurations[language] = {
