@@ -20,7 +20,7 @@
 
     settings = {
       environment = {
-        DISPLAY = ":0";
+        DISPLAY = ":1";
         XCURSOR_THEME = "Bibata-Modern-Classic";
         XCURSOR_SIZE = "24";
       };
@@ -67,12 +67,12 @@
       # Lanzar Noctalia al inicio:
       spawn-at-startup = [
         { command = [ "noctalia-shell" ]; }
-        {
-          command = [
-            "xwayland-satellite"
-            ":0"
-          ];
-        }
+        # {
+        #   command = [
+        #     "xwayland-satellite"
+        #     ":0"
+        #   ];
+        # }
       ];
 
       # Configuración básica
@@ -168,16 +168,23 @@
         "Mod+Ctrl+Down".action = move-window-down-or-to-workspace-down;
         "Mod+Ctrl+Up".action = move-window-up-or-to-workspace-up;
 
-        # Workspaces
-        "Mod+1".action = focus-workspace 1;
-        "Mod+2".action = focus-workspace 2;
-        "Mod+3".action = focus-workspace 3;
-        "Mod+4".action = focus-workspace 4;
-        "Mod+5".action = focus-workspace 5;
-        "Mod+6".action = focus-workspace 6;
-        "Mod+7".action = focus-workspace 7;
-        "Mod+8".action = focus-workspace 8;
-        "Mod+9".action = focus-workspace 9;
+        # programs
+        "Mod+1".action = spawn-sh "firefox";
+        "Mod+2".action = spawn-sh "zen-twilight";
+        "Mod+3".action = spawn-sh "vivaldi";
+        "Mod+4".action = spawn-sh "brave";
+        "Mod+5".action = spawn-sh "google-chrome-stable";
+        "Mod+6".action = spawn-sh "discordpbt";
+        "Mod+7".action = spawn-sh "steam";
+        "Mod+8".action = spawn-sh "obs";
+        "Mod+9".action = spawn-sh "alacritty -e lazygit";
+
+        "Mod+Shift+1".action = spawn-sh "alacritty -e nvim";
+        "Mod+Shift+2".action = spawn-sh "pear-desktop";
+        "Mod+Shift+3".action = spawn-sh "code";
+        "Mod+Shift+4".action = spawn-sh "jetbrains-toolbox";
+        "Mod+Shift+5".action = spawn-sh "warp-terminal";
+        "Mod+Shift+6".action = spawn-sh "kitty";
 
         # "Mod+Shift+1".action = move-column-to-workspace 1;
         # "Mod+Shift+2".action = move-column-to-workspace 2;

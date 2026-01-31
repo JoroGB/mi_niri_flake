@@ -10,19 +10,19 @@
   ];
 
   networking = {
-    # networkmanager.enable = true;
+    networkmanager.enable = true;
     hostName = "nixos";
 
-    wireless = {
-
-      enable = false;
-      networks = {
-      DOMA = {
-      ssid = "DOMA";
-      pskRaw = "8ac2623ddfaabbe16e42dbb624a803fd9fcd36dd510b7dacc126758cf9cc4c92";
-      };
-      };
-    };
+    # wireless = {
+    #
+    #   enable = false;
+    #   networks = {
+    #   DOMA = {
+    #   ssid = "DOMA";
+    #   pskRaw = "8ac2623ddfaabbe16e42dbb624a803fd9fcd36dd510b7dacc126758cf9cc4c92";
+    #   };
+    #   };
+    # };
   };
   time.timeZone = "America/Costa_Rica";
   time.hardwareClockInLocalTime = true;
@@ -71,11 +71,15 @@
   
 
   # Habilitar Wayland y sesión de login
+  # Si hay problemas con aplicaciones con xserver 
+  # Revisar si se esta ejecutando alguana instancia si no, es problema de variable de entorno 
+  # pgrep -a Xwayland // este comando revisa si hay instancias de xwayland
   services = {
     xserver = {
       enable = true;
     };
-
+  };
+  services = {
     udisks2 = {
       enable = true;
     };
