@@ -74,7 +74,6 @@
     slurp
 
     # Utils
-    wl-clipboard
     pavucontrol
 
     # Temas
