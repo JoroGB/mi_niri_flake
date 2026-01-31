@@ -1,4 +1,4 @@
-# Cofiguarcion de Envida Para Niri
+# Cofiguarcion de nvida Para Niri
 {config, pkgs, ...}:{
 hardware.graphics = {
     enable = true;

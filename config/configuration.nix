@@ -7,23 +7,22 @@
   imports = [
     ./hardware-configuration.nix
     ./modules/nvidia-settings.nix
-    ./modules/niri-settings.nix
   ];
 
   networking = {
-    networkmanager.enable = true;
+    # networkmanager.enable = true;
     hostName = "nixos";
 
-    # wireless = {
+    wireless = {
 
-      # enable = true;
-      # networks = {
-      #   DOMA = {
-      #     ssid = "DOMA";
-      #     pskRaw = "8ac2623ddfaabbe16e42dbb624a803fd9fcd36dd510b7dacc126758cf9cc4c92";
-      #   };
-      # };
-    # };
+      enable = false;
+      networks = {
+      DOMA = {
+      ssid = "DOMA";
+      pskRaw = "8ac2623ddfaabbe16e42dbb624a803fd9fcd36dd510b7dacc126758cf9cc4c92";
+      };
+      };
+    };
   };
   time.timeZone = "America/Costa_Rica";
   time.hardwareClockInLocalTime = true;
@@ -44,14 +43,42 @@
     options v4l2loopback devices=1 video_nr=10 card_label="OBS Virtual Camera" exclusive_caps=1
   '';
 
+  programs.niri = {
+    enable = true;
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome # Para Niri
+      xdg-desktop-portal-gtk # Fallback
+    ];
+
+    config = {
+
+      niri = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+      };
+    };
+
+    wlr.enable = false;
+  };
+
+
   
 
   # Habilitar Wayland y sesión de login
-  services.xserver = {
-    enable = true;
-  };
-  services.udisks2 = {
-    enable = true;
+  services = {
+    xserver = {
+      enable = true;
+    };
+
+    udisks2 = {
+      enable = true;
+    };
   };
 
   # Necesario para display manager  / Screen Lock
@@ -73,6 +100,10 @@
   services.gnome.gnome-keyring.enable = true;
 
   environment.sessionVariables = {
+    # Wayland general
+    NIXOS_OZONE_WL = "1";
+    WLR_NO_HARDWARE_CURSORS = "1";
+
       # Cursores
     XCURSOR_THEME = "Bibata-Modern-Classic";
     XCURSOR_SIZE = "24";
@@ -176,6 +207,13 @@
     # Terminal
     kitty
     alacritty
+
+    # Wayland utils
+    wayland-utils
+    xwayland-satellite
+    xkeyboard_config
+    xorg.xkbcomp
+
 
     # Clipboard
     xclip
