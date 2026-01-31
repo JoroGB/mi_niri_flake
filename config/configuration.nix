@@ -6,22 +6,24 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./modules/nvidia-settings.nix
+    ./modules/niri-settings.nix
   ];
 
   networking = {
-
+    networkmanager.enable = true;
     hostName = "nixos";
 
-    wireless = {
+    # wireless = {
 
-      enable = false;
-      networks = {
-        DOMA = {
-          ssid = "DOMA";
-          pskRaw = "8ac2623ddfaabbe16e42dbb624a803fd9fcd36dd510b7dacc126758cf9cc4c92";
-        };
-      };
-    };
+      # enable = true;
+      # networks = {
+      #   DOMA = {
+      #     ssid = "DOMA";
+      #     pskRaw = "8ac2623ddfaabbe16e42dbb624a803fd9fcd36dd510b7dacc126758cf9cc4c92";
+      #   };
+      # };
+    # };
   };
   time.timeZone = "America/Costa_Rica";
   time.hardwareClockInLocalTime = true;
@@ -42,42 +44,7 @@
     options v4l2loopback devices=1 video_nr=10 card_label="OBS Virtual Camera" exclusive_caps=1
   '';
 
-  # NVIDIA drivers para Wayland
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-
-    # ← AGREGA ESTOS PAQUETES:
-    extraPackages = with pkgs; [
-      nvidia-vaapi-driver
-      libvdpau-va-gl
-    ];
-    extraPackages32 = with pkgs.pkgsi686Linux; [
-      nvidia-vaapi-driver
-      libvdpau-va-gl
-    ];
-  };
-
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
-  services.xserver.videoDrivers = ["nvidia"];
   
-
-  boot.kernelParams = [
-    "nvidia-drm.modeset=1"
-    "nvidia-drm.fbdev=1"
-
-  ];
-  # Configuración de Niri
-  programs.niri = {
-    enable = true;
-  };
 
   # Habilitar Wayland y sesión de login
   services.xserver = {
@@ -85,7 +52,6 @@
   };
   services.udisks2 = {
     enable = true;
-
   };
 
   # Necesario para display manager  / Screen Lock
@@ -100,48 +66,14 @@
     CursorSize=24
   '';
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gnome # Para Niri
-      xdg-desktop-portal-gtk # Fallback
-    ];
 
-    config = {
-
-      niri = {
-        default = [
-          "gnome"
-          "gtk"
-        ];
-      };
-    };
-
-    wlr.enable = false;
-  };
 
   # Servicios necesarios
   services.dbus.enable = true;
   services.gnome.gnome-keyring.enable = true;
-  # security.polkit.enable = true;
 
-  # Variables de entorno para NVIDIA + Wayland
   environment.sessionVariables = {
-    # Wayland general
-    NIXOS_OZONE_WL = "1";
-    WLR_NO_HARDWARE_CURSORS = "1";
-
-    # NVIDIA específico
-    GBM_BACKEND = "nvidia-drm";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    __GL_GSYNC_ALLOWED = "1";
-    __GL_VRR_ALLOWED = "1";
-
-    # Para reducir problemas con video
-    LIBVA_DRIVER_NAME = "nvidia";
-    NVD_BACKEND = "direct";
-
-    # Cursores
+      # Cursores
     XCURSOR_THEME = "Bibata-Modern-Classic";
     XCURSOR_SIZE = "24";
   };
@@ -185,8 +117,7 @@
     package = pkgs.mysql84;
   };
 
-  # Terminal para Wayland en lugar de gnome-terminal
-  # Kitty ya está en environment.systemPackages y funciona con Wayland
+
 
   programs = {
     xwayland.enable = true;
@@ -249,12 +180,6 @@
     # Clipboard
     xclip
     wl-clipboard
-
-    # Wayland utils
-    wayland-utils
-    xwayland-satellite
-    xkeyboard_config
-    xorg.xkbcomp
 
     # Cursores
     bibata-cursors
