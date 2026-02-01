@@ -69,9 +69,7 @@
     mako
     dunst
 
-    # Screenshots
-    grim
-    slurp
+
 
     # Utils
     pavucontrol

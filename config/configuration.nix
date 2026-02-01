@@ -7,6 +7,7 @@
   imports = [
     ./hardware-configuration.nix
     ./modules/nvidia-settings.nix
+    ./modules/portals-conf.nix
   ];
 
   networking = {
@@ -47,25 +48,6 @@
     enable = true;
   };
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gnome # Para Niri
-      xdg-desktop-portal-gtk # Fallback
-    ];
-
-    config = {
-
-      niri = {
-        default = [
-          "gnome"
-          "gtk"
-        ];
-      };
-    };
-
-    wlr.enable = false;
-  };
 
 
   
@@ -100,8 +82,6 @@
 
 
   # Servicios necesarios
-  services.dbus.enable = true;
-  services.gnome.gnome-keyring.enable = true;
 
   environment.sessionVariables = {
     # Wayland general
@@ -113,10 +93,7 @@
     XCURSOR_SIZE = "24";
   };
 
-  environment.pathsToLink = [
-    "/share/applications"
-    "/share/xdg-desktop-portal"
-  ];
+
 
   services.flatpak.enable = true;
 

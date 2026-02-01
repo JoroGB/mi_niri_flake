@@ -44,5 +44,29 @@ hardware.graphics = {
 
 
   };
+  environment.etc."nvidia/nvidia-application-profiles-rc.d/50-niri-vram.json".text = ''
+    {
+      "rules": [
+        {
+          "pattern": {
+            "feature": "procname",
+            "matches": "niri"
+          },
+          "profile": "Limit free buffer pool on Wayland compositors"
+        }
+      ],
+      "profiles": [
+        {
+          "name": "Limit free buffer pool on Wayland compositors",
+          "settings": [
+            {
+              "key": "GLVidHeapReuseRatio",
+              "value": 0
+            }
+          ]
+        }
+      ]
+    }
+  '';
 
 }
