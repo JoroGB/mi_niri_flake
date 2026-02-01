@@ -171,7 +171,7 @@
         # programs
         "Mod+1".action = spawn-sh "firefox";
         "Mod+2".action = spawn-sh "zen-twilight";
-        "Mod+3".action = spawn-sh "vivaldi";
+        "Mod+3".action = spawn-sh "pear-desktop";
         "Mod+4".action = spawn-sh "brave";
         "Mod+5".action = spawn-sh "google-chrome-stable";
         "Mod+6".action = spawn-sh "discordpbt";
@@ -179,8 +179,8 @@
         "Mod+8".action = spawn-sh "obs";
         "Mod+9".action = spawn-sh "alacritty -e lazygit";
 
-        "Mod+Shift+1".action = spawn-sh "alacritty -e nvim";
-        "Mod+Shift+2".action = spawn-sh "pear-desktop";
+        "Mod+Shift+1".action = spawn-sh "alacritty -e zellij";
+        "Mod+Shift+2".action = spawn-sh "alacritty -e nvim";
         "Mod+Shift+3".action = spawn-sh "code";
         "Mod+Shift+4".action = spawn-sh "jetbrains-toolbox";
         "Mod+Shift+5".action = spawn-sh "warp-terminal";
