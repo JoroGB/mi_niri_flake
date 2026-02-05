@@ -8,6 +8,7 @@
     ./hardware-configuration.nix
     ./modules/nvidia-settings.nix
     ./modules/portals-conf.nix
+    ./modules/sddm-themes.nix
   ];
 
   networking = {
@@ -68,16 +69,16 @@
   };
 
   # Necesario para display manager  / Screen Lock
-  services.displayManager.sddm = {
-    enable = true;
-    package = pkgs.kdePackages.sddm;
-  };
-  environment.etc."sddm.conf.d/theme.conf".text = ''
-    [Theme]
-    Current=sugar-dark
-    CursorTheme=Bibata-Modern-Classic
-    CursorSize=24
-  '';
+  # services.displayManager.sddm = {
+  #   enable = true;
+  #   package = pkgs.kdePackages.sddm;
+  # };
+  # environment.etc."sddm.conf.d/theme.conf".text = ''
+  #   [Theme]
+  #   Current=sugar-dark
+  #   CursorTheme=Bibata-Modern-Classic
+  #   CursorSize=24
+  # '';
 
 
 
@@ -166,8 +167,6 @@
 
   environment.systemPackages = with pkgs; [
     (callPackage ./pear_desktop.nix { })
-    sddm-sugar-dark
-
     openssl
     openssl.dev
     gcc

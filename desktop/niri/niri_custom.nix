@@ -242,6 +242,9 @@
 
         "Mod+Minus".action.set-column-width = "-10%";
         "Mod+Equal".action.set-column-width = "+10%";
+        "Mod+Ctrl+Equal".action.set-column-width = "+1%";
+        "Mod+Ctrl+Minus".action.set-column-width = "-1%";
+
         "Mod+Shift+Minus".action.set-window-height = "-10%";
         "Mod+Shift+Equal".action.set-window-height = "+10%";
 

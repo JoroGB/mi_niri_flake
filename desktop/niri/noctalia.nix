@@ -326,7 +326,7 @@
         ghostty = false;
         foot = false;
         wezterm = false;
-        fuzzel = true;
+        fuzzel = false;
         discord = false;
         pywalfox = false;
         vicinae = false;
