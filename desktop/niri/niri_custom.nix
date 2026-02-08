@@ -143,7 +143,11 @@
         "Mod+Ctrl+B".action = expel-window-from-column;
 
         # Navegación
-
+        "Mod+WheelScrollDown".action = focus-column-right;
+        "Mod+WheelScrollUp".action  = focus-column-left;
+        "Mod+Shift+WheelScrollDown".action = focus-window-down;
+        "Mod+Shift+WheelScrollUp".action =  focus-workspace-up;                    
+        
         "Mod+Left".action = focus-column-left;
         "Mod+Down".action = focus-window-down;
         "Mod+Up".action = focus-window-up;
