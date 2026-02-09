@@ -72,15 +72,6 @@ return {
       servers = {
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {},
-        rust_analyzer = {
-          settings = {
-            ["rust-analyzer"] = {
-              rustfmt = {
-                enable = false,
-              },
-            },
-          },
-        },
       },
     },
   },
@@ -193,7 +184,7 @@ return {
 
   -- add any tools you want to have installed below
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
         "stylua",
