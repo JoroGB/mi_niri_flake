@@ -46,22 +46,22 @@ return {
         git_status = {
           symbols = {
             -- Símbolos más visibles
-            added     = "✚",
-            modified  = "",
-            deleted   = "✖",
-            renamed   = "󰁕",
+            added = "✚",
+            modified = "",
+            deleted = "✖",
+            renamed = "󰁕",
             untracked = "",
-            ignored   = "",
-            unstaged  = "󰄱",
-            staged    = "",
-            conflict  = "",
+            ignored = "",
+            unstaged = "󰄱",
+            staged = "",
+            conflict = "",
           },
         },
       },
     },
     config = function(_, opts)
       require("neo-tree").setup(opts)
-      
+
       -- Personalizar colores para archivos modificados
       vim.api.nvim_set_hl(0, "NeoTreeGitModified", { fg = "#e0af68", bold = true }) -- Amarillo brillante
       vim.api.nvim_set_hl(0, "NeoTreeGitUntracked", { fg = "#7aa2f7", bold = true }) -- Azul brillante
