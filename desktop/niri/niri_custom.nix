@@ -4,13 +4,11 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   home.sessionVariables = {
     _JAVA_AWT_WM_NONREPARENTING = "1";
   };
   programs.niri = {
-
     enable = true;
     # package = pkgs.niri-stable;
     # De tener problemas al hacer test cambiar "Package" por esto
@@ -66,7 +64,7 @@
       };
       # Lanzar Noctalia al inicio:
       spawn-at-startup = [
-        { command = [ "noctalia-shell" ]; }
+        {command = ["noctalia-shell"];}
         # {
         #   command = [
         #     "xwayland-satellite"
@@ -86,7 +84,8 @@
           options = "grp:win_space_toggle";
         };
         mouse = {
-          accel-speed = 0.0;
+          accel-speed = -0.2;
+          accel-profile = "flat";
         };
       };
 
@@ -144,10 +143,10 @@
 
         # Navegación
         "Mod+WheelScrollDown".action = focus-column-right;
-        "Mod+WheelScrollUp".action  = focus-column-left;
+        "Mod+WheelScrollUp".action = focus-column-left;
         "Mod+Shift+WheelScrollDown".action = focus-window-down;
-        "Mod+Shift+WheelScrollUp".action =  focus-workspace-up;                    
-        
+        "Mod+Shift+WheelScrollUp".action = focus-workspace-up;
+
         "Mod+Left".action = focus-column-left;
         "Mod+Down".action = focus-window-down;
         "Mod+Up".action = focus-window-up;
@@ -307,14 +306,14 @@
 
         {
           matches = [
-            { app-id = "^jetbrains-.*"; }
+            {app-id = "^jetbrains-.*";}
           ];
           # Puedes agregar reglas específicas aquí si es necesario
         }
       ];
 
       debug = {
-        honor-xdg-activation-with-invalid-serial = { };
+        honor-xdg-activation-with-invalid-serial = {};
       };
 
       # debug.honor-xdg-activation-with-invalid-serial = true;
