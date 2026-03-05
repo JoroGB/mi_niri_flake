@@ -3,8 +3,7 @@
   pkgs,
   inputs,
   ...
-}:
-{
+}: {
   imports = [
     inputs.zen-browser.homeModules.twilight
 
@@ -55,7 +54,6 @@
     "alacritty/alacritty.toml" = {
       force = true;
     };
-
   };
   home.file.".profile".force = true;
   home.username = "joronix";
@@ -68,8 +66,6 @@
     waybar
     mako
     dunst
-
-
 
     # Utils
     pavucontrol
@@ -127,8 +123,8 @@
   services.hyprpaper = {
     enable = true;
     settings = {
-      preload = [ "desktop/niri/city_night.jpg" ];
-      wallpaper = [ "desktop/niri/city_night.jpg" ];
+      preload = ["desktop/niri/city_night.jpg"];
+      wallpaper = ["desktop/niri/city_night.jpg"];
       splash = false;
     };
   };
@@ -148,5 +144,4 @@
     XCURSOR_THEME = "Bibata-Modern-Classic";
     XCURSOR_SIZE = "24";
   };
-
 }

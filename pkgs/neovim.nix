@@ -17,6 +17,7 @@
     nil
     pyright
     tree-sitter
+    alejandra
 
     ripgrep
     fd
