@@ -160,7 +160,8 @@
   # nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    (callPackage ./pear_desktop.nix {})
+    # (callPackage ./pear_desktop.nix {})
+    pear-desktop
     openssl
     openssl.dev
     gcc
