@@ -2,13 +2,17 @@
   config,
   pkgs,
   ...
-}: # ← Agregar inputs aquí
+}:
+# ← Agregar inputs aquí
 {
   imports = [
     ./hardware-configuration.nix
     ./modules/nvidia-settings.nix
     ./modules/portals-conf.nix
     ./modules/sddm-themes.nix
+    ./modules/portals-conf.nix
+    ./modules/postgres-conf.nix
+    ./modules/mongodb-conf.nix
   ];
 
   networking = {
@@ -38,7 +42,7 @@
   ];
 
   # Cargar el módulo al inicio
-  boot.kernelModules = [ "v4l2loopback" ];
+  boot.kernelModules = ["v4l2loopback"];
 
   # Configuración del módulo v4l2loopback
   boot.extraModprobeConfig = ''
@@ -49,13 +53,9 @@
     enable = true;
   };
 
-
-
-  
-
   # Habilitar Wayland y sesión de login
-  # Si hay problemas con aplicaciones con xserver 
-  # Revisar si se esta ejecutando alguana instancia si no, es problema de variable de entorno 
+  # Si hay problemas con aplicaciones con xserver
+  # Revisar si se esta ejecutando alguana instancia si no, es problema de variable de entorno
   # pgrep -a Xwayland // este comando revisa si hay instancias de xwayland
   services = {
     xserver = {
@@ -80,8 +80,6 @@
   #   CursorSize=24
   # '';
 
-
-
   # Servicios necesarios
 
   environment.sessionVariables = {
@@ -89,12 +87,10 @@
     NIXOS_OZONE_WL = "1";
     WLR_NO_HARDWARE_CURSORS = "1";
 
-      # Cursores
+    # Cursores
     XCURSOR_THEME = "Bibata-Modern-Classic";
     XCURSOR_SIZE = "24";
   };
-
-
 
   services.flatpak.enable = true;
 
@@ -130,8 +126,6 @@
     package = pkgs.mysql84;
   };
 
-
-
   programs = {
     xwayland.enable = true;
     firefox.enable = true;
@@ -166,7 +160,7 @@
   # nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    (callPackage ./pear_desktop.nix { })
+    (callPackage ./pear_desktop.nix {})
     openssl
     openssl.dev
     gcc
@@ -183,7 +177,7 @@
     cron
     glances
     python3
-
+    pkg-config
     # Terminal
     kitty
     alacritty
@@ -193,7 +187,6 @@
     xwayland-satellite
     xkeyboard_config
     xorg.xkbcomp
-
 
     # Clipboard
     xclip
@@ -225,7 +218,6 @@
         --disable-software-rasterizer \
         "$@"
     '')
-
   ];
 
   services.openssh.enable = true;
