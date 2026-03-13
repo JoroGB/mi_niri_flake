@@ -21,7 +21,10 @@
     ./desktop/alacritty_config.nix
   ];
   programs = {
-    zen-browser.enable = true;
+    zen-browser = {
+      enable = true;
+      suppressXdgMigrationWarning = true;
+    };
     git = {
       enable = true;
       settings = {
