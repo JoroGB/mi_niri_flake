@@ -13,6 +13,7 @@
     ./modules/portals-conf.nix
     ./modules/postgres-conf.nix
     ./modules/mongodb-conf.nix
+    ./modules/virt-conf.nix
   ];
 
   networking = {
@@ -187,7 +188,7 @@
     wayland-utils
     xwayland-satellite
     xkeyboard_config
-    xorg.xkbcomp
+    xkbcomp
 
     # Clipboard
     xclip
@@ -212,13 +213,6 @@
     jetbrains-toolbox
     # zed-editor
     playerctl
-    (writeShellScriptBin "brave-safe" ''
-      ${brave}/bin/brave \
-        --disable-gpu \
-        --disable-gpu-compositing \
-        --disable-software-rasterizer \
-        "$@"
-    '')
   ];
 
   services.openssh.enable = true;
