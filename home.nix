@@ -8,17 +8,16 @@
     inputs.zen-browser.homeModules.twilight
 
     inputs.niri-flake.homeModules.niri
-    ./desktop/niri/niri_custom.nix
+    ./pkgs/niri_custom.nix
 
     inputs.noctalia.homeModules.default
-    ./desktop/niri/noctalia.nix
-
+    ./pkgs/noctalia.nix
     ./pkgs/fenix.nix
     ./pkgs/neovim.nix
     ./pkgs/obs.nix
     ./pkgs/rofi.nix
     ./pkgs/zellij.nix
-    ./desktop/alacritty_config.nix
+    ./pkgs/alacritty_config.nix
   ];
   programs = {
     zen-browser = {
@@ -50,7 +49,7 @@
   };
   xdg.configFile = {
     "nushell/config.nu" = {
-      source = ./pkgs/config_files/config.nu;
+      source = ./pkgs/config_files/nushell/config.nu;
       force = true;
     };
 

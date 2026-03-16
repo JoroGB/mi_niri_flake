@@ -8,6 +8,10 @@
   home.sessionVariables = {
     _JAVA_AWT_WM_NONREPARENTING = "1";
   };
+
+  #swayidle para idle management (apagar monitores en x tiempo)
+  services.swayidle.enable = true;
+
   programs.niri = {
     enable = true;
     # package = pkgs.niri-stable;
@@ -65,6 +69,8 @@
       # Lanzar Noctalia al inicio:
       spawn-at-startup = [
         {command = ["noctalia-shell"];}
+        # commando para apagar monirtores en 15 minutos
+        {command = ["swayidle" "-w" "timeout" "900" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"];}
         # {
         #   command = [
         #     "xwayland-satellite"
@@ -235,10 +241,11 @@
         "Mod+Shift+R".action = switch-preset-window-height;
         "Mod+Ctrl+R".action = reset-window-height;
         "Mod+F".action = maximize-column;
-        "Mod+Shift+F".action = fullscreen-window;
+        "Mod+Alt+F".action = fullscreen-window;
 
         #Expand focused column
         "Mod+Ctrl+F".action = expand-column-to-available-width;
+        "Mod+Shift+F".action.set-window-height = "100%";
 
         "Mod+C".action = center-column;
         "Mod+Ctrl+C".action = center-visible-columns;
