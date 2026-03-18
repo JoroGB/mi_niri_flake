@@ -1,6 +1,4 @@
-{ ... }:
-{
-
+{...}: {
   programs.noctalia-shell = {
     enable = true;
     settings = {
@@ -9,11 +7,11 @@
       bar = {
         position = "top";
         backgroundOpacity = 1;
-        monitors = [ ];
-        density = "default";
+        monitors = [];
+        density = "compact";
         showCapsule = true;
         capsuleOpacity = 1;
-        floating = false;
+        floating = true;
         marginVertical = 0.25;
         marginHorizontal = 0.25;
         outerCorners = true;
@@ -72,7 +70,7 @@
       };
       general = {
         avatarImage = "";
-        dimmerOpacity = 0.8;
+        dimmerOpacity = 0;
         showScreenCorners = false;
         forceBlackScreenCorners = false;
         scaleRatio = 1;
@@ -136,7 +134,7 @@
         transitionDuration = 1500;
         transitionType = "random";
         transitionEdgeSmoothness = 0.05;
-        monitors = [ ];
+        monitors = [];
         panelPosition = "follow_bar";
         hideWallpaperFilenames = false;
         useWallhaven = false;
@@ -152,7 +150,7 @@
       appLauncher = {
         enableClipboardHistory = true;
         position = "bottom_left";
-        pinnedExecs = [ ];
+        pinnedExecs = [];
         useApp2Unit = false;
         sortByMostUsed = true;
         terminalCommand = "xterm -e";
@@ -234,8 +232,8 @@
         floatingRatio = 1;
         size = 1;
         onlySameOutput = true;
-        monitors = [ ];
-        pinnedApps = [ ];
+        monitors = [];
+        pinnedApps = [];
         colorizeIcons = false;
       };
       network = {
@@ -275,7 +273,7 @@
       };
       notifications = {
         enabled = true;
-        monitors = [ ];
+        monitors = [];
         location = "top_right";
         overlayLayer = true;
         backgroundOpacity = 1;
@@ -288,7 +286,7 @@
       osd = {
         enabled = true;
         location = "top_right";
-        monitors = [ ];
+        monitors = [];
         autoHideMs = 2000;
         overlayLayer = true;
         backgroundOpacity = 1;
@@ -299,7 +297,7 @@
         cavaFrameRate = 30;
         visualizerType = "linear";
         visualizerQuality = "high";
-        mprisBlacklist = [ ];
+        mprisBlacklist = [];
         preferredPlayer = "";
       };
       brightness = {
@@ -309,7 +307,7 @@
       };
       colorSchemes = {
         useWallpaperColors = false;
-        predefinedScheme = "Tokyo Night";
+        predefinedScheme = "Everforest";
         darkMode = true;
         schedulingMode = "off";
         manualSunrise = "06:30";
