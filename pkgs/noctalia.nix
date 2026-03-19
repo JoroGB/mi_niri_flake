@@ -6,13 +6,13 @@
       setupCompleted = false;
       bar = {
         position = "top";
-        backgroundOpacity = 1;
+        backgroundOpacity = 0.7;
         monitors = [];
         density = "compact";
         showCapsule = true;
         capsuleOpacity = 1;
         floating = true;
-        marginVertical = 0.25;
+        marginVertical = 0.20;
         marginHorizontal = 0.25;
         outerCorners = true;
         exclusive = true;
@@ -80,7 +80,7 @@
         animationDisabled = false;
         compactLockScreen = false;
         lockOnSuspend = true;
-        enableShadows = true;
+        enableShadows = false;
         shadowDirection = "bottom_right";
         shadowOffsetX = 2;
         shadowOffsetY = 3;
@@ -93,7 +93,7 @@
         fontDefaultScale = 1;
         fontFixedScale = 1;
         tooltipsEnabled = true;
-        panelBackgroundOpacity = 1;
+        panelBackgroundOpacity = 0.7;
         panelsAttachedToBar = true;
         settingsPanelAttachToBar = false;
       };
@@ -276,7 +276,7 @@
         monitors = [];
         location = "top_right";
         overlayLayer = true;
-        backgroundOpacity = 1;
+        backgroundOpacity = 0.9;
         respectExpireTimeout = false;
         lowUrgencyDuration = 3;
         normalUrgencyDuration = 8;

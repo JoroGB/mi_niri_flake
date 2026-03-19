@@ -54,16 +54,20 @@
         gaps = 6;
         focus-ring = {
           width = 1.5;
+          active.color = "#59BD5E";
         };
 
         tab-indicator = {
           # Esquinas redondeadas
           corner-radius = 4;
 
+          position = "top";
           # Colores
-          active.color = "#66F1C2";
+          active.color = "#3D00FF";
           inactive.color = "#505050";
           urgent.color = "#9b0000";
+
+          gap = 2;
         };
       };
       # Lanzar Noctalia al inicio:
