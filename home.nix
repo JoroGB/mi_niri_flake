@@ -22,7 +22,6 @@
   programs = {
     zen-browser = {
       enable = true;
-      suppressXdgMigrationWarning = true;
     };
     git = {
       enable = true;
@@ -61,8 +60,9 @@
   home.username = "joronix";
   home.homeDirectory = "/home/joronix";
   home.stateVersion = "25.05";
-
   home.packages = with pkgs; [
+    # wallpaper
+    linux-wallpaperengine
     # Launchers y notificaciones
     wofi
     waybar

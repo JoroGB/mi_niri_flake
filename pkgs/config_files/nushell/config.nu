@@ -12,6 +12,10 @@
         $env.config = {
             show_banner: false
         }
+          
+        def backup_nvim_conf [] {
+        nu ~/mi_niri_flake/backup_nvim.nu 
+        }
         def ctmpfile_nvim [] {
            print "Limpiando archivos temporales de Neovim..."
 

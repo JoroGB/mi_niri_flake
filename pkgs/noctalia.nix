@@ -120,9 +120,9 @@
         videoSource = "portal";
       };
       wallpaper = {
-        enabled = true;
+        enabled = false;
         overviewEnabled = false;
-        directory = "/home/joronix/new_configuration_flake/desktop/wallpaper/";
+        # directory = "/home/joronix/new_configuration_flake/desktop/wallpaper/";
         enableMultiMonitorDirectories = false;
         recursiveSearch = false;
         setWallpaperOnAllMonitors = true;

@@ -75,6 +75,8 @@
         {command = ["noctalia-shell"];}
         # commando para apagar monirtores en 15 minutos
         {command = ["swayidle" "-w" "timeout" "900" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"];}
+        {command = ["linux-wallpaperengine" "--screen-root" "DP-1" "1221258370"];}
+        {command = ["linux-wallpaperengine" "--screen-root" "HDMI-A-1" "1221258370"];}
         # {
         #   command = [
         #     "xwayland-satellite"
@@ -293,7 +295,7 @@
         {
           matches = [
             {
-              namespace = "^noctalia-wallpaper*";
+              namespace = "^linux-wallpaperengine$";
             }
           ];
           place-within-backdrop = true;
