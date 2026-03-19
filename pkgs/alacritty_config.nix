@@ -1,11 +1,10 @@
 # home.nix or imported alacritty.nix
-{ ... }:
-{
+{...}: {
   programs.alacritty = {
     enable = true;
     settings = {
       window = {
-        opacity = 0.90;
+        opacity = 0.80;
         padding = {
           x = 1;
           y = 0;
@@ -26,13 +25,11 @@
 
       colors = {
         primary = {
-          background = "#1a1b26";
+          background = "#010502";
         };
       };
       keyboard = {
-
       };
-
     };
   };
 }
