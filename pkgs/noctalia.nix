@@ -319,7 +319,7 @@
         gtk = false;
         qt = false;
         kcolorscheme = false;
-        alacritty = true;
+        alacritty = false;
         kitty = false;
         ghostty = false;
         foot = false;

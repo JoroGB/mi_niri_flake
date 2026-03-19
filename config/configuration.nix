@@ -96,7 +96,7 @@
   services.flatpak.enable = true;
 
   users.users.joronix = {
-    password = "fungy2005"; # CAMBIAR ESTO - no pongas passwords en plain text
+    hashedPassword = "$6$Bl8XVRoJbWMnNcEo$6P0diisPoz/OkrF3QOBpJ0oFOePhn8zF2qI0Nc/XS/kUKq2wSrEBp1nFDwFoHLolGYWM.COJTTbEfrgrAORT.0";
     isNormalUser = true;
     extraGroups = [
       "wheel"
@@ -180,6 +180,7 @@
     glances
     python3
     pkg-config
+    fastfetch
     # Terminal
     kitty
     alacritty
