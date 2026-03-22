@@ -65,7 +65,6 @@
         home-manager.nixosModules.home-manager
         mi_home_manager
         ./config/configuration.nix
-        ./config/hardware-configuration.nix
       ];
     };
   };
