@@ -14,7 +14,7 @@ use ~/mi_niri_flake/pkgs/config_files/nushell/extra_functions.nu *
             show_banner: false
         }
 
-        $env.config.history.sync_on_enter = true;
+        $env.config.history.sync_on_enter = false;
 
         $env.config = ($env.config | upsert hooks {
             pre_prompt: [{
