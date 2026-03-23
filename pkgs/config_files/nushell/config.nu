@@ -1,3 +1,5 @@
+use ~/mi_niri_flake/pkgs/config_files/nushell/extra_functions.nu *
+
  # $env.config = {
  #          show_banner: false
  #          history: {
@@ -12,31 +14,7 @@
             show_banner: false
         }
 
-        def usnixoshm [] {
-            sudo nixos-rebuild switch  --flake ~/mi_niri_flake/.#pc
-          }
-          
-        def backup_nvim_conf [] {
-        nu ~/mi_niri_flake/backup_nvim.nu 
-        }
-        def ctmpfile_nvim [] {
-           print "Limpiando archivos temporales de Neovim..."
-
-           # Eliminar swap files
-           print "Eliminando swap files..."
-           rm -rf ~/.local/state/nvim/swap/*
-           rm -rf ~/.local/share/nvim/swap/*
-
-            # Eliminar shada files
-           print "Eliminando shada files..."
-           rm -rf ~/.local/state/nvim/shada/*
-           rm -rf ~/.local/share/nvim/shada/*
-
-            # Eliminar backups
-           rm -rf ~/.local/share/nvim/backup/*
-        }
-
-        $env.config.history.sync_on_enter = false
+        $env.config.history.sync_on_enter = true;
 
         $env.config = ($env.config | upsert hooks {
             pre_prompt: [{
