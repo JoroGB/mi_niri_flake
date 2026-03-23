@@ -78,7 +78,7 @@
     libsForQt5.qt5ct
     qt6Packages.qt6ct
     gnome-themes-extra
-
+    papirus-icon-theme
     # Caracteres Japoneses, kanjins etec..
     noto-fonts
     noto-fonts-cjk-sans
@@ -86,50 +86,31 @@
     noto-fonts-color-emoji
   ];
 
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
   gtk = {
     enable = true;
-
     theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
+      name = "adw-gtk3-dark";
+      package = pkgs.adw-gtk3;
     };
-
-    iconTheme = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
-    };
-
-    cursorTheme = {
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-cursors;
-      size = 24;
-    };
-
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
+    gtk3.extraConfig.gtk-application-prefer-dark-theme = true;
+    gtk4.extraConfig.gtk-application-prefer-dark-theme = true;
   };
 
-  # Configuración de Qt para modo oscuro
-  qt = {
-    enable = true;
-    platformTheme.name = "qtct";
-    style.name = "Adwaita-Dark";
-  };
+  # qt = {
+  #   enable = true;
+  #   platformTheme.name = "gtk"; # Qt mira el tema GTK activo
+  #   style = {
+  #     name = "adwaita-dark";
+  #     package = pkgs.adwaita-qt;
+  #   };
+  # };
 
-  # Configuración de Hyprpaper
-  services.hyprpaper = {
-    enable = true;
-    settings = {
-      preload = ["desktop/niri/city_night.jpg"];
-      wallpaper = ["desktop/niri/city_night.jpg"];
-      splash = false;
-    };
-  };
   # Configuración del cursor
   home.pointerCursor = {
     gtk.enable = true;

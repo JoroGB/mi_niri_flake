@@ -1,6 +1,5 @@
  # $env.config = {
  #          show_banner: false
-
  #          history: {
  #            max_size: 100_000
  #            sync_on_enter: false
@@ -12,6 +11,10 @@
         $env.config = {
             show_banner: false
         }
+
+        def usnixoshm [] {
+            sudo nixos-rebuild switch  --flake ~/mi_niri_flake/.#pc
+          }
           
         def backup_nvim_conf [] {
         nu ~/mi_niri_flake/backup_nvim.nu 

@@ -6,7 +6,7 @@
 # ← Agregar inputs aquí
 {
   imports = [
-    /etc/nixos/hardware-configuration.nix
+    ./hardware-configuration.nix
     ./modules/nvidia-settings.nix
     ./modules/portals-conf.nix
     ./modules/sddm-themes.nix
