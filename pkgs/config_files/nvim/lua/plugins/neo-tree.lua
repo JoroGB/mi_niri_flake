@@ -2,6 +2,9 @@ return {
   -- Deshabilitar snacks explorer
   {
     "folke/snacks.nvim",
+    opts = {
+      explorer = { enabled = false },
+    },
     keys = {
       { "<leader>e", false },
       { "<leader>E", false },

@@ -15,7 +15,14 @@
     ./modules/mongodb-conf.nix
     ./modules/virt-conf.nix
   ];
-
+  services.logind = {
+    settings = {
+      Login = {
+        HandlePowerKeyLongPress = "poweroff";
+        HandlePowerKey = "poweroff";
+      };
+    };
+  };
   networking = {
     networkmanager.enable = true;
     hostName = "nixos";

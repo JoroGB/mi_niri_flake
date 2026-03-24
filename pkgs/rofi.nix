@@ -47,7 +47,7 @@
       };
 
       "inputbar" = {
-        background-color = mkLiteral "@bg-alt";
+        background-color = mkLiteral "@bg";
         border-radius = mkLiteral "8px";
         padding = mkLiteral "8px 12px";
         margin = mkLiteral "0 0 12px 0";
@@ -55,7 +55,7 @@
       };
 
       "prompt" = {
-        text-color = mkLiteral "@accent";
+        text-color = mkLiteral "@bg-alt";
         margin = mkLiteral "0 8px 0 0";
       };
 
