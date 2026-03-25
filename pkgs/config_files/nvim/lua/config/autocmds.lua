@@ -6,18 +6,14 @@
 --
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+-- ~/.config/nvim/lua/config/autocmds.lua
+-- ~/.config/nvim/lua/config/autocmds.lua
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "*",
   callback = function()
-    -- Neo-tree
-    vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NeoTreeEndOfBuffer", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", { bg = "none" })
-
-    -- Terminal
-    vim.api.nvim_set_hl(0, "Terminal", { bg = "none" })
-    vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-    vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+    vim.defer_fn(function()
+      vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { bg = "#2d4a2d" })
+      vim.api.nvim_set_hl(0, "NeoTreeFileNameOpened", { fg = "#72a65a", bold = true })
+    end, 100) -- espera 100ms después de que transparent termine
   end,
 })

@@ -3,19 +3,20 @@ return {
   {
     "xiyaowong/transparent.nvim",
     lazy = false,
-    opts = {
-      extra_groups = {
-        "NeoTreeNormal",
-        "NeoTreeNormalNC",
-        "NeoTreeEndOfBuffer",
-        "NeoTreeWinSeparator",
-        "NormalFloat",
-        "FloatBorder",
-      },
-    },
-    config = function(_, opts)
-      require("transparent").setup(opts)
-      -- Limpia todos los highlights de neotree automáticamente
+    config = function()
+      require("transparent").setup({
+        extra_groups = {
+          "NeoTreeNormal",
+          "NeoTreeNormalNC",
+          "NeoTreeEndOfBuffer",
+          "NeoTreeWinSeparator",
+          "NormalFloat",
+          "FloatBorder",
+        },
+        exclude_groups = {
+          "NeoTreeCursorLine", -- excluye este del limpiado
+        },
+      })
       require("transparent").clear_prefix("NeoTree")
     end,
   },

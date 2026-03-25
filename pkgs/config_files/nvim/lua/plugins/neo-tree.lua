@@ -25,6 +25,7 @@ return {
         width = 35,
       },
       filesystem = {
+        use_libuv_file_watcher = true,
         filtered_items = {
           visible = true,
           hide_dotfiles = false,
@@ -33,6 +34,7 @@ return {
         },
         follow_current_file = {
           enabled = true,
+          leave_dirs_open = true,
         },
       },
       buffers = {
@@ -72,6 +74,9 @@ return {
       vim.api.nvim_set_hl(0, "NeoTreeGitDeleted", { fg = "#f7768e", bold = true }) -- Rojo brillante
       vim.api.nvim_set_hl(0, "NeoTreeGitConflict", { fg = "#ff9e64", bold = true }) -- Naranja brillante
       vim.api.nvim_set_hl(0, "NeoTreeGitUnstaged", { fg = "#bb9af7", bold = true }) -- Púrpura brillante
+      -- Se aplica después de que neo-tree carga completamente
+      vim.api.nvim_set_hl(0, "NeoTreeCursorLine", { bg = "#272e33" })
+      vim.api.nvim_set_hl(0, "NeoTreeFileNameOpened", { fg = "#72a65a", bold = true })
     end,
   },
 }
