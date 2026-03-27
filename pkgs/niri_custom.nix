@@ -204,7 +204,7 @@
         # "Mod+Shift+1".action = move-column-to-workspace 1;
         # "Mod+Shift+2".action = move-column-to-workspace 2;
         # "Mod+Shift+3".action = move-column-to-workspace 3;
-        # "Mod+Shift+4".action = move-column-to-workspace 4;
+        # "Mod+Shift+4".action = move-column-to-workpace 4;
         #Monitores
         "Mod+Alt+H".action = focus-monitor-left;
         "Mod+Alt+Left".action = focus-monitor-left;

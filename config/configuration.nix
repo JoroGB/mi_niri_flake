@@ -16,12 +16,8 @@
     ./modules/virt-conf.nix
   ];
   services.logind = {
-    settings = {
-      Login = {
-        HandlePowerKeyLongPress = "poweroff";
-        HandlePowerKey = "poweroff";
-      };
-    };
+    powerKey = "poweroff"; # botón de apagado
+    powerKeyLongPress = "poweroff"; # mantener presionado
   };
   networking = {
     networkmanager.enable = true;

@@ -22,7 +22,8 @@ return {
     opts = {
       window = {
         position = "left",
-        width = 35,
+        width = 50,
+        auto_expand_widht = true,
       },
       filesystem = {
         use_libuv_file_watcher = true,
