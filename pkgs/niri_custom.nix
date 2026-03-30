@@ -27,6 +27,25 @@
         XCURSOR_SIZE = "24";
       };
 
+      workspaces = {
+        "up" = {
+          open-on-output = "DP-1";
+        };
+        "main" = {
+          open-on-output = "DP-1";
+        };
+        "down" = {
+          open-on-output = "DP-1";
+        };
+
+        "up-left" = {
+          open-on-output = "HDMI-A-1";
+        };
+        "main-left" = {
+          open-on-output = "HDMI-A-1";
+        };
+      };
+
       outputs = {
         "DP-1" = {
           focus-at-startup = true;
@@ -183,28 +202,29 @@
         "Mod+Ctrl+Down".action = move-window-down-or-to-workspace-down;
         "Mod+Ctrl+Up".action = move-window-up-or-to-workspace-up;
 
-        # programs
-        "Mod+1".action = spawn-sh "firefox";
-        "Mod+2".action = spawn-sh "zen-twilight";
-        "Mod+3".action = spawn-sh "pear-desktop";
-        "Mod+4".action = spawn-sh "brave";
-        "Mod+5".action = spawn-sh "google-chrome-stable";
+        # workspaces
+        "Mod+1".action.focus-workspace = "main";
+        "Mod+2".action.focus-workspace = "up";
+        "Mod+3".action.focus-workspace = "down";
+        "Mod+4".action.focus-workspace = "main-left";
+        "Mod+5".action.focus-workspace = "up-left";
+
+        "Mod+Shift+1".action.move-column-to-workspace = "main";
+        "Mod+Shift+2".action.move-column-to-workspace = "up";
+        "Mod+Shift+3".action.move-column-to-workspace = "down";
+        "Mod+Shift+4".action.move-column-to-workspace = "main-left";
+        "Mod+Shift+5".action.move-column-to-workspace = "up-left";
+
         "Mod+6".action = spawn-sh "discordpbt";
         "Mod+7".action = spawn-sh "steam";
         "Mod+8".action = spawn-sh "obs";
         "Mod+9".action = spawn-sh "alacritty -e lazygit";
 
-        "Mod+Shift+1".action = spawn-sh "alacritty -e zellij";
-        "Mod+Shift+2".action = spawn-sh "alacritty -e nvim";
-        "Mod+Shift+3".action = spawn-sh "code";
-        "Mod+Shift+4".action = spawn-sh "jetbrains-toolbox";
-        "Mod+Shift+5".action = spawn-sh "warp-terminal";
-        "Mod+Shift+6".action = spawn-sh "kitty";
+        # "Mod+Ctrl+1".action = spawn-sh "alacritty -e zellij";
+        # "Mod+Ctrl+2".action = spawn-sh "alacritty -e zellij";
+        # "Mod+Ctrl+3".action = spawn-sh "alacritty -e nvim";
+        # "Mod+Ctrl+4".action = spawn-sh "code";
 
-        # "Mod+Shift+1".action = move-column-to-workspace 1;
-        # "Mod+Shift+2".action = move-column-to-workspace 2;
-        # "Mod+Shift+3".action = move-column-to-workspace 3;
-        # "Mod+Shift+4".action = move-column-to-workpace 4;
         #Monitores
         "Mod+Alt+H".action = focus-monitor-left;
         "Mod+Alt+Left".action = focus-monitor-left;
