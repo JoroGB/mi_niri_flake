@@ -175,7 +175,7 @@
         # Navegación
         "Mod+WheelScrollDown".action = focus-column-right;
         "Mod+WheelScrollUp".action = focus-column-left;
-        "Mod+Shift+WheelScrollDown".action = focus-window-down;
+        "Mod+Shift+WheelScrollDown".action = focus-workspace-up;
         "Mod+Shift+WheelScrollUp".action = focus-workspace-up;
 
         "Mod+Left".action = focus-column-left;
@@ -218,12 +218,11 @@
         "Mod+6".action = spawn-sh "discordpbt";
         "Mod+7".action = spawn-sh "steam";
         "Mod+8".action = spawn-sh "obs";
-        "Mod+9".action = spawn-sh "alacritty -e lazygit";
 
-        # "Mod+Ctrl+1".action = spawn-sh "alacritty -e zellij";
-        # "Mod+Ctrl+2".action = spawn-sh "alacritty -e zellij";
-        # "Mod+Ctrl+3".action = spawn-sh "alacritty -e nvim";
-        # "Mod+Ctrl+4".action = spawn-sh "code";
+        "Mod+Ctrl+1".action = spawn-sh "alacritty -e zellij";
+        "Mod+Ctrl+2".action = spawn-sh "alacritty -e lazygit";
+        "Mod+Ctrl+3".action = spawn-sh "alacritty -e nvim";
+        "Mod+Ctrl+4".action = spawn-sh "code";
 
         #Monitores
         "Mod+Alt+H".action = focus-monitor-left;
@@ -286,7 +285,6 @@
 
         #Move the focused window between the floating and the tiling layout.
         "Mod+Alt+V".action = toggle-window-floating;
-        "Mod+0".action = toggle-window-floating;
         "Mod+Shift+V".action = switch-focus-between-floating-and-tiling;
 
         # Toggle tabbed column display mode.

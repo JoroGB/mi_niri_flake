@@ -15,10 +15,7 @@
     ./modules/mongodb-conf.nix
     ./modules/virt-conf.nix
   ];
-  services.logind = {
-    powerKey = "poweroff"; # botón de apagado
-    powerKeyLongPress = "poweroff"; # mantener presionado
-  };
+  services.logind.settings.Login.HandlePowerKeyLongPress = "poweroff";
   networking = {
     networkmanager.enable = true;
     hostName = "nixos";

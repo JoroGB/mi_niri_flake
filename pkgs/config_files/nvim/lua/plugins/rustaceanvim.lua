@@ -1,10 +1,10 @@
 return {
   -- Configurar rustacean.nvim
   {
-  'mrcjkb/rustaceanvim',
-  version = '^7', -- use latest stable release
-  lazy = false,
-  ft = { 'rust' },
+    "mrcjkb/rustaceanvim",
+    version = "^7", -- use latest stable release
+    lazy = false,
+    ft = { "rust" },
     opts = {
       server = {
         on_attach = function(_, bufnr)
@@ -12,26 +12,34 @@ return {
           vim.keymap.set("n", "<leader>cR", function()
             vim.cmd.RustLsp("codeAction")
           end, { desc = "Code Action", buffer = bufnr })
-          
+
           vim.keymap.set("n", "<leader>dr", function()
             vim.cmd.RustLsp("debuggables")
           end, { desc = "Rust Debuggables", buffer = bufnr })
-          
+
           vim.keymap.set("n", "<leader>rr", function()
             vim.cmd.RustLsp("runnables")
           end, { desc = "Rust Runnables", buffer = bufnr })
-          
+
           vim.keymap.set("n", "<leader>rt", function()
             vim.cmd.RustLsp("testables")
           end, { desc = "Rust Testables", buffer = bufnr })
-          
+
           vim.keymap.set("n", "<leader>re", function()
             vim.cmd.RustLsp("expandMacro")
           end, { desc = "Expand Macro", buffer = bufnr })
         end,
-        
+
         default_settings = {
           ["rust-analyzer"] = {
+            -- diagnostics es para diagnosticos mas inmediatos,
+            -- desactivar si hay problemas de rendimiento
+            diagnostics = {
+              enable = true,
+              experimental = {
+                enable = true, -- activa diagnósticos extra en memoria sin cargo
+              },
+            },
             cargo = {
               allFeatures = true,
               loadOutDirsFromCheck = true,
@@ -67,7 +75,7 @@ return {
     },
     config = function(_, opts)
       vim.g.rustaceanvim = vim.tbl_deep_extend("keep", vim.g.rustaceanvim or {}, opts or {})
-      
+
       -- Verificar que rust-analyzer esté disponible
       if vim.fn.executable("rust-analyzer") == 0 then
         vim.notify(
@@ -121,3 +129,4 @@ return {
     },
   },
 }
+
