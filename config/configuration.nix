@@ -17,6 +17,15 @@
   ];
   services.logind.settings.Login.HandlePowerKeyLongPress = "poweroff";
   networking = {
+    firewall = rec {
+      allowedTCPPortRanges = [
+        {
+          from = 1714;
+          to = 1764;
+        }
+      ];
+      allowedUDPPortRanges = allowedTCPPortRanges;
+    };
     networkmanager.enable = true;
     hostName = "nixos";
 
@@ -128,6 +137,7 @@
   };
 
   programs = {
+    kdeconnect.enable = true;
     xwayland.enable = true;
     firefox.enable = true;
     steam = {
@@ -181,6 +191,7 @@
     python3
     pkg-config
     fastfetch
+    localsend
     # Terminal
     kitty
     alacritty

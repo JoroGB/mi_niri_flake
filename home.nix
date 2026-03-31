@@ -65,10 +65,6 @@
     linux-wallpaperengine
     # Launchers y notificaciones
     wofi
-    waybar
-    mako
-    dunst
-
     # Utils
     pavucontrol
 
@@ -85,6 +81,7 @@
     noto-fonts-cjk-serif
     noto-fonts-color-emoji
   ];
+  services.mako.enable = false;
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {
