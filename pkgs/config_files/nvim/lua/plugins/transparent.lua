@@ -15,6 +15,14 @@ return {
         },
         exclude_groups = {
           "NeoTreeCursorLine", -- excluye este del limpiado
+
+          "LspReferenceText",
+          "LspReferenceRead",
+          "LspReferenceWrite",
+          -- Por si Everforest los redefine con prefijo
+          "IlluminatedWordText",
+          "IlluminatedWordRead",
+          "IlluminatedWordWrite",
         },
       })
       require("transparent").clear_prefix("NeoTree")

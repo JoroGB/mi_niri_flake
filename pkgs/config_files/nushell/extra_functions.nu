@@ -13,7 +13,7 @@ export def u_nixos_pc [] {
 # Exporta la configuracion  a .config/nvim/ 3
 export def exportconf_nvim [] {
   print $"Exportando configuracion de ($bpath_vim)"
-  rsync -avh $"($bpath_vim)/nvim"  $cpath_nvim #--delete
+  rsync -avh $"($bpath_vim)/"  $cpath_nvim #--delete
   print $"Copiado en ($cpath_nvim)"
 }
 
@@ -47,5 +47,32 @@ export def dtf_nvim [] {
 
 }
 
+export def set_wallpaper [ 
+  number?: int
+  --random (-r)
+  --display (-d) = "DP-1"
+  --name (-n)
+  --last (-l)
+  --debug
+] {
+  job list | each { |job| job kill $job.id }
+
+  if $random {
+    # numero aleatorio con respecto a wallpaper_engine_links
+    let path_file =  ('~/mi_niri_flake/desktop/wallpaper/wallpaper_engine_links.csv' | path expand)
+    let total_lines = (open $path_file |select id | length )
+    print $"debug lines length: ($total_lines)"
+    let r_number = random int 1..($total_lines - 1)
+    print $"debug random number: ($r_number)"
+    let id = (open $path_file |select id | get id | get ($r_number - 1) | into string |grep -oE '[0-9]+$' | into int)
+    print $"workshop id: ($id)"
+    # linux-wallpaperengine --screen-root $display $id
+    job spawn {linux-wallpaperengine --screen-root $display $id}
+
+  } 
+
+
+
+}
 
 

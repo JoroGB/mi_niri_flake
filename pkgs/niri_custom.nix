@@ -153,10 +153,10 @@
         ];
         # Aplicaciones
         "Mod+Shift+T".action = spawn-sh "warp-terminal";
-        "Mod+Shift+Tab".action = spawn-sh "kitty";
-        "Mod+T".action = spawn "alacritty";
-        "Mod+D".action = spawn "fuzzel";
-        "Mod+Shift+D".action = spawn-sh "alacritty -e yazi";
+        "Mod+Shift+Tab".action = spawn-sh "alacritty";
+        "Mod+T".action = spawn "kitty";
+        "Mod+Shift+D".action = spawn "fuzzel";
+        "Mod+D".action = spawn-sh "kitty -e yazi";
         "Mod+Tab".action = open-overview;
         "Mod+Semicolon".action = spawn-sh "rofi -show window";
         "Mod+P".action = spawn-sh "rofi -show drun";
@@ -219,9 +219,9 @@
         "Mod+7".action = spawn-sh "steam";
         "Mod+8".action = spawn-sh "obs";
 
-        "Mod+Ctrl+1".action = spawn-sh "alacritty -e zellij";
-        "Mod+Ctrl+2".action = spawn-sh "alacritty -e lazygit";
-        "Mod+Ctrl+3".action = spawn-sh "alacritty -e nvim";
+        "Mod+Ctrl+1".action = spawn-sh "kitty -e zellij";
+        "Mod+Ctrl+2".action = spawn-sh "kitty -e lazygit";
+        "Mod+Ctrl+3".action = spawn-sh "kitty -e nvim";
         "Mod+Ctrl+4".action = spawn-sh "code";
 
         #Monitores

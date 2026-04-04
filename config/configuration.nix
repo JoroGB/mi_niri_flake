@@ -161,6 +161,7 @@
     };
     packages = with pkgs; [
       nerd-fonts.jetbrains-mono
+      corefonts
     ];
   };
   nix.settings.experimental-features = [
@@ -192,6 +193,8 @@
     pkg-config
     fastfetch
     localsend
+    vlc
+    mpv
     # Terminal
     kitty
     alacritty

@@ -18,6 +18,7 @@
     ./pkgs/rofi.nix
     ./pkgs/zellij.nix
     ./pkgs/alacritty_config.nix
+    ./pkgs/kitty.nix
   ];
   programs = {
     zen-browser = {
@@ -61,6 +62,7 @@
   home.homeDirectory = "/home/joronix";
   home.stateVersion = "25.05";
   home.packages = with pkgs; [
+    onlyoffice-desktopeditors
     # wallpaper
     linux-wallpaperengine
     # Launchers y notificaciones
