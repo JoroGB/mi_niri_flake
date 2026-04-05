@@ -21,7 +21,7 @@ export def exportconf_nvim [] {
 # Esta funcion guarada los arhicvos modificados en ~/.config/nvim/ al repositorio mi_niri_flake
 export def sf_nvim [] {
   print $"Haciendo copia de ($cpath_nvim)"
-  rsync -avh $"($cpath_nvim)/nvim" $bpath_vim #--delete 
+  rsync -avh $"($cpath_nvim)/nvim" $"($bpath_vim)" #--delete
   print $"Copiado en ($bpath_vim)"
 }
 

@@ -19,8 +19,12 @@
     ./pkgs/zellij.nix
     ./pkgs/alacritty_config.nix
     ./pkgs/kitty.nix
+    ./pkgs/dot-desktop.nix
   ];
   programs = {
+    chromium = {
+      enable = true;
+    };
     zen-browser = {
       enable = true;
     };

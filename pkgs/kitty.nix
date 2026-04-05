@@ -58,7 +58,8 @@
       # Copiar/pegar
       "ctrl+shift+c" = "copy_to_clipboard";
       "ctrl+shift+v" = "paste_from_clipboard";
-
+      "ctrl+insert" = "copy_to_clipboard";
+      "shift+insert" = "paste_from_clipboard";
       # Cambiar tamaño de fuente
       "ctrl+equal" = "change_font_size all +1.0";
       "ctrl+minus" = "change_font_size all -1.0";
