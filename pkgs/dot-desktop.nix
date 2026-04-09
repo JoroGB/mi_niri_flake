@@ -9,11 +9,9 @@ in {
     [Desktop Entry]
     Name=WhatsApp
     Exec=chromium --app=https://web.whatsapp.com
-    Icon=whatsapp
+    Icon=${whatsappIcon}
     Terminal=false
     Type=Application
     Categories=Network;InstantMessaging;
   '';
-  home.file.".local/share/icons/hicolor/scalable/apps/whatsapp.svg".source = whatsappIcon;
-  #-----
 }

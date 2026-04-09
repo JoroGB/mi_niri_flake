@@ -1,15 +1,15 @@
-{ pkgs, ... }:
-{
-
+{pkgs, ...}: {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
     package = pkgs.neovim-unwrapped;
+    withRuby = false;
+    withPython3 = false;
+
     extraPackages = [
     ];
-
   };
 
   home.packages = with pkgs; [
@@ -40,5 +40,4 @@
   # source = ./nvim;
   # recursive = true;
   # };
-
 }

@@ -96,6 +96,7 @@
         {command = ["swayidle" "-w" "timeout" "900" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"];}
         {command = ["linux-wallpaperengine" "--screen-root" "DP-1" "3505858767"];}
         {command = ["linux-wallpaperengine" "--screen-root" "HDMI-A-1" "3400883750"];}
+        {command = ["sh" "-c" "sleep 0.5 && niri msg action focus-workspace main"];}
         # {
         #   command = [
         #     "xwayland-satellite"
