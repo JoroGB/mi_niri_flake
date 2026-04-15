@@ -22,6 +22,12 @@
     ./pkgs/dot-desktop.nix
   ];
   programs = {
+    nushell = {
+      extraEnv = ''
+        $env.STEAM_API_KEY = "tu_key_aqui"
+        $env.PRUEBA_DE_ENV = "prueba de contenido"
+      '';
+    };
     chromium = {
       enable = true;
     };
@@ -51,6 +57,7 @@
       '';
     };
   };
+
   xdg.configFile = {
     "nushell/config.nu" = {
       source = ./pkgs/config_files/nushell/config.nu;

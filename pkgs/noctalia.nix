@@ -54,7 +54,7 @@
             }
             {
               id = "KeyboardLayout";
-              displayMode = "onhover";
+              displayMode = "always_visible";
             }
             {
               id = "Volume";

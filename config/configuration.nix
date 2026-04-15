@@ -16,6 +16,7 @@
     ./modules/virt-conf.nix
   ];
   services.logind.settings.Login.HandlePowerKeyLongPress = "poweroff";
+  hardware.bluetooth.enable = true;
   networking = {
     firewall = rec {
       allowedTCPPortRanges = [
@@ -52,7 +53,7 @@
   ];
 
   # Cargar el módulo al inicio
-  boot.kernelModules = ["v4l2loopback"];
+  boot.kernelModules = ["v4l2loopback" "ntsync"];
 
   # Configuración del módulo v4l2loopback
   boot.extraModprobeConfig = ''

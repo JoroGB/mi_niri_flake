@@ -21,3 +21,5 @@ use ~/mi_niri_flake/pkgs/config_files/nushell/extra_functions.nu *
                 code: "direnv export json | from json | default {} | load-env"
             }]
         })
+
+source ~/.config/nushell/secrets.nu
