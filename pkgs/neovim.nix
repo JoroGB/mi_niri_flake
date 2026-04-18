@@ -11,14 +11,12 @@
     extraPackages = [
     ];
   };
-
   home.packages = with pkgs; [
     lua-language-server
     nil
     pyright
     tree-sitter
     alejandra
-
     ripgrep
     fd
     lazygit

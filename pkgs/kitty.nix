@@ -47,6 +47,7 @@
       # Navegar entre tabs
       "ctrl+shift+l" = "next_tab";
       "ctrl+shift+h" = "previous_tab";
+      "ctrl+shift+n" = "";
 
       # Navegar entre ventanas (splits)
       "ctrl+shift+j" = "neighboring_window down";

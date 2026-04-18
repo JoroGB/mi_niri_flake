@@ -70,4 +70,29 @@ return {
       },
     },
   },
+  {
+    "windwp/nvim-ts-autotag",
+    opts = {
+      -- Solo activar en filetypes con tags HTML/XML
+      enable_close = true,
+      enable_rename = true,
+      enable_close_on_slash = true,
+    },
+    ft = {
+      "html",
+      "xml",
+      "jsx",
+      "tsx",
+      "javascript",
+      "typescript",
+      "javascriptreact",
+      "typescriptreact",
+      "svelte",
+      "vue",
+      "astro",
+      "markdown",
+      "php",
+      "eruby",
+    },
+  },
 }
