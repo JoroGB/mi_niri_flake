@@ -73,12 +73,16 @@
   home.homeDirectory = "/home/joronix";
   home.stateVersion = "25.05";
   home.packages = with pkgs; [
+    #productividad
     onlyoffice-desktopeditors
+    planify
     # wallpaper
     linux-wallpaperengine
+
     # Launchers y notificaciones
     wofi
-    # Utils
+
+    # audio
     pavucontrol
 
     # Temas

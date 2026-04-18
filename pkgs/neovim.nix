@@ -12,15 +12,20 @@
     ];
   };
   home.packages = with pkgs; [
-    lua-language-server
+    #nix
+    alejandra
     nil
+    #other
+    lua-language-server
     pyright
     tree-sitter
-    alejandra
     ripgrep
     fd
     lazygit
   ];
+
+  # agregado por error con con miniapp
+  xdg.configFile."nvim/init.lua".force = false;
 
   # home.file = {
   #   ".config/nvim" = {
