@@ -21,8 +21,8 @@ return {
     },
     opts = {
       window = {
-        position = "left",
-        width = 50,
+        position = "bottom",
+        width = 15,
         auto_expand_widht = true,
       },
       filesystem = {

@@ -4,16 +4,7 @@ return {
     event = "VeryLazy",
     opts = {
       left = {
-        {
-          title = "Neo-Tree",
-          ft = "neo-tree",
-          filter = function(buf)
-            return vim.b[buf].neo_tree_source == "filesystem"
-          end,
-          pinned = true,
-          open = "Neotree show position=left",
-          size = { height = 0.5, widht = 40 },
-        },
+
         {
           title = "Outline",
           ft = "Outline",
@@ -23,6 +14,16 @@ return {
         },
       },
       bottom = {
+        -- {
+        --   title = "Neo-Tree",
+        --   ft = "neo-tree",
+        --   filter = function(buf)
+        --     return vim.b[buf].neo_tree_source == "filesystem"
+        --   end,
+        --   pinned = true,
+        --   open = "Neotree show position=left",
+        --   size = { height = 0.5, widht = 40 },
+        -- },
         {
           title = "Neo-Tree Git",
           ft = "neo-tree",
@@ -66,6 +67,29 @@ return {
           win:resize("height", -2)
         end,
       }
+    end,
+  },
+  {
+    "folke/edgy.nvim",
+    opts = function(_, opts)
+      opts.left = vim.tbl_filter(function(item)
+        return item.ft ~= "neo-tree"
+      end, opts.left or {})
+
+      opts.bottom = opts.bottom or {}
+
+      table.insert(opts.bottom, {
+        ft = "neo-tree",
+        filter = function(buf)
+          return vim.b[buf].neo_tree_source == "filesystem"
+        end,
+        size = { width = 0.3, height = 0.3 },
+      })
+
+      table.insert(opts.bottom, {
+        ft = "snacks_terminal",
+        size = { width = 0.7, height = 0.3 },
+      })
     end,
   },
 }
