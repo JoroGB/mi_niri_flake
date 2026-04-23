@@ -196,6 +196,7 @@
     localsend
     vlc
     mpv
+    qt6.qtdeclarative
     # Terminal
     kitty
     alacritty

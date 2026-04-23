@@ -151,8 +151,17 @@ export def set_wallpaper [
 
   } 
   if $name != null {
-    let id: int = (open $wallpaper_list_file | where name == $name  | get id | get 0 | get_id_w | into int) 
-    job spawn {linux-wallpaperengine --screen-root $display $id}
+
+    let name_w = open $wallpaper_list_file | where name == $name
+    
+    if ($name_w | length ) == 0 {
+      print $"Wallpaper \"($name)\" not found"
+    } else {
+      let id: int = ($name_w | get id | get 0 | get_id_w | into int) 
+      job spawn {linux-wallpaperengine --screen-root $display $id}
+    }
+
+
   }
 
   if $last {
