@@ -72,6 +72,10 @@ return {
       servers = {
         -- pyright will be automatically installed with mason and loaded with lspconfig
         pyright = {},
+        qmlls = {
+          cmd = { "qmlls6" },
+          filetypes = { "qml", "qmljs" },
+        },
       },
     },
   },
@@ -134,6 +138,7 @@ return {
         "typescript",
         "vim",
         "yaml",
+        "qmljs",
       },
     },
   },
