@@ -1,23 +1,24 @@
 {
   programs.zellij = {
     enable = true;
-
-    settings = {
-      theme = "nord";
-      simplified_ui = true; # este ajuste muestra los atajos en el el button bar
-      default_layout = "compact";
-      default_shell = "nu";
-    };
+    #
+    # settings = {
+    #   theme = "nord";
+    #   simplified_ui = true; # este ajuste muestra los atajos en el el button bar
+    #   default_layout = "compact";
+    #   default_shell = "nu";
+    # };
   };
 
-  home.file."zellij/config.kdl".source = ./config_files/zellij/config.kdl;
+  xdg.configFile."zellij/config.kdl".source = ./config_files/zellij/config.kdl;
+
   # Layout compacto con barra inferior únicamente
   xdg.configFile."zellij/layouts/compact.kdl".text = ''
     layout {
       default_tab_template {
         children
         pane size=1 borderless=true {
-          plugin location="zellij:compact-bar"
+      plugin location="zellij:compact-bar"
         }
       }
 

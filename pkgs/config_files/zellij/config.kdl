@@ -1,24 +1,33 @@
 default_layout "compact"
+default_shell "nu"
 simplified_ui true
 theme "nord"
 
 keybinds {
     // keybinds are divided into modes
+    unbind "Ctrl g"
+    unbind "Ctrl n"
+    unbind "Ctrl p"
+    unbind "Ctrl h"
     normal {
         // bind instructions can include one or more keys (both keys will be bound separately)
         // bind keys can include one or more actions (all actions will be performed with no sequential guarantees)
-        bind "Ctrl g" { SwitchToMode "locked"; }
-        bind "Ctrl p" { SwitchToMode "pane"; }
-        bind "Alt n" { NewPane; }
-        bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
-    }
-    pane {
-        bind "h" "Left" { MoveFocus "Left"; }
-        bind "l" "Right" { MoveFocus "Right"; }
-        bind "j" "Down" { MoveFocus "Down"; }
-        bind "k" "Up" { MoveFocus "Up"; }
-        bind "p" { SwitchFocus; }
+        bind "Ctrl ["  { SwitchToMode "locked";}
+        bind "Ctrl ]"  { SwitchToMode "pane";}
+        bind "Ctrl \\" { SwitchToMode "resize";}
+        bind "Ctrl y"  {SwitchToMode "move";}
     }
     locked {
+      bind "Ctrl [" {SwitchToMode "Normal";}
     }
+    pane {
+      bind "Ctrl ]" {SwitchToMode "Normal";}
+    }
+    resize{
+      bind "Ctrl \\" {SwitchToMode "Normal";}
+    }
+    move {
+      bind "Ctrl y" {SwitchToMode "Normal";}
+    }
+
 }
