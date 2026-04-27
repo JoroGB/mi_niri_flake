@@ -15,7 +15,21 @@
     ./modules/mongodb-conf.nix
     ./modules/virt-conf.nix
   ];
-  services.logind.settings.Login.HandlePowerKeyLongPress = "poweroff";
+
+  time.timeZone = "America/Costa_Rica";
+  time.hardwareClockInLocalTime = true; # configuration.nix o módulo equivalente
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.loader.systemd-boot.configurationLimit = 10;
+  nix.settings.auto-optimise-store = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
   hardware.bluetooth.enable = true;
   networking = {
     firewall = rec {
@@ -41,11 +55,6 @@
     #   };
     # };
   };
-  time.timeZone = "America/Costa_Rica";
-  time.hardwareClockInLocalTime = true;
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
 
   # Módulo del kernel para cámara virtual de OBS
   boot.extraModulePackages = with config.boot.kernelPackages; [

@@ -6,9 +6,11 @@
       theme = "nord";
       simplified_ui = true; # este ajuste muestra los atajos en el el button bar
       default_layout = "compact";
+      default_shell = "nu";
     };
   };
 
+  home.file."zellij/config.kdl".source = ./config_files/zellij/config.kdl;
   # Layout compacto con barra inferior únicamente
   xdg.configFile."zellij/layouts/compact.kdl".text = ''
     layout {
@@ -16,6 +18,13 @@
         children
         pane size=1 borderless=true {
           plugin location="zellij:compact-bar"
+        }
+      }
+
+      tab name="dev" {
+        pane split_direction="horizontal" {
+          pane size="50%"
+            pane size="50%"
         }
       }
 
@@ -28,17 +37,8 @@
 
 
 
-      tab name="dev" {
-        pane split_direction="vertical" {
-          pane size="60%"
-          pane size="40%" split_direction="horizontal" {
-            pane size="50%"
-            pane size="50%"
-          }
-        }
-      }
 
-      
+
     }
   '';
 

@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.neovim = {
-    enable = true;
+    enable = false;
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
@@ -25,7 +25,6 @@
   ];
 
   # agregado por error con con miniapp
-  xdg.configFile."nvim/init.lua".force = false;
 
   # home.file = {
   #   ".config/nvim" = {

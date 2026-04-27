@@ -20,6 +20,7 @@
     ./pkgs/alacritty_config.nix
     ./pkgs/kitty.nix
     ./pkgs/dot-desktop.nix
+    # ./pkgs/minecraft-bedrock.nix
   ];
   programs = {
     nushell = {

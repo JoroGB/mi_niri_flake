@@ -7,9 +7,23 @@ export const bpath_vim = ('~/mi_niri_flake/pkgs/config_files' | path expand)
 
 
 # funcion para reconstruir el sistema con flakes y el perfil de pc
-export def u_nixos_pc [] {
-    sudo nixos-rebuild switch  --flake ~/mi_niri_flake/.#pc --impure
+export def u_nixos_pc [
+  --boot (-b)
+  --impure (-i)
+] {
+
+  
+  if $boot {
+    sudo nixos-rebuild boot --flake ~/mi_niri_flake/.#pc
+  } else {
+    if $impure {
+      sudo nixos-rebuild switch  --flake ~/mi_niri_flake/.#pc --impure
+      } else {
+       sudo nixos-rebuild switch  --flake ~/mi_niri_flake/.#pc
+      }
+    }
   }
+
 # Exporta la configuracion  a .config/nvim/ 3
 export def exportconf_nvim [] {
   print $"Exportando configuracion de ($bpath_vim)"
