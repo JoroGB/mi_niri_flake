@@ -32,14 +32,6 @@
       tab name="nvim" focus=true {
         pane
       }
-      tab name="logs" {
-        pane
-      }
-
-
-
-
-
     }
   '';
 

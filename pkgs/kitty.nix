@@ -17,6 +17,7 @@
       selection_foreground = "#cdd6f4";
       # Transparencia (0.0 = opaco, 1.0 = invisible)
       background_opacity = "0.85";
+      confirm_os_window_close = 0;
 
       # Colores de cursor
       cursor = "#f5e0dc";

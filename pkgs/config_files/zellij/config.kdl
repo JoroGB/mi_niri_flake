@@ -5,11 +5,11 @@ theme "nord"
 
 keybinds {
     // keybinds are divided into modes
-    unbind "Ctrl g"
-    unbind "Ctrl n"
-    unbind "Ctrl p"
-    unbind "Ctrl h"
     normal {
+        unbind "Ctrl g"
+        unbind "Ctrl n"
+        unbind "Ctrl p"
+        unbind "Ctrl h"
         // bind instructions can include one or more keys (both keys will be bound separately)
         // bind keys can include one or more actions (all actions will be performed with no sequential guarantees)
         bind "Ctrl ["  { SwitchToMode "locked";}

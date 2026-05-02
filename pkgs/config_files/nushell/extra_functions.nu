@@ -52,11 +52,13 @@ export def dtf_nvim [] {
   rm -rf ~/.local/share/nvim/swap/*
 
   # Eliminar shada files
-  print "Eliminando shada files..."
-  rm -rf ~/.local/state/nvim/shada/*
-  rm -rf ~/.local/share/nvim/shada/*
+  # print "Eliminando shada files..."
+  # rm -rf ~/.local/state/nvim/shada/*
+  # rm -rf ~/.local/share/nvim/shada/*
+
 
   # Eliminar backups
+  print "Eliminando Backups"
   rm -rf ~/.local/share/nvim/backup/*
 
 }

@@ -1,11 +1,14 @@
--- lua/plugins/terminal.lua
 return {
   "folke/snacks.nvim",
   opts = {
-    terminal = {
-      win = {
-        position = "bottom",
+    styles = {
+      terminal = {
         height = 0.2,
+      },
+      lazygit = {
+        height = 0.9,
+        width = 0.9,
+        border = "rounded",
       },
     },
   },

@@ -22,6 +22,40 @@
     ./pkgs/dot-desktop.nix
     # ./pkgs/minecraft-bedrock.nix
   ];
+  home.file.".profile".force = true;
+  home.username = "joronix";
+  home.homeDirectory = "/home/joronix";
+  home.stateVersion = "25.05";
+  home.packages = with pkgs; [
+    #productividad
+    onlyoffice-desktopeditors
+    planify
+    opencode
+    # wallpaper
+    linux-wallpaperengine
+
+    # Launchers y notificaciones
+    wofi
+
+    # audio
+    pavucontrol
+
+    # Temas
+    adwaita-qt
+    adwaita-qt6
+    libsForQt5.qt5ct
+    qt6Packages.qt6ct
+    gnome-themes-extra
+    papirus-icon-theme
+    # Caracteres Japoneses, kanjins etec..
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    noto-fonts-color-emoji
+  ];
+
+  services.mako.enable = false;
+
   programs = {
     nushell = {
       extraEnv = ''
@@ -69,37 +103,6 @@
       force = true;
     };
   };
-  home.file.".profile".force = true;
-  home.username = "joronix";
-  home.homeDirectory = "/home/joronix";
-  home.stateVersion = "25.05";
-  home.packages = with pkgs; [
-    #productividad
-    onlyoffice-desktopeditors
-    planify
-    # wallpaper
-    linux-wallpaperengine
-
-    # Launchers y notificaciones
-    wofi
-
-    # audio
-    pavucontrol
-
-    # Temas
-    adwaita-qt
-    adwaita-qt6
-    libsForQt5.qt5ct
-    qt6Packages.qt6ct
-    gnome-themes-extra
-    papirus-icon-theme
-    # Caracteres Japoneses, kanjins etec..
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
-    noto-fonts-color-emoji
-  ];
-  services.mako.enable = false;
 
   dconf.settings = {
     "org/gnome/desktop/interface" = {

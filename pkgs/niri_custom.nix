@@ -216,6 +216,11 @@
         "Mod+Shift+4".action.move-column-to-workspace = "main-left";
         "Mod+Shift+5".action.move-column-to-workspace = "up-left";
 
+        "Mod+Alt+1".action.move-column-to-workspace = "main";
+        "Mod+Alt+2".action.move-column-to-workspace = "main-left";
+        "Mod+Alt+3".action.move-column-to-workspace = "up";
+        "Mod+Alt+4".action.move-column-to-workspace = "up-left";
+
         "Mod+6".action = spawn-sh "discordpbt";
         "Mod+7".action = spawn-sh "steam";
         "Mod+8".action = spawn-sh "obs";
