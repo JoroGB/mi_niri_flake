@@ -17,3 +17,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     end, 100) -- espera 100ms después de que transparent termine
   end,
 })
+
+vim.schedule(function()
+  require("neo-tree.command").execute({ action = "show", source = "filesystem", position = "top" })
+end)

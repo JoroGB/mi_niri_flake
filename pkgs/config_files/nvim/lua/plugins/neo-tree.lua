@@ -1,9 +1,11 @@
 return {
   -- Deshabilitar snacks explorer
+  -- { "echasnovski/mini.files", opts = {} },
+  -- { "stevearc/oil.nvim", opts = {} },
   {
     "folke/snacks.nvim",
     opts = {
-      explorer = { enabled = false },
+      explorer = { enabled = false, replace_netrw = false },
     },
     keys = {
       { "<leader>e", false },

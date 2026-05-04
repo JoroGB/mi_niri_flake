@@ -3,3 +3,5 @@
 -- Add any additional options here
 
 vim.opt.pumblend = 0
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
