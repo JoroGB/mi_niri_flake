@@ -26,46 +26,64 @@
         XCURSOR_THEME = "Bibata-Modern-Classic";
         XCURSOR_SIZE = "24";
       };
+      cursor = {
+        hide-when-typing = true;
+      };
 
       workspaces = {
         "up" = {
-          open-on-output = "DP-1";
+          open-on-output = "DP-2";
         };
         "main" = {
-          open-on-output = "DP-1";
+          open-on-output = "DP-2";
         };
         "down" = {
-          open-on-output = "DP-1";
+          open-on-output = "DP-2";
         };
 
         "up-left" = {
-          open-on-output = "HDMI-A-1";
+          open-on-output = "DP-1";
         };
         "main-left" = {
-          open-on-output = "HDMI-A-1";
+          open-on-output = "DP-1";
         };
       };
 
       outputs = {
         "DP-1" = {
-          focus-at-startup = true;
+          position = {
+            x = 0;
+            y = -500;
+          };
+          transform.rotation = 90;
+
           mode = {
             width = 2560;
             height = 1080;
             refresh = 99.943;
           };
         };
-        "HDMI-A-1" = {
-          position = {
-            x = 0;
-            y = -400;
-          };
-          transform.rotation = 270;
+
+        "DP-2" = {
+          focus-at-startup = true;
+          scale = 1.1;
           mode = {
-            width = 1920;
-            height = 1080;
+            width = 2560;
+            height = 1440;
+            refresh = 179.999;
           };
         };
+        # "HDMI-A-1" = {
+        #   position = {
+        #     x = 0;
+        #     y = -400;
+        #   };
+        #   transform.rotation = 270;
+        #   mode = {
+        #     width = 1920;
+        #     height = 1080;
+        #   };
+        # };
       };
 
       layout = {
@@ -94,8 +112,8 @@
         {command = ["noctalia-shell"];}
         # commando para apagar monirtores en 15 minutos
         {command = ["swayidle" "-w" "timeout" "900" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"];}
-        {command = ["linux-wallpaperengine" "--screen-root" "DP-1" "3505858767"];}
-        {command = ["linux-wallpaperengine" "--screen-root" "HDMI-A-1" "3400883750"];}
+        {command = ["linux-wallpaperengine" "--screen-root" "DP-2" "3601698982"];}
+        {command = ["linux-wallpaperengine" "--screen-root" "DP-1" "3409130430"];}
         {command = ["sh" "-c" "sleep 0.5 && niri msg action focus-workspace main"];}
         # {
         #   command = [
@@ -147,10 +165,17 @@
 
         # "Print".action = screenshot;
         "Mod+V".action = spawn-sh "noctalia-shell ipc call launcher clipboard";
+        "Mod+apostrophe".action.spawn = [
+          "sh"
+          "-c"
+          "cliphist list | rofi -dmenu -display-columns 2 -location 7 -xoffset 10 -yoffset -10 | cliphist decode | wl-copy"
+        ];
+        "Mod+Print".action.spawn = ["sh" "-c" "grim | wl-copy && \" screenshot copied\""];
         "Print".action.spawn = [
           "sh"
           "-c"
-          "grim -g \"$(slurp)\" - | wl-copy && notify-send 'Screenshot copiado'"
+          "FILE=~/Pictures/$(date +%Y%m%d_%H%M%S).png && grim -g \"$(slurp)\" $FILE && wl-copy < $FILE"
+          "grim -g \"$(slurp)\" - |  wl-copy && notify-send \"screenshot copied!\""
         ];
         # Aplicaciones
         "Mod+Shift+T".action = spawn-sh "warp-terminal";
@@ -176,7 +201,8 @@
         # Navegación
         "Mod+WheelScrollDown".action = focus-column-right;
         "Mod+WheelScrollUp".action = focus-column-left;
-        "Mod+Shift+WheelScrollDown".action = focus-workspace-up;
+
+        "Mod+Shift+WheelScrollDown".action = focus-workspace-down;
         "Mod+Shift+WheelScrollUp".action = focus-workspace-up;
 
         "Mod+Left".action = focus-column-left;
@@ -205,15 +231,17 @@
 
         # workspaces
         "Mod+1".action.focus-workspace = "main";
-        "Mod+2".action.focus-workspace = "up";
+        "Mod+2".action.focus-workspace = "main-left";
         "Mod+3".action.focus-workspace = "down";
-        "Mod+4".action.focus-workspace = "main-left";
+        "Mod+4".action.focus-workspace = "up";
         "Mod+5".action.focus-workspace = "up-left";
 
+        # "Alt+1".action.focus-workspace = "main";
+        # "Alt+2".action.focus-workspace = "main-left";
         "Mod+Shift+1".action.move-column-to-workspace = "main";
-        "Mod+Shift+2".action.move-column-to-workspace = "up";
+        "Mod+Shift+2".action.move-column-to-workspace = "main-left";
         "Mod+Shift+3".action.move-column-to-workspace = "down";
-        "Mod+Shift+4".action.move-column-to-workspace = "main-left";
+        "Mod+Shift+4".action.move-column-to-workspace = "up";
         "Mod+Shift+5".action.move-column-to-workspace = "up-left";
 
         "Mod+Alt+1".action.move-column-to-workspace = "main";

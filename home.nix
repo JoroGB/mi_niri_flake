@@ -31,11 +31,15 @@
     onlyoffice-desktopeditors
     planify
     opencode
+    foliate
+    obsidian
+
     # wallpaper
     linux-wallpaperengine
 
     # Launchers y notificaciones
     wofi
+    libnotify
 
     # audio
     pavucontrol
@@ -147,4 +151,9 @@
     XCURSOR_THEME = "Bibata-Modern-Classic";
     XCURSOR_SIZE = "24";
   };
+  home.file.".local/bin/clipboard-pick".text = ''
+    #!/bin/sh
+    cliphist list | rofi -dmenu -display-columns 2 -location 7 -xoffset 10 -yoffset -10 | cliphist decode | wl-copy
+  '';
+  home.file.".local/bin/clipboard-pick".executable = true;
 }

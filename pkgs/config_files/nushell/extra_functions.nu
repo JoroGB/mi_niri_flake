@@ -12,7 +12,7 @@ export def u_nixos_pc [
   --impure (-i)
 ] {
 
-  
+
   if $boot {
     sudo nixos-rebuild boot --flake ~/mi_niri_flake/.#pc
   } else {
@@ -37,6 +37,10 @@ export def sf_nvim [] {
   print $"Haciendo copia de ($cpath_nvim)"
   rsync -avh $"($cpath_nvim)/nvim" $"($bpath_vim)" #--delete
   print $"Copiado en ($bpath_vim)"
+}
+
+export  def clean_clip [] {
+ cliphist wipe 
 }
 
 
@@ -67,7 +71,8 @@ export def dtf_nvim [] {
 export def get_id_w [value?: string] {
     let inp = $in
     let v = if ($value != null) { $value } else { $inp }
-    $v | grep -oE '[0-9]+$' | str trim | into int
+    $v | grep -oE '[0-9]+$' | str trim | into string
+    
 }
 
 # esta funcion ayuda a gestionar wallpapers de steam con linux-wallpaperengine
@@ -78,6 +83,8 @@ export def get_id_w [value?: string] {
 #
 # Argumentos
 # adding: añade un wallpaper a una lista tipo csv
+# id: recibe como argumento un id / enlace de workshop de steam si esta 
+#   descargado desde wallpaper-engine se aplica automaticamente
 # random: los wallpapers agregados en la lista establece uno aleatorio,
 #   se puede selecionar el nombre del monitor con $display
 # display: es el nombre del monitor al que se le establecera el wallpaper
@@ -99,6 +106,7 @@ export def set_wallpaper [
   --debug
   --clear (-c)
   --remove:string (-R) = ""
+  --id:string (-i)
 ] {
   job list | each {|job| job kill $job.id}
   let wallpaper_list_file =  ('~/mi_niri_flake/desktop/wallpaper/wallpaper_engine_links.csv' | path expand)
@@ -106,6 +114,11 @@ export def set_wallpaper [
     let id = open $wallpaper_list_file | select id | get id | get $number
     print $"Set: (open $wallpaper_list_file | select name | get name | get $number)"
     print $"id: ($id)"
+    job spawn {linux-wallpaperengine --screen-root $display $id}
+  }
+
+  if $id != null {
+    let id = get_id_w $id
     job spawn {linux-wallpaperengine --screen-root $display $id}
   }
 

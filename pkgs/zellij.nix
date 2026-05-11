@@ -24,14 +24,23 @@
 
       tab name="dev" {
         pane split_direction="horizontal" {
-          pane size="50%"
-            pane size="50%"
+          pane size="33%"
+          pane size="33%"
+          pane size="33%"
+
         }
       }
 
-      tab name="nvim" focus=true {
+      tab name="nvim" {
         pane
       }
+      tab name="vimdev" focus=true  {
+          pane split_direction="horizontal"{
+              pane size="15%"
+              pane size="70%"
+              pane size="15%"
+            }
+        }
     }
   '';
 

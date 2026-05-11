@@ -15,6 +15,9 @@
     ./modules/mongodb-conf.nix
     ./modules/virt-conf.nix
   ];
+  nixpkgs.config.permittedInsecurePackages = [
+    "openssl-1.1.1w"
+  ];
 
   time.timeZone = "America/Costa_Rica";
   time.hardwareClockInLocalTime = true; # configuration.nix o módulo equivalente
@@ -155,6 +158,9 @@
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
       gamescopeSession.enable = true;
+      package = pkgs.steam.override {
+        extraPkgs = pkgs: with pkgs; [glibc];
+      };
     };
     nix-ld = {
       enable = true;
@@ -184,8 +190,6 @@
   environment.systemPackages = with pkgs; [
     # (callPackage ./pear_desktop.nix {})
     pear-desktop
-    openssl
-    openssl.dev
     gcc
     vim
     wget
@@ -219,6 +223,8 @@
     # Clipboard
     xclip
     wl-clipboard
+    wl-clip-persist
+    cliphist
 
     # Cursores
     bibata-cursors
