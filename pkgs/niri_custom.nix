@@ -32,25 +32,32 @@
 
       workspaces = {
         "up" = {
-          open-on-output = "DP-2";
+          open-on-output = "DP-1";
         };
         "main" = {
-          open-on-output = "DP-2";
+          open-on-output = "DP-1";
         };
         "down" = {
-          open-on-output = "DP-2";
+          open-on-output = "DP-1";
         };
 
         "up-left" = {
-          open-on-output = "DP-1";
+          open-on-output = "DP-3";
         };
         "main-left" = {
-          open-on-output = "DP-1";
+          open-on-output = "DP-3";
+        };
+
+        "up-right" = {
+          open-on-output = "HDMI-A-1";
+        };
+        "main-right" = {
+          open-on-output = "HDMI-A-1";
         };
       };
 
       outputs = {
-        "DP-1" = {
+        "DP-3" = {
           position = {
             x = 0;
             y = -500;
@@ -64,7 +71,11 @@
           };
         };
 
-        "DP-2" = {
+        "DP-1" = {
+          position = {
+            x = 1080;
+            y = 0;
+          };
           focus-at-startup = true;
           scale = 1.1;
           mode = {
@@ -73,17 +84,17 @@
             refresh = 179.999;
           };
         };
-        # "HDMI-A-1" = {
-        #   position = {
-        #     x = 0;
-        #     y = -400;
-        #   };
-        #   transform.rotation = 270;
-        #   mode = {
-        #     width = 1920;
-        #     height = 1080;
-        #   };
-        # };
+        "HDMI-A-1" = {
+          position = {
+            x = 3408;
+            y = 0;
+          };
+          transform.rotation = 270;
+          mode = {
+            width = 1920;
+            height = 1080;
+          };
+        };
       };
 
       layout = {
@@ -112,8 +123,10 @@
         {command = ["noctalia-shell"];}
         # commando para apagar monirtores en 15 minutos
         {command = ["swayidle" "-w" "timeout" "900" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"];}
-        {command = ["linux-wallpaperengine" "--screen-root" "DP-2" "3601698982"];}
-        {command = ["linux-wallpaperengine" "--screen-root" "DP-1" "3409130430"];}
+        {command = ["linux-wallpaperengine" "--screen-root" "DP-1" "3601698982"];}
+        {command = ["linux-wallpaperengine" "--screen-root" "DP-3" "3409130430"];}
+        {command = ["linux-wallpaperengine" "--screen-root" "HDMI-A-1" "3474055675"];}
+
         {command = ["sh" "-c" "sleep 0.5 && niri msg action focus-workspace main"];}
         # {
         #   command = [
@@ -230,28 +243,28 @@
         "Mod+Ctrl+Up".action = move-window-up-or-to-workspace-up;
 
         # workspaces
-        "Mod+1".action.focus-workspace = "main";
-        "Mod+2".action.focus-workspace = "main-left";
-        "Mod+3".action.focus-workspace = "down";
+        "Mod+1".action.focus-workspace = "main-left";
+        "Mod+2".action.focus-workspace = "main";
+        "Mod+3".action.focus-workspace = "main-right";
         "Mod+4".action.focus-workspace = "up";
-        "Mod+5".action.focus-workspace = "up-left";
+        "Mod+5".action.focus-workspace = "down";
 
         # "Alt+1".action.focus-workspace = "main";
         # "Alt+2".action.focus-workspace = "main-left";
-        "Mod+Shift+1".action.move-column-to-workspace = "main";
-        "Mod+Shift+2".action.move-column-to-workspace = "main-left";
-        "Mod+Shift+3".action.move-column-to-workspace = "down";
+        "Mod+Shift+1".action.move-column-to-workspace = "main-left";
+        "Mod+Shift+2".action.move-column-to-workspace = "main";
+        "Mod+Shift+3".action.move-column-to-workspace = "main-right";
         "Mod+Shift+4".action.move-column-to-workspace = "up";
-        "Mod+Shift+5".action.move-column-to-workspace = "up-left";
+        "Mod+Shift+5".action.move-column-to-workspace = "down";
 
         "Mod+Alt+1".action.move-column-to-workspace = "main";
         "Mod+Alt+2".action.move-column-to-workspace = "main-left";
         "Mod+Alt+3".action.move-column-to-workspace = "up";
         "Mod+Alt+4".action.move-column-to-workspace = "up-left";
 
-        "Mod+6".action = spawn-sh "discordpbt";
-        "Mod+7".action = spawn-sh "steam";
-        "Mod+8".action = spawn-sh "obs";
+        # "Mod+6".action = spawn-sh "discordpbt";
+        # "Mod+7".action = spawn-sh "steam";
+        # "Mod+8".action = spawn-sh "obs";
 
         "Mod+Ctrl+1".action = spawn-sh "kitty -e zellij";
         "Mod+Ctrl+2".action = spawn-sh "kitty -e lazygit";
@@ -270,8 +283,8 @@
         # "Mod+Ctrl+Down".action = move-column-to-monitor-down;
         # "Mod+Ctrl+Up".action = move-column-to-monitor-up;
 
-        "Mod+Shift+Ctrl+L".action = move-column-to-monitor-right;
-        "Mod+Shift+Ctrl+H".action = move-column-to-monitor-left;
+        # "Mod+Shift+Ctrl+L".action = move-column-to-monitor-right;
+        # "Mod+Shift+Ctrl+H".action = move-column-to-monitor-left;
 
         # Mover a workspace
         "Mod+Shift+Ctrl+J".action = move-column-to-workspace-down;

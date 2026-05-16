@@ -19,8 +19,14 @@
     "openssl-1.1.1w"
   ];
 
+  hardware.opentabletdriver.enable = true;
+  hardware.opentabletdriver.daemon.enable = true;
+  hardware.uinput.enable = true;
   time.timeZone = "America/Costa_Rica";
   time.hardwareClockInLocalTime = true; # configuration.nix o módulo equivalente
+  boot.kernel.sysctl = {
+    "net.ipv4.ip_unprivileged_port_start" = 53;
+  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -65,7 +71,7 @@
   ];
 
   # Cargar el módulo al inicio
-  boot.kernelModules = ["v4l2loopback" "ntsync"];
+  boot.kernelModules = ["v4l2loopback" "ntsync" "uinput"];
 
   # Configuración del módulo v4l2loopback
   boot.extraModprobeConfig = ''
@@ -210,6 +216,7 @@
     vlc
     mpv
     qt6.qtdeclarative
+    rnote
     # Terminal
     kitty
     alacritty
