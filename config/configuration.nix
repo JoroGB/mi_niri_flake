@@ -14,6 +14,7 @@
     ./modules/postgres-conf.nix
     ./modules/mongodb-conf.nix
     ./modules/virt-conf.nix
+    ./modules/obsidian_auto_commits.nix
   ];
   nixpkgs.config.permittedInsecurePackages = [
     "openssl-1.1.1w"

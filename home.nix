@@ -33,6 +33,7 @@
     opencode
     foliate
     obsidian
+    super-productivity
 
     # wallpaper
     linux-wallpaperengine

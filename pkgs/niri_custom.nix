@@ -181,15 +181,33 @@
         "Mod+apostrophe".action.spawn = [
           "sh"
           "-c"
-          "cliphist list | rofi -dmenu -display-columns 2 -location 7 -xoffset 10 -yoffset -10 | cliphist decode | wl-copy"
+          "cliphist list | 
+            rofi -dmenu -display-columns 2 -location 7 -xoffset 10 -yoffset -10 |
+              cliphist decode | 
+                wl-copy | 
+                  wl-paste"
         ];
-        "Mod+Print".action.spawn = ["sh" "-c" "grim | wl-copy && \" screenshot copied\""];
+
+        "Mod+Print".action.spawn = [
+        "sh" 
+        "-c" 
+        "FILE=~/Pictures/$(date +%Y%m%d_%H%M%S).png &&
+          grim $FILE |
+            wl-copy &&
+              notify-send screenshot copied"
+        ];
+
         "Print".action.spawn = [
           "sh"
           "-c"
-          "FILE=~/Pictures/$(date +%Y%m%d_%H%M%S).png && grim -g \"$(slurp)\" $FILE && wl-copy < $FILE"
-          "grim -g \"$(slurp)\" - |  wl-copy && notify-send \"screenshot copied!\""
+          "
+          CHUNCK_P=$(slurp) &&
+            FILE=~/Pictures/$(date +%Y%m%d_%H%M%S).png && grim -g \"$CHUNCK_P\" $FILE && 
+              wl-copy < $FILE &&
+                grim -g \"$CHUNCK_P\" - |
+                  wl-copy && notify-send screenshot copied!"
         ];
+
         # Aplicaciones
         "Mod+Shift+T".action = spawn-sh "warp-terminal";
         "Mod+Shift+Tab".action = spawn-sh "alacritty";
@@ -295,15 +313,15 @@
         "Mod+U".action = focus-workspace-down;
         "Mod+I".action = focus-workspace-up;
 
-        "Mod+Ctrl+Page_Down".action = move-column-to-workspace-down;
-        "Mod+Ctrl+Page_Up".action = move-column-to-workspace-up;
-        "Mod+Ctrl+U".action = move-column-to-workspace-down;
-        "Mod+Ctrl+I".action = move-column-to-workspace-up;
+        "Mod+Shift+Page_Down".action = move-column-to-workspace-down;
+        "Mod+Shift+Page_Up".action = move-column-to-workspace-up;
+        "Mod+Shift+U".action = move-column-to-workspace-down;
+        "Mod+Shift+I".action = move-column-to-workspace-up;
 
-        "Mod+Shift+Page_Down".action = move-workspace-down;
-        "Mod+Shift+Page_Up".action = move-workspace-up;
-        "Mod+Shift+U".action = move-workspace-down;
-        "Mod+Shift+I".action = move-workspace-up;
+        "Mod+Ctrl+Page_Down".action = move-workspace-down;
+        "Mod+Ctrl+Page_Up".action = move-workspace-up;
+        "Mod+Ctrl+U".action = move-workspace-down;
+        "Mod+Ctrl+I".action = move-workspace-up;
 
         # expel
         "Mod+Comma".action = consume-window-into-column;
