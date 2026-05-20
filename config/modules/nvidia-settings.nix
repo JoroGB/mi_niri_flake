@@ -1,6 +1,10 @@
 # Cofiguarcion de nvida Para Niri
-{config, pkgs, ...}:{
-hardware.graphics = {
+{
+  config,
+  pkgs,
+  ...
+}: {
+  hardware.graphics = {
     enable = true;
     enable32Bit = true;
 
@@ -17,7 +21,7 @@ hardware.graphics = {
 
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = true;
+    powerManagement.enable = false;
     powerManagement.finegrained = false;
     open = false;
     nvidiaSettings = true;
@@ -25,14 +29,12 @@ hardware.graphics = {
   };
   services.xserver.videoDrivers = ["nvidia"];
 
-    boot.kernelParams = [
+  boot.kernelParams = [
     "nvidia-drm.modeset=1"
     "nvidia-drm.fbdev=1"
-
   ];
   environment.sessionVariables = {
-
-  # NVIDIA específico
+    # NVIDIA específico
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     __GL_GSYNC_ALLOWED = "1";
@@ -41,8 +43,6 @@ hardware.graphics = {
     # Para reducir problemas con video
     LIBVA_DRIVER_NAME = "nvidia";
     NVD_BACKEND = "direct";
-
-
   };
   environment.etc."nvidia/nvidia-application-profiles-rc.d/50-niri-vram.json".text = ''
     {
@@ -68,5 +68,4 @@ hardware.graphics = {
       ]
     }
   '';
-
 }

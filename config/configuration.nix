@@ -15,6 +15,7 @@
     ./modules/mongodb-conf.nix
     ./modules/virt-conf.nix
     ./modules/obsidian_auto_commits.nix
+    ./modules/pihole-conf.nix
   ];
   nixpkgs.config.permittedInsecurePackages = [
     "openssl-1.1.1w"
@@ -52,6 +53,8 @@
       allowedUDPPortRanges = allowedTCPPortRanges;
     };
     networkmanager.enable = true;
+    networkmanager.dns = "none";
+    nameservers = [ "127.0.0.1" ];
     hostName = "nixos";
 
     # wireless = {

@@ -5,6 +5,25 @@ export const cpath_nvim = ('~/.config' | path expand)
 # ruta de respaldo de nvim
 export const bpath_vim = ('~/mi_niri_flake/pkgs/config_files' | path expand)
 
+export def hotspot-local [
+    ssid: string = "nixos"
+    pass: string = "MiPassword"
+] {
+    sudo rfkill unblock wifi
+    nix shell nixpkgs#linux-wifi-hotspot --command sudo create_ap wlp5s0 enp6s0 $ssid $pass
+}
+
+export def nixos-clean [--keep: int = 2] {
+    sudo nix-env --delete-generations +$keep --profile /nix/var/nix/profiles/system
+    sudo nix-collect-garbage
+    sudo nix-store --gc
+}
+export def hard-clean-system-nixos [] {
+    sudo nix-collect-garbage -d
+    sudo nix-env --delete-generations old --profile /nix/var/nix/profiles/system
+    sudo nix-store --gc
+    sudo nix-store --optimise
+}
 
 # funcion para reconstruir el sistema con flakes y el perfil de pc
 export def u_nixos_pc [
@@ -200,4 +219,5 @@ export def set_wallpaper [
         linux-wallpaperengine --screen-root $display $id_l
     }
   }
+
 }
