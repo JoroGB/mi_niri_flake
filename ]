@@ -34,9 +34,9 @@
     ];
   };
   config = {
-    # systemd.services.postgresql.postStart = lib.mkAfter ''
-    #   $PSQL joronix-db -tAc 'GRANT ALL ON ALL TABLES IN SCHEMA public TO joronix' || true
-    #   $PSQL joronix-db 'GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO joronix' || true
-    # '';
+    systemd.services.postgresql.postStart = lib.mkAfter ''
+      $PSQL joronix-db -tAc 'GRANT ALL ON ALL TABLES IN SCHEMA public TO joronix' || true
+      $PSQL joronix-db 'GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO joronix' || true
+    '';
   };
 }
