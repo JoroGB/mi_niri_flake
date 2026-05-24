@@ -54,7 +54,7 @@
     };
     networkmanager.enable = true;
     networkmanager.dns = "none";
-    nameservers = [ "127.0.0.1" ];
+    nameservers = ["127.0.0.1"];
     hostName = "nixos";
 
     # wireless = {
@@ -221,6 +221,7 @@
     mpv
     qt6.qtdeclarative
     rnote
+    bottom
     # Terminal
     kitty
     alacritty

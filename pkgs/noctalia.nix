@@ -6,6 +6,7 @@
       setupCompleted = false;
       bar = {
         position = "top";
+        barType = "simple";
         backgroundOpacity = 0.7;
         monitors = [];
         density = "compact";
@@ -16,6 +17,9 @@
         marginHorizontal = 0.25;
         outerCorners = true;
         exclusive = true;
+        displayMode = "auto_hide";
+        autoHideDelay = 200;
+        autoShowDelay = 150;
         widgets = {
           left = [
             {
@@ -88,7 +92,7 @@
         allowPanelsOnScreenWithoutBar = true;
       };
       ui = {
-        fontDefault = "Roboto";
+        fontDefault = "JetBrainsMono NF";
         fontFixed = "DejaVu Sans Mono";
         fontDefaultScale = 1;
         fontFixedScale = 1;

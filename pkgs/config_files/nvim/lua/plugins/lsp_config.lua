@@ -12,6 +12,11 @@ return {
           },
         },
       },
+      -- QML support
+      qmlls = {
+        cmd = { "qmlls" },
+        filetypes = { "qml", "qmljs" },
+      },
     },
   },
 }

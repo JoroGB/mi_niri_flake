@@ -99,9 +99,9 @@
 
       layout = {
         background-color = "transparent";
-        gaps = 6;
+        gaps = 4;
         focus-ring = {
-          width = 1.5;
+          width = 1.6;
           active.color = "#59BD5E";
         };
 
@@ -121,6 +121,7 @@
       # Lanzar Noctalia al inicio:
       spawn-at-startup = [
         {command = ["noctalia-shell"];}
+        {command = ["$overviewBarWatcher"];}
         # commando para apagar monirtores en 15 minutos
         {command = ["swayidle" "-w" "timeout" "900" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"];}
         {command = ["linux-wallpaperengine" "--screen-root" "DP-1" "3601698982"];}
@@ -189,9 +190,9 @@
         ];
 
         "Mod+Print".action.spawn = [
-        "sh" 
-        "-c" 
-        "FILE=~/Pictures/$(date +%Y%m%d_%H%M%S).png &&
+          "sh"
+          "-c"
+          "FILE=~/Pictures/$(date +%Y%m%d_%H%M%S).png &&
           grim $FILE |
             wl-copy &&
               notify-send screenshot copied"
@@ -206,6 +207,21 @@
               wl-copy < $FILE &&
                 grim -g \"$CHUNCK_P\" - |
                   wl-copy && notify-send screenshot copied!"
+        ];
+
+        "Mod+Escape".action.spawn = [
+          "sh"
+          "-c"
+          ''
+            STATE=/tmp/noctalia-bar-mode &&
+            if [ -f "$STATE" ]; then
+              noctalia-shell ipc call bar setDisplayMode always_visible "" &&
+              rm "$STATE"
+            else
+              noctalia-shell ipc call bar setDisplayMode auto_hide "" &&
+              touch "$STATE"
+            fi
+          ''
         ];
 
         # Aplicaciones
@@ -392,10 +408,10 @@
       window-rules = [
         {
           geometry-corner-radius = {
-            bottom-left = 12.0;
-            bottom-right = 12.0;
-            top-left = 12.0;
-            top-right = 12.0;
+            bottom-left = 5.0;
+            bottom-right = 5.0;
+            top-left = 5.0;
+            top-right = 5.0;
           };
           clip-to-geometry = true;
         }

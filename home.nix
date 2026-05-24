@@ -34,7 +34,6 @@
     foliate
     obsidian
     super-productivity
-
     # wallpaper
     linux-wallpaperengine
 
@@ -144,7 +143,7 @@
     size = 24;
   };
 
-  # Asegurar que las variables de entorno se configuren
+  home.sessionPath = ["$HOME/.local/bin"];
   home.sessionVariables = {
     XDG_CACHE_HOME = "${config.home.homeDirectory}/.cache";
     GTK_THEME = "Adwaita:dark";
