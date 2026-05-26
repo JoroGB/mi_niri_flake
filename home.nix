@@ -34,6 +34,7 @@
     foliate
     obsidian
     super-productivity
+    prismlauncher
     # wallpaper
     linux-wallpaperengine
 

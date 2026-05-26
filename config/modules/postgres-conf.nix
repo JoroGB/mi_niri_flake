@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   ...
@@ -10,11 +11,15 @@
   # activando Posgresql
   config.services.postgresql = {
     enable = true;
+    settings = {
+      ssl = true;
+    };
     ensureDatabases = ["joronix-db" "joronix"];
-    # authentication = pkgs.lib.mkOverride 10 ''
-    #   #type database  DBuser  auth-method
-    #   local all       all     trust
-    # '';
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database  DBuser  auth-method
+      local all       all     trust
+      host joronix-db   all    127.0.0.1/32
+    '';
 
     ensureUsers = [
       {
