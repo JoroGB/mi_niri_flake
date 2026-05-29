@@ -1,9 +1,4 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}: {
+{pkgs, ...}: {
   #cambiando ruta de almacenamiendo de postgresql
   # config.services.postgresql.dataDir = "/data/postgresql";
 
@@ -12,13 +7,13 @@
   config.services.postgresql = {
     enable = true;
     settings = {
-      ssl = true;
+      listen_addresses = pkgs.lib.mkOverride 10 "*";
     };
     ensureDatabases = ["joronix-db" "joronix"];
     authentication = pkgs.lib.mkOverride 10 ''
-      #type database  DBuser  auth-method
-      local all       all     trust
-      host joronix-db   all    127.0.0.1/32
+      local   all  all                trust
+      host    all  all  127.0.0.1/32  scram-sha-256
+      host    all  all  172.17.0.0/16 scram-sha-256
     '';
 
     ensureUsers = [
@@ -37,11 +32,5 @@
         };
       }
     ];
-  };
-  config = {
-    # systemd.services.postgresql.postStart = lib.mkAfter ''
-    #   $PSQL joronix-db -tAc 'GRANT ALL ON ALL TABLES IN SCHEMA public TO joronix' || true
-    #   $PSQL joronix-db 'GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO joronix' || true
-    # '';
   };
 }

@@ -121,14 +121,18 @@
       # Lanzar Noctalia al inicio:
       spawn-at-startup = [
         {command = ["noctalia-shell"];}
-        {command = ["$overviewBarWatcher"];}
+        {command = ["sh" "-c" "sleep 3.0 && sudo systemctl disable mysql mongodb docker --now"];}
         # commando para apagar monirtores en 15 minutos
         {command = ["swayidle" "-w" "timeout" "900" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"];}
-        {command = ["linux-wallpaperengine" "--screen-root" "DP-1" "3601698982"];}
-        {command = ["linux-wallpaperengine" "--screen-root" "DP-3" "3409130430"];}
-        {command = ["linux-wallpaperengine" "--screen-root" "HDMI-A-1" "3474055675"];}
-
+        # {command = ["linux-wallpaperengine" "--screen-root" "DP-1" "3601698982"];}
+        # {command = ["linux-wallpaperengine" "--screen-root" "DP-3" "3409130430"];}
+        # {command = ["linux-wallpaperengine" "--screen-root" "HDMI-A-1" "3474055675"];}
         {command = ["sh" "-c" "sleep 0.5 && niri msg action focus-workspace main"];}
+        {command = ["sh" "-c" "awww-daemon"];}
+        {command = ["sh" "-c" "sleep 0.5 && 
+                    awww img ~/mi_niri_flake/desktop/wallpaper/997820.jpg -o 'HDMI-A-1' &&
+                    awww img ~/mi_niri_flake/desktop/wallpaper/997820.jpg -o 'DP-3' &&
+                    awww img ~/mi_niri_flake/desktop/wallpaper/1363695.png -o 'DP-1'"];}
         # {
         #   command = [
         #     "xwayland-satellite"
@@ -395,6 +399,12 @@
           matches = [
             {
               namespace = "^linux-wallpaperengine$";
+            }
+            {
+              namespace = "^awww-daemon$";
+            }
+            {
+              namespace = "^mpvpaper$";
             }
           ];
           place-within-backdrop = true;

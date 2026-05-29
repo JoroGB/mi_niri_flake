@@ -37,6 +37,8 @@
     prismlauncher
     # wallpaper
     linux-wallpaperengine
+    awww
+    mpvpaper
 
     # Launchers y notificaciones
     wofi
