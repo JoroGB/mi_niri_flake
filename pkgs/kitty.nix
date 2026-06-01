@@ -23,6 +23,9 @@
       # Colores de cursor
       cursor = "#f5e0dc";
       cursor_text_color = "#1e1e2e";
+      cursor_trail = 5;
+      cursor_trail_decay = "0.1 0.2";
+      cursor_trail_start_threshold = 0;
 
       # Padding interior de la ventana
       window_padding_width = 0;
@@ -34,8 +37,8 @@
       enable_audio_bell = false;
 
       # Cursor
-      cursor_shape = "block"; # block | beam | underline
-      cursor_blink_interval = "0"; # 0 = sin parpadeo
+      cursor_shape = "underline"; # block | beam | underline
+      cursor_blink_interval = "0.5"; # 0 = sin parpadeo
     };
 
     # --- Keybindings ---

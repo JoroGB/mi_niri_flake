@@ -21,6 +21,19 @@
     "openssl-1.1.1w"
   ];
 
+  fileSystems."/home/joronix/Files" = {
+    device = "/dev/disk/by-uuid/38d7f0b9-4a1b-4ce9-b869-4dd755c830e7";
+    fsType = "ext4";
+  };
+
+  swapDevices = [
+    {
+      device = "/dev/disk/by-uuid/00dd8b94-737e-4e4e-ba45-eba827433d27";
+    }
+  ];
+
+  boot.kernel.sysctl."vm.swappiness" = 10;
+
   hardware.opentabletdriver.enable = true;
   hardware.opentabletdriver.daemon.enable = true;
   hardware.uinput.enable = true;

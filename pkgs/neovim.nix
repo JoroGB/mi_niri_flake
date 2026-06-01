@@ -14,6 +14,7 @@
   home.packages = with pkgs; [
     #nix
     alejandra
+    statix
     nil
     #other
     lua-language-server

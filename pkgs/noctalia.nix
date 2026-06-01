@@ -19,7 +19,7 @@
         exclusive = true;
         displayMode = "auto_hide";
         autoHideDelay = 200;
-        autoShowDelay = 150;
+        autoShowDelay = 500;
         widgets = {
           left = [
             {

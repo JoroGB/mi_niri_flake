@@ -139,6 +139,7 @@ return {
         "vim",
         "yaml",
         "qmljs",
+        "xml",
       },
     },
   },
