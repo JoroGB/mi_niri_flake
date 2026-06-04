@@ -13,7 +13,7 @@
         showCapsule = true;
         capsuleOpacity = 1;
         floating = true;
-        marginVertical = 0.20;
+        marginVertical = 0.10;
         marginHorizontal = 0.25;
         outerCorners = true;
         exclusive = true;

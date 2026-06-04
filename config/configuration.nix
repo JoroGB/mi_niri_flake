@@ -174,7 +174,7 @@
 
   programs = {
     kdeconnect.enable = true;
-    xwayland.enable = true;
+    # xwayland.enable = true;
     firefox.enable = true;
     steam = {
       enable = true;

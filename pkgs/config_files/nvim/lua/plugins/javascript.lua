@@ -5,7 +5,7 @@ return {
     opts = {
       servers = {
         -- TypeScript/JavaScript LSP
-        ts_ls = {
+        vtsls = {
           settings = {
             typescript = {
               inlayHints = {
