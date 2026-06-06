@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  ...
+}: {
   programs.dconf.enable = true;
   xdg.portal = {
     enable = true;
@@ -6,15 +10,6 @@
       xdg-desktop-portal-gnome # Para Niri
       xdg-desktop-portal-gtk # Fallback
     ];
-
-    config = {
-      niri = {
-        default = [
-          "gnome"
-          "gtk"
-        ];
-      };
-    };
 
     wlr.enable = false;
   };

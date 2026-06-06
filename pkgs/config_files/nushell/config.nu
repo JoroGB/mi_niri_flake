@@ -10,6 +10,7 @@ use ~/mi_niri_flake/pkgs/config_files/nushell/extra_functions.nu *
  #          }
  #        }
 
+
         $env.config = {
             show_banner: false
         }
@@ -22,4 +23,5 @@ use ~/mi_niri_flake/pkgs/config_files/nushell/extra_functions.nu *
             }]
         })
 
+source ~/.config/nushell/argc-completions.nu
 source ~/.config/nushell/secrets.nu

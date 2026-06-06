@@ -174,7 +174,7 @@
 
   programs = {
     kdeconnect.enable = true;
-    # xwayland.enable = true;
+    xwayland.enable = true;
     firefox.enable = true;
     steam = {
       enable = true;
@@ -259,7 +259,7 @@
     rofi # Launcher con más features
 
     # apps
-    discord-ptb
+    vesktop
     warp-terminal
     pomodoro
     brave
