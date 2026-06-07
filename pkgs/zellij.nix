@@ -1,4 +1,4 @@
-{
+{...}: {
   programs.zellij = {
     enable = true;
     #
@@ -10,7 +10,10 @@
     # };
   };
 
-  xdg.configFile."zellij/config.kdl".source = ./config_files/zellij/config.kdl;
+  xdg.configFile."zellij/config.kdl" = {
+    source = ./config_files/zellij/config.kdl;
+    force = true;
+  };
 
   # Layout compacto con barra inferior únicamente
   xdg.configFile."zellij/layouts/compact.kdl".text = ''
