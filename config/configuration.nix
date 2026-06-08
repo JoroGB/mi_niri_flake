@@ -14,7 +14,7 @@
     ./modules/postgres-conf.nix
     ./modules/mongodb-conf.nix
     ./modules/virt-conf.nix
-    ./modules/obsidian_auto_commits.nix
+    ./modules/user_service.nix
     ./modules/pihole-conf.nix
   ];
   nixpkgs.config.permittedInsecurePackages = [
