@@ -127,12 +127,13 @@
         # {command = ["linux-wallpaperengine" "--screen-root" "DP-1" "3601698982"];}
         # {command = ["linux-wallpaperengine" "--screen-root" "DP-3" "3409130430"];}
         # {command = ["linux-wallpaperengine" "--screen-root" "HDMI-A-1" "3474055675"];}
+        {command = ["sh" "-c" "rm /tmp/noctalia-bar-mode"];}
         {command = ["sh" "-c" "sleep 0.5 && niri msg action focus-workspace main"];}
         {command = ["sh" "-c" "awww-daemon"];}
         {command = ["sh" "-c" "sleep 0.5 && 
-                    awww img ~/mi_niri_flake/desktop/wallpaper/997820.jpg -o 'HDMI-A-1' &&
-                    awww img ~/mi_niri_flake/desktop/wallpaper/997820.jpg -o 'DP-3' &&
-                    awww img ~/mi_niri_flake/desktop/wallpaper/1363695.png -o 'DP-1'"];}
+                    awww img ~/mi_niri_flake/pkgs/desktop/wallpaper/997820.jpg -o 'HDMI-A-1' &&
+                    awww img ~/mi_niri_flake/pkgs/desktop/wallpaper/997820.jpg -o 'DP-3' &&
+                    awww img ~/mi_niri_flake/pkgs/desktop/wallpaper/1363695.png -o 'DP-1'"];}
         # {
         #   command = [
         #     "xwayland-satellite"
@@ -219,10 +220,10 @@
           ''
             STATE=/tmp/noctalia-bar-mode &&
             if [ -f "$STATE" ]; then
-              noctalia-shell ipc call bar setDisplayMode always_visible "" &&
+              noctalia-shell ipc call bar setDisplayMode  auto_hide "" &&
               rm "$STATE"
             else
-              noctalia-shell ipc call bar setDisplayMode auto_hide "" &&
+              noctalia-shell ipc call bar setDisplayMode always_visible  "" &&
               touch "$STATE"
             fi
           ''

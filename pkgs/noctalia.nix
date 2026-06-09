@@ -102,7 +102,7 @@
         settingsPanelAttachToBar = false;
       };
       location = {
-        name = "Costa Rica";
+        name = "Ipis,San José, Costa Rica";
         weatherEnabled = true;
         useFahrenheit = false;
         use12hourFormat = false;
