@@ -25,6 +25,17 @@
         }
       }
 
+
+      tab name="nvim" focus=true {
+        pane
+      }
+      tab name="vimdev"  {
+          pane split_direction="horizontal"{
+              pane size="15%"
+              pane size="70%"
+              pane size="15%"
+            }
+        }
       tab name="dev" {
         pane split_direction="horizontal" {
           pane size="33%"
@@ -33,17 +44,6 @@
 
         }
       }
-
-      tab name="nvim" {
-        pane
-      }
-      tab name="vimdev" focus=true  {
-          pane split_direction="horizontal"{
-              pane size="15%"
-              pane size="70%"
-              pane size="15%"
-            }
-        }
     }
   '';
 

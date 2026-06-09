@@ -5,6 +5,10 @@ pane_frames false
 theme "nord"
 
 
+options {
+    mouse-mode false
+}
+
 keybinds {
     // keybinds are divided into modes
     normal {
