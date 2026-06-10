@@ -6,7 +6,9 @@
 in {
   home.file = {
     ".local/share/icons/hicolor/scalable/apps/kindleIcon.svg".source = ./desktop/icons/kindleIcon.svg;
+    ".local/share/icons/hicolor/scalable/apps/ExcelIcon.svg".source = ./desktop/icons/ExcelIcon.svg;
   };
+
   # whatsapp .desktop
   home.file.".local/share/applications/whatsapp.desktop".text = ''
     [Desktop Entry]
@@ -22,6 +24,15 @@ in {
     Name=Kindle
     Exec=chromium --app=https://read.amazon.com/kindle-library
     Icon=kindleIcon
+    Terminal=false
+    Type=Application
+    Categories=Office;
+  '';
+  home.file.".local/share/applications/excel.desktop".text = ''
+    [Desktop Entry]
+    Name=Excel
+    Exec=chromium --app=https://excel.cloud.microsoft/en-us/
+    Icon=ExcelIcon
     Terminal=false
     Type=Application
     Categories=Office;

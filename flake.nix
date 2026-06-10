@@ -17,7 +17,7 @@
     };
 
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
+      url = "github:noctalia-dev/noctalia-shell/2461f871a602f9a5688b5b01dc19c6309dd0d519";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # hyprland = {

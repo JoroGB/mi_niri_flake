@@ -25,7 +25,7 @@
     "shutdown-timer" = {
       description = "shutdown-pc in 2 hours time";
       script = ''
-        TIMEINMINUTES=180;
+        TIMEINMINUTES=100;
 
         ${pkgs.libnotify}/bin/notify-send "Power off set"  "in ''${TIMEINMINUTES} minutes"
         ${pkgs.swayidle}/bin/swayidle -w timeout $TIMEINMINUTES systemctl poweroff;
