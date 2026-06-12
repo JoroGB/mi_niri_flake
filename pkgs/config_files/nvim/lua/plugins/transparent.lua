@@ -14,15 +14,24 @@ return {
           "FloatBorder",
         },
         exclude_groups = {
-          "NeoTreeCursorLine", -- excluye este del limpiado
-
+          "NeoTreeCursorLine",
           "LspReferenceText",
           "LspReferenceRead",
           "LspReferenceWrite",
-          -- Por si Everforest los redefine con prefijo
           "IlluminatedWordText",
           "IlluminatedWordRead",
           "IlluminatedWordWrite",
+
+          -- DAP breakpoints
+          "DapBreakpoint",
+          "DapBreakpointCondition",
+          "DapBreakpointRejected",
+          "DapLogPoint",
+          "DapStopped",
+          "DapStoppedLine",
+
+          -- signcolumn donde aparecen los íconos de breakpoint
+          "SignColumn",
         },
       })
       require("transparent").clear_prefix("NeoTree")

@@ -1,0 +1,64 @@
+return {
+  ----
+  -- Crates
+  {
+    "Saecki/crates.nvim",
+    event = { "BufRead Cargo.toml" },
+    opts = {
+      completion = {
+        crates = {
+          enabled = true,
+        },
+      },
+      lsp = {
+        enabled = true,
+        actions = true,
+        completion = true,
+        hover = true,
+      },
+    },
+  },
+  ---
+  --treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = { ensure_installed = { "rust", "ron" } },
+  },
+  ---
+  --- lsp
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        bacon_ls = {
+          enabled = diagnostics == "bacon-ls",
+        },
+        rust_analyzer = { enabled = false },
+      },
+    },
+  },
+  ---
+  -- Mason
+  {
+    "mason-org/mason.nvim",
+    optional = true,
+    opts = function(_, opts)
+      opts.ensure_installed = opts.ensure_installed or {}
+      vim.list_extend(opts.ensure_installed, { "codelldb" })
+      if diagnostics == "bacon-ls" then
+        vim.list_extend(opts.ensure_installed, { "bacon" })
+      end
+    end,
+  },
+  ---
+  --reotest
+  {
+    "nvim-neotest/neotest",
+    optional = true,
+    opts = {
+      adapters = {
+        ["rustaceanvim.neotest"] = {},
+      },
+    },
+  },
+}
