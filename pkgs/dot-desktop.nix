@@ -31,7 +31,7 @@ in {
   home.file.".local/share/applications/excel.desktop".text = ''
     [Desktop Entry]
     Name=Excel
-    Exec=chromium --app=https://excel.cloud.microsoft/en-us/
+    Exec=google-chrome --app=https://excel.cloud.microsoft/en-us/
     Icon=ExcelIcon
     Terminal=false
     Type=Application
