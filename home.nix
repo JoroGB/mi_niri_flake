@@ -59,6 +59,7 @@
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     noto-fonts-color-emoji
+    (callPackage ./pkgs/zennotes.nix {})
   ];
 
   services.mako.enable = false;

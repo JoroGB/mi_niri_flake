@@ -49,6 +49,7 @@
       niri-flake.overlays.niri
       fenix.overlays.default
     ];
+    # callpackages
     # home manager settings
     mi_home_manager = {
       home-manager.useGlobalPkgs = true;
