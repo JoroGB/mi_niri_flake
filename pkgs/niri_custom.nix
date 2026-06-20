@@ -120,7 +120,7 @@
       };
       # Lanzar Noctalia al inicio:
       spawn-at-startup = [
-        {command = ["noctalia-shell"];}
+        {command = ["noctalia"];}
         {command = ["sh" "-c" "sleep 3.0 && sudo systemctl disable mysql mongodb docker --now"];}
         # commando para apagar monirtores en 15 minutos
         {command = ["swayidle" "-w" "timeout" "900" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"];}
@@ -183,7 +183,7 @@
         "XF86AudioStop".action = spawn-sh "playerctl stop";
 
         # "Print".action = screenshot;
-        "Mod+V".action = spawn-sh "noctalia-shell ipc call launcher clipboard";
+        "Mod+V".action = spawn-sh "noctalia msg panel-toggle clipboard";
         "Mod+apostrophe".action.spawn = [
           "sh"
           "-c"
@@ -214,20 +214,8 @@
                   wl-copy && notify-send screenshot copied!"
         ];
 
-        "Mod+Escape".action.spawn = [
-          "sh"
-          "-c"
-          ''
-            STATE=/tmp/noctalia-bar-mode &&
-            if [ -f "$STATE" ]; then
-              noctalia-shell ipc call bar setDisplayMode  auto_hide "" &&
-              rm "$STATE"
-            else
-              noctalia-shell ipc call bar setDisplayMode always_visible  "" &&
-              touch "$STATE"
-            fi
-          ''
-        ];
+        "Mod+Escape".action.spawn = ["sh" "-c" "noctalia msg bar-toggle"];
+        "Mod+Shift+Escape".action.spawn = ["sh" "-c" "noctalia msg panel-toggle control-center"];
 
         # Aplicaciones
         "Mod+Shift+T".action = spawn-sh "warp-terminal";
