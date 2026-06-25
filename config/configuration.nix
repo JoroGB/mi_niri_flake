@@ -262,6 +262,8 @@
     vesktop
     warp-terminal
     pomodoro
+    scrcpy
+    android-tools
     brave
     google-chrome
     vivaldi
@@ -270,6 +272,9 @@
     jetbrains-toolbox
     # zed-editor
     playerctl
+
+    #cam
+    ffmpeg
   ];
 
   services.openssh.enable = true;

@@ -215,7 +215,7 @@
         ];
 
         "Mod+Escape".action.spawn = ["sh" "-c" "noctalia msg bar-toggle"];
-        "Mod+Shift+Escape".action.spawn = ["sh" "-c" "noctalia msg panel-toggle control-center"];
+        "Alt+Escape".action.spawn = ["sh" "-c" "noctalia msg panel-toggle control-center"];
 
         # Aplicaciones
         "Mod+Shift+T".action = spawn-sh "warp-terminal";

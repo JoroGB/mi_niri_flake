@@ -19,22 +19,29 @@
           margin_ends = 10;
           padding = 12;
           scale = 0.95;
+          color = "secondary";
+          icon_color = "tertiary";
           shadow = true;
           enable = true;
-          center = ["clock"];
+          center = ["clock" "date"];
           end = ["cat_2" "workspaces" "volume" "tray" "keyboard_layout" "notifications"];
-          start = ["control-center" "media" "sysmon"];
+          start = ["control-center" "cpu" "ram" "network_tx" "network_rx" "media"];
           thickness = 25;
           widget_spacing = 16;
         };
       };
 
       control_center = {
-        sidebar_section = "full";
+        sidebar_section = "compact";
+        sidebar = "compact";
+      };
+
+      lockscreen = {
+        enabled = false;
       };
 
       osd = {
-        position = "bottom_left";
+        position = "top_left";
       };
 
       plugins = {
@@ -43,13 +50,20 @@
       shell = {
         screen_time_enabled = true;
         settings_show_advanced = true;
+        avatar_path = "/home/joronix/mi_niri_flake/pkgs/desktop/icons/amagai_kikuno_1.png";
+        font_family = "JetBrainsMono NF SemiBold";
+
         panel = {
           clipboard_placement = "floating";
+          clipboard_position = "bottom_left";
           open_near_click_clipboard = true;
+          launcher_placement = "attached";
+          transparency_mode = "glass";
         };
       };
       theme = {
         builtin = "Nord";
+        community_palette = "Everforest";
         community_pallete = "Everforest";
         custom_pallete = "";
         mode = "dark";
