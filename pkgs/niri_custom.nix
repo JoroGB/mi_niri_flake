@@ -198,8 +198,7 @@
           "sh"
           "-c"
           "FILE=~/Pictures/$(date +%Y%m%d_%H%M%S).png &&
-          grim $FILE |
-            wl-copy &&
+          grim - | tee \"$FILE\" | wl-copy &&
               notify-send screenshot copied"
         ];
 

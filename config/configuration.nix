@@ -19,6 +19,7 @@
   ];
   nixpkgs.config.permittedInsecurePackages = [
     "openssl-1.1.1w"
+    "pnpm-10.29.2"
   ];
 
   fileSystems."/home/joronix/Files" = {
