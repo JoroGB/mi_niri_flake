@@ -108,6 +108,13 @@
     xserver = {
       enable = true;
     };
+
+    ollama = {
+      enable = true;
+      acceleration = "cuda";
+      # package = pkgs.ollama-cuda;
+      # enable = true;
+    };
   };
   services = {
     udisks2 = {

@@ -35,7 +35,9 @@
     foliate
     obsidian
     super-productivity
+    # Minecraft
     prismlauncher
+    ferium
     # wallpaper
     linux-wallpaperengine
     awww
