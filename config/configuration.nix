@@ -111,8 +111,7 @@
 
     ollama = {
       enable = true;
-      acceleration = "cuda";
-      # package = pkgs.ollama-cuda;
+      package = pkgs.ollama-cuda;
       # enable = true;
     };
   };
