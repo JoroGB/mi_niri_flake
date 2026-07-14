@@ -29,6 +29,14 @@
       tab name="nvim" focus=true {
         pane
       }
+      tab name="dev" {
+        pane split_direction="horizontal" {
+          pane size="33%"
+          pane size="33%"
+          pane size="33%"
+
+        }
+      }
       tab name="vimdev"  {
           pane split_direction="horizontal"{
               pane size="15%"
@@ -36,12 +44,14 @@
               pane size="15%"
             }
         }
-      tab name="dev" {
-        pane split_direction="horizontal" {
-          pane size="33%"
-          pane size="33%"
-          pane size="33%"
 
+      tab name="main" {
+        pane split_direction="vertical" {
+          pane size="50%"
+          pane split_direction="horizontal"{
+            pane
+            pane
+          }
         }
       }
     }

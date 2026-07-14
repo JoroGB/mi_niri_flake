@@ -27,6 +27,8 @@
         XCURSOR_SIZE = "24";
       };
       cursor = {
+        theme = "Bibata-Modern-Classic";
+        size = 24;
         hide-when-typing = true;
       };
 
