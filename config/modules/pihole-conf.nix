@@ -10,11 +10,10 @@
       # Optionally resolve local hosts (domain is optional)
       dns.hosts = ["192.168.1.188 hostname.domain"];
     };
-
   };
 
   services.pihole-web = {
     enable = true;
-    ports = ["443s"];
+    ports = ["8443s"];
   };
 }

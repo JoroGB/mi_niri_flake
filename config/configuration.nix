@@ -58,6 +58,7 @@
   hardware.bluetooth.enable = true;
   networking = {
     firewall = rec {
+      allowedTCPPorts = [3333 3444 80 433];
       allowedTCPPortRanges = [
         {
           from = 1714;
@@ -120,6 +121,11 @@
       enable = true;
     };
   };
+  services = {
+    caddy = {
+      enable = false;
+    };
+  };
 
   # Necesario para display manager  / Screen Lock
   # services.displayManager.sddm = {
@@ -179,6 +185,27 @@
     package = pkgs.mysql84;
   };
 
+  age.secrets.anki-password = {
+    file = ../secrets/anki-password.age;
+    owner = "anki-sync-server";
+    mode = "0400";
+  };
+  services.anki-sync-server = {
+    enable = true;
+    address = "0.0.0.0";
+    openFirewall = true;
+    users = [
+      {
+        username = "joro";
+        passwordFile = config.age.secrets.anki-password.path;
+      }
+    ];
+  };
+
+  # services.caddy.virtualHosts."jorodeck.duckdns.org".extraConfig = ''
+  #   reverse_proxy ${config.services.anki-sync-server.address}:${builtins.toString config.services.anki-sync-server.port}
+  # '';
+  #
   programs = {
     kdeconnect.enable = true;
     xwayland.enable = true;
@@ -242,6 +269,8 @@
     qt6.qtdeclarative
     rnote
     bottom
+    guvcview
+    anki
     # Terminal
     kitty
     alacritty

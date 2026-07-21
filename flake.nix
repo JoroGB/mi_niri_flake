@@ -33,6 +33,10 @@
         home-manager.follows = "home-manager";
       };
     };
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   #                                                             Para poder usar inputs dentro de SpecialArgs
   outputs = {
@@ -41,6 +45,7 @@
     home-manager,
     niri-flake,
     fenix,
+    agenix,
     # hyprland,
     ...
   } @ inputs: let
@@ -64,6 +69,7 @@
       modules = [
         {nixpkgs.config.allowUnfree = true;}
         {nixpkgs.overlays = overlays_flake;}
+        agenix.nixosModules.default
         home-manager.nixosModules.home-manager
         mi_home_manager
         ./config/configuration.nix

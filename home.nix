@@ -6,7 +6,6 @@
 }: {
   imports = [
     inputs.zen-browser.homeModules.twilight
-
     inputs.niri-flake.homeModules.niri
     ./pkgs/niri_custom.nix
 
