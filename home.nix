@@ -62,7 +62,7 @@
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     noto-fonts-color-emoji
-    (callPackage ./pkgs/zennotes.nix {})
+    # (callPackage ./pkgs/zennotes.nix {})
   ];
 
   services.mako.enable = false;
@@ -144,12 +144,34 @@
 
   # Configuración del cursor
   home.pointerCursor = {
+    enable = true;
     gtk.enable = true;
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Classic";
     size = 24;
   };
+  xdg.configFile = {
+    "fcitx5/profile" = {
+      text = ''
+        [Groups/0]
+        Name=Default
+        Default Layout=us
+        DefaultIM=pinyin
 
+        [Groups/0/Items/0]
+        Name=keyboard-us
+        Layout=
+
+        [Groups/0/Items/1]
+        Name=pinyin
+        Layout=
+
+        [GroupOrder]
+        0=Default
+      '';
+      force = true;
+    };
+  };
   home.sessionPath = ["$HOME/.local/bin"];
   home.sessionVariables = {
     XDG_CACHE_HOME = "${config.home.homeDirectory}/.cache";

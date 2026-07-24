@@ -136,6 +136,7 @@
                     awww img ~/mi_niri_flake/pkgs/desktop/wallpaper/997820.jpg -o 'HDMI-A-1' &&
                     awww img ~/mi_niri_flake/pkgs/desktop/wallpaper/997820.jpg -o 'DP-3' &&
                     awww img ~/mi_niri_flake/pkgs/desktop/wallpaper/1363695.png -o 'DP-1'"];}
+        {command = ["fcitx5" "-d" "--replace"];}
         # {
         #   command = [
         #     "xwayland-satellite"
