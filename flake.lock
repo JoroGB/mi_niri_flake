@@ -197,6 +197,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1784796856,
+        "narHash": "sha256-wWFrV5/Qbm+lyt5x20E/bSbfJiGKMo4RCxZV8cl/WZI=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "e2587caef70cea85dd97d7daab492899902dbf5d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "noctalia": {
       "inputs": {
         "nixpkgs": [
@@ -217,6 +233,21 @@
         "type": "github"
       }
     },
+    "pc_control": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1785040328,
+        "narHash": "sha256-13O56M2c4Y6IyWENxWpANcClR1tI+d8pxeO+PlxazEg=",
+        "path": "/home/joronix/Proyects/pc_control",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/joronix/Proyects/pc_control",
+        "type": "path"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
@@ -225,6 +256,7 @@
         "niri-flake": "niri-flake",
         "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",
+        "pc_control": "pc_control",
         "zen-browser": "zen-browser"
       }
     },

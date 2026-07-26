@@ -123,7 +123,6 @@
       # Lanzar Noctalia al inicio:
       spawn-at-startup = [
         {command = ["noctalia"];}
-        {command = ["sh" "-c" "sleep 3.0 && sudo systemctl disable mysql mongodb docker --now"];}
         # commando para apagar monirtores en 15 minutos
         {command = ["swayidle" "-w" "timeout" "900" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"];}
         # {command = ["linux-wallpaperengine" "--screen-root" "DP-1" "3601698982"];}
@@ -136,7 +135,7 @@
                     awww img ~/mi_niri_flake/pkgs/desktop/wallpaper/997820.jpg -o 'HDMI-A-1' &&
                     awww img ~/mi_niri_flake/pkgs/desktop/wallpaper/997820.jpg -o 'DP-3' &&
                     awww img ~/mi_niri_flake/pkgs/desktop/wallpaper/1363695.png -o 'DP-1'"];}
-        {command = ["fcitx5" "-d" "--replace"];}
+        {command = ["fcitx5" "-r"];}
         # {
         #   command = [
         #     "xwayland-satellite"

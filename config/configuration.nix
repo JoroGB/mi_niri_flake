@@ -181,7 +181,7 @@
   };
 
   services.mysql = {
-    enable = true;
+    enable = false;
     package = pkgs.mysql84;
   };
 
@@ -246,7 +246,7 @@
     ];
   };
   environment.sessionVariables = {
-    # GTK_IM_MODULE = "fcitx";
+    GTK_IM_MODULE = "fcitx";
     QT_IM_MODULE = "fcitx";
     XMODIFIERS = "@im=fcitx";
     SDL_IM_MODULE = "fcitx";
@@ -278,7 +278,6 @@
     python3
     pkg-config
     fastfetch
-    localsend
     vlc
     mpv
     qt6.qtdeclarative
@@ -287,6 +286,7 @@
     guvcview
     anki
     zennotes-desktop
+    posting
     # Terminal
     kitty
     alacritty

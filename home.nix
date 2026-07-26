@@ -29,18 +29,15 @@
   home.packages = with pkgs; [
     #productividad
     onlyoffice-desktopeditors
-    planify
     opencode
     foliate
     obsidian
     super-productivity
-    # Minecraft
-    prismlauncher
-    ferium
+    krita
     # wallpaper
-    linux-wallpaperengine
     awww
     mpvpaper
+    inputs.pc_control.packages.${pkgs.system}.default
 
     # Launchers y notificaciones
     wofi
