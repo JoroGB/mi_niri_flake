@@ -23,6 +23,9 @@
     ripgrep
     fd
     lazygit
+    luajit
+    luarocks
+    readline
   ];
 
   # agregado por error con con miniapp

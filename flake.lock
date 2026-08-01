@@ -53,11 +53,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1784795840,
-        "narHash": "sha256-Z5cDTnG/+k7lNMMyuNH2RDWmSuGw2d3nV9AlVrpGnNE=",
+        "lastModified": 1785146392,
+        "narHash": "sha256-XOU4aG8jroBwvA4vegmD7m7jopuRHJIMX3j7/WUUJgM=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "85164e3aaadbc35cbbb4a9fef6d358b607da09fc",
+        "rev": "44a90ec0ed3ba33823fa5acd6d8614b7d3eaa9b1",
         "type": "github"
       },
       "original": {
@@ -238,8 +238,8 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1785040328,
-        "narHash": "sha256-13O56M2c4Y6IyWENxWpANcClR1tI+d8pxeO+PlxazEg=",
+        "lastModified": 1785342557,
+        "narHash": "sha256-tWH5VXeTbd0XHHSGjI+KSY3Hqg/rDAKbeCQtZwgWYf8=",
         "path": "/home/joronix/Proyects/pc_control",
         "type": "path"
       },
@@ -263,11 +263,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1784667699,
-        "narHash": "sha256-853teJQOgTTKRfNxcIJ53ziJOGNeg3c74PvQl5l61Jc=",
+        "lastModified": 1785084284,
+        "narHash": "sha256-aa+pBL1RU/8E/H4AXsogUI3pDukwsqb+uGl9Pwys/B0=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "1174734d9c6453d13d2b5e3d578512c579ca37f1",
+        "rev": "12c3381f0b17b8eec21075d1c72fd010996a9bda",
         "type": "github"
       },
       "original": {

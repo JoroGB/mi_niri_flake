@@ -1,2 +1,4 @@
 ./config/hardware-configuration.nix
 ./result
+./shells/common_voice_script
+

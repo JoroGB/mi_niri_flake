@@ -18,7 +18,6 @@
       libvdpau-va-gl
     ];
   };
-
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = true;
@@ -27,6 +26,7 @@
     nvidiaSettings = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
+  hardware.nvidia-container-toolkit.enable = true;
   services.xserver.videoDrivers = ["nvidia"];
 
   boot.kernelParams = [

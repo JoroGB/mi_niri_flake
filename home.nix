@@ -37,7 +37,7 @@
     # wallpaper
     awww
     mpvpaper
-    inputs.pc_control.packages.${pkgs.system}.default
+    # inputs.pc_control.packages.${pkgs.system}.default
 
     # Launchers y notificaciones
     wofi
@@ -60,6 +60,17 @@
     noto-fonts-cjk-serif
     noto-fonts-color-emoji
     # (callPackage ./pkgs/zennotes.nix {})
+    (python3.withPackages (ps:
+      with ps; [
+        jupyter-client
+        pynvim
+        ipykernel
+        jupytext
+        # tus libs de trabajo: numpy, pandas, matplotlib, etc.
+        numpy
+        pandas
+        matplotlib
+      ]))
   ];
 
   services.mako.enable = false;
