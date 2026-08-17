@@ -59,7 +59,7 @@
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     noto-fonts-color-emoji
-    # (callPackage ./pkgs/zennotes.nix {})
+    (callPackage ./pkgs/zennotes.nix {})
     (python3.withPackages (ps:
       with ps; [
         jupyter-client

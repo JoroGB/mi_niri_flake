@@ -21,6 +21,10 @@
     "openssl-1.1.1w"
     "pnpm-10.29.2"
   ];
+  nix.settings = {
+    substituters = ["https://cache.nixos-cuda.org"];
+    trusted-public-keys = ["cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="];
+  };
 
   fileSystems."/home/joronix/Files" = {
     device = "/dev/disk/by-uuid/38d7f0b9-4a1b-4ce9-b869-4dd755c830e7";
@@ -57,6 +61,7 @@
 
   hardware.bluetooth.enable = true;
   networking = {
+    nftables.enable = true;
     firewall = rec {
       allowedTCPPorts = [3333 3444 80 433];
       allowedTCPPortRanges = [
@@ -105,6 +110,7 @@
   # Si hay problemas con aplicaciones con xserver
   # Revisar si se esta ejecutando alguana instancia si no, es problema de variable de entorno
   # pgrep -a Xwayland // este comando revisa si hay instancias de xwayland
+
   services = {
     xserver = {
       enable = true;
@@ -172,6 +178,10 @@
     ];
   };
 
+  # virtualisation.waydroid = {
+  #   enable = true;
+  #   package = pkgs.waydroid-nftables;
+  # };
   virtualisation.docker = {
     enable = true;
     rootless = {
@@ -285,7 +295,7 @@
     bottom
     guvcview
     anki
-    zennotes-desktop
+    # zennotes-desktop
     posting
     # Terminal
     kitty

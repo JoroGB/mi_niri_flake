@@ -3,12 +3,12 @@
   appimageTools,
   fetchurl,
 }: let
-  version = "2.3.0";
+  version = "2.27.0";
   pname = "ZenNotes";
   name = "${pname}-${version}";
   src = fetchurl {
     url = "https://github.com/ZenNotes/zennotes/releases/download/v${version}/ZenNotes-${version}-linux-x86_64.AppImage";
-    hash = "sha256:22f1462bb9f72905461139adea1414cbe6d935338291fbb01fc89f978293c71c";
+    hash = "sha256:cba2d2b878302db4f3ce7dba4dc618673fe28ec22c3d6c4bffcfd26aa7eaa07e";
   };
 
   appimageContents = appimageTools.extractType1 {inherit pname version src;};

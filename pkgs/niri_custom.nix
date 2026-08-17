@@ -199,7 +199,7 @@
         "Mod+Print".action.spawn = [
           "sh"
           "-c"
-          "FILE=~/Pictures/$(date +%Y%m%d_%H%M%S).png &&
+          "FILE=~/Pictures/ScreenShots/$(date +%Y%m%d_%H%M%S)_fd.png &&
           grim - | tee \"$FILE\" | wl-copy &&
               notify-send screenshot copied"
         ];
@@ -209,7 +209,7 @@
           "-c"
           "
           CHUNCK_P=$(slurp) &&
-            FILE=~/Pictures/$(date +%Y%m%d_%H%M%S).png && grim -g \"$CHUNCK_P\" $FILE && 
+            FILE=~/Pictures/ScreenShots/$(date +%Y%m%d_%H%M%S).png && grim -g \"$CHUNCK_P\" $FILE && 
               wl-copy < $FILE &&
                 grim -g \"$CHUNCK_P\" - |
                   wl-copy && notify-send screenshot copied!"
