@@ -20,7 +20,6 @@
     ./pkgs/kitty.nix
     ./pkgs/screen_lock.nix
     ./pkgs/dot-desktop.nix
-    # ./pkgs/minecraft-bedrock.nix
   ];
   home.file.".profile".force = true;
   home.username = "joronix";
@@ -28,24 +27,15 @@
   home.stateVersion = "25.05";
   home.packages = with pkgs; [
     #productividad
-    onlyoffice-desktopeditors
     opencode
     foliate
-    obsidian
-    super-productivity
-    krita
-    # wallpaper
     awww
-    mpvpaper
-    # inputs.pc_control.packages.${pkgs.system}.default
-
     # Launchers y notificaciones
     wofi
     libnotify
 
     # audio
     pavucontrol
-    osu-lazer-bin
 
     # Temas
     adwaita-qt

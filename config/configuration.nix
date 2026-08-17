@@ -7,42 +7,25 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./modules/nvidia-settings.nix
     ./modules/portals-conf.nix
     ./modules/sddm-themes.nix
     ./modules/portals-conf.nix
-    ./modules/postgres-conf.nix
-    ./modules/mongodb-conf.nix
     ./modules/virt-conf.nix
     ./modules/user_service.nix
-    ./modules/pihole-conf.nix
   ];
   nixpkgs.config.permittedInsecurePackages = [
     "openssl-1.1.1w"
     "pnpm-10.29.2"
   ];
 
-  fileSystems."/home/joronix/Files" = {
-    device = "/dev/disk/by-uuid/38d7f0b9-4a1b-4ce9-b869-4dd755c830e7";
-    fsType = "ext4";
-  };
 
-  swapDevices = [
-    {
-      device = "/dev/disk/by-uuid/00dd8b94-737e-4e4e-ba45-eba827433d27";
-    }
-  ];
 
-  boot.kernel.sysctl."vm.swappiness" = 10;
 
   hardware.opentabletdriver.enable = true;
   hardware.opentabletdriver.daemon.enable = true;
   hardware.uinput.enable = true;
   time.timeZone = "America/Costa_Rica";
   time.hardwareClockInLocalTime = true; # configuration.nix o módulo equivalente
-  boot.kernel.sysctl = {
-    "net.ipv4.ip_unprivileged_port_start" = 53;
-  };
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -56,9 +39,16 @@
   };
 
   hardware.bluetooth.enable = true;
+  hardware.enableRedistributableFirmware = true;
+ hardware.firmware = with pkgs; [ linux-firmware # firmware genérico (Intel iwlwifi, Realtek, Atheros)
+    # broadcom-bt-firmware # descomenta si tienes WiFi Broadcom
+  ];
   networking = {
+    hostName = "mi-laptop";
+    networkmanager.enable = true;
+
     firewall = rec {
-      allowedTCPPorts = [3333 3444 80 433];
+      allowedTCPPorts = [3333 22 3444 80 433];
       allowedTCPPortRanges = [
         {
           from = 1714;
@@ -67,22 +57,11 @@
       ];
       allowedUDPPortRanges = allowedTCPPortRanges;
     };
-    networkmanager.enable = true;
-    networkmanager.dns = "none";
-    nameservers = ["127.0.0.1"];
-    hostName = "nixos";
 
-    # wireless = {
-    #
-    #   enable = false;
-    #   networks = {
-    #   DOMA = {
-    #   ssid = "DOMA";
-    #   pskRaw = "8ac2623ddfaabbe16e42dbb624a803fd9fcd36dd510b7dacc126758cf9cc4c92";
-    #   };
-    #   };
-    # };
+ 
+
   };
+
 
   # Módulo del kernel para cámara virtual de OBS
   boot.extraModulePackages = with config.boot.kernelPackages; [
@@ -101,45 +80,17 @@
     enable = true;
   };
 
-  # Habilitar Wayland y sesión de login
-  # Si hay problemas con aplicaciones con xserver
-  # Revisar si se esta ejecutando alguana instancia si no, es problema de variable de entorno
-  # pgrep -a Xwayland // este comando revisa si hay instancias de xwayland
   services = {
     xserver = {
       enable = true;
     };
 
-    ollama = {
-      enable = true;
-      package = pkgs.ollama-cuda;
-      # enable = true;
-    };
   };
   services = {
     udisks2 = {
       enable = true;
     };
   };
-  services = {
-    caddy = {
-      enable = false;
-    };
-  };
-
-  # Necesario para display manager  / Screen Lock
-  # services.displayManager.sddm = {
-  #   enable = true;
-  #   package = pkgs.kdePackages.sddm;
-  # };
-  # environment.etc."sddm.conf.d/theme.conf".text = ''
-  #   [Theme]
-  #   Current=sugar-dark
-  #   CursorTheme=Bibata-Modern-Classic
-  #   CursorSize=24
-  # '';
-
-  # Servicios necesarios
 
   environment.sessionVariables = {
     # Wayland general
@@ -172,53 +123,10 @@
     ];
   };
 
-  virtualisation.docker = {
-    enable = true;
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-  };
 
-  services.mysql = {
-    enable = false;
-    package = pkgs.mysql84;
-  };
-
-  age.secrets.anki-password = {
-    file = ../secrets/anki-password.age;
-    owner = "anki-sync-server";
-    mode = "0400";
-  };
-  services.anki-sync-server = {
-    enable = true;
-    address = "0.0.0.0";
-    openFirewall = true;
-    users = [
-      {
-        username = "joro";
-        passwordFile = config.age.secrets.anki-password.path;
-      }
-    ];
-  };
-
-  # services.caddy.virtualHosts."jorodeck.duckdns.org".extraConfig = ''
-  #   reverse_proxy ${config.services.anki-sync-server.address}:${builtins.toString config.services.anki-sync-server.port}
-  # '';
-  #
   programs = {
-    kdeconnect.enable = true;
     xwayland.enable = true;
     firefox.enable = true;
-    steam = {
-      enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-      gamescopeSession.enable = true;
-      package = pkgs.steam.override {
-        extraPkgs = pkgs: with pkgs; [glibc];
-      };
-    };
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
@@ -226,7 +134,8 @@
         gcc
       ];
     };
-  };
+};
+
   fonts = {
     enableDefaultPackages = true;
     fontconfig = {
@@ -258,6 +167,7 @@
   ];
 
   # nixpkgs.config.allowUnfree = true;
+services.power-profiles-daemon.enable = true;
 
   environment.systemPackages = with pkgs; [
     # (callPackage ./pear_desktop.nix {})
@@ -267,7 +177,6 @@
     wget
     git
     curl
-    nodejs
     unzip
     lldb
     vscode-extensions.vadimcn.vscode-lldb
@@ -281,12 +190,13 @@
     vlc
     mpv
     qt6.qtdeclarative
-    rnote
     bottom
     guvcview
     anki
     zennotes-desktop
     posting
+networkmanager
+ethtool
     # Terminal
     kitty
     alacritty
@@ -312,21 +222,12 @@
 
     # apps
     vesktop
-    warp-terminal
-    pomodoro
-    scrcpy
-    android-tools
     brave
     google-chrome
-    vivaldi
     vscode
-    postgresql_17_jit
     jetbrains-toolbox
-    # zed-editor
     playerctl
 
-    #cam
-    ffmpeg
   ];
 
   services.openssh.enable = true;

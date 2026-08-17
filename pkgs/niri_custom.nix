@@ -32,31 +32,6 @@
         hide-when-typing = true;
       };
 
-      workspaces = {
-        "up" = {
-          open-on-output = "DP-1";
-        };
-        "main" = {
-          open-on-output = "DP-1";
-        };
-        "down" = {
-          open-on-output = "DP-1";
-        };
-
-        "up-left" = {
-          open-on-output = "DP-3";
-        };
-        "main-left" = {
-          open-on-output = "DP-3";
-        };
-
-        "up-right" = {
-          open-on-output = "HDMI-A-1";
-        };
-        "main-right" = {
-          open-on-output = "HDMI-A-1";
-        };
-      };
 
       outputs = {
         "DP-3" = {
@@ -132,9 +107,7 @@
         {command = ["sh" "-c" "sleep 0.5 && niri msg action focus-workspace main"];}
         {command = ["sh" "-c" "awww-daemon"];}
         {command = ["sh" "-c" "sleep 0.5 && 
-                    awww img ~/mi_niri_flake/pkgs/desktop/wallpaper/997820.jpg -o 'HDMI-A-1' &&
-                    awww img ~/mi_niri_flake/pkgs/desktop/wallpaper/997820.jpg -o 'DP-3' &&
-                    awww img ~/mi_niri_flake/pkgs/desktop/wallpaper/1363695.png -o 'DP-1'"];}
+                    awww img ~/mi_niri_flake/pkgs/desktop/wallpaper/1363695.png"];}
         {command = ["fcitx5" "-r"];}
         # {
         #   command = [
@@ -271,25 +244,25 @@
         "Mod+Ctrl+Up".action = move-window-up-or-to-workspace-up;
 
         # workspaces
-        "Mod+1".action.focus-workspace = "main-left";
-        "Mod+2".action.focus-workspace = "main";
-        "Mod+3".action.focus-workspace = "main-right";
-        "Mod+4".action.focus-workspace = "up";
-        "Mod+5".action.focus-workspace = "down";
-
+        # "Mod+1".action.focus-workspace = "main-left";
+        # "Mod+2".action.focus-workspace = "main";
+        # "Mod+3".action.focus-workspace = "main-right";
+        # "Mod+4".action.focus-workspace = "up";
+        # "Mod+5".action.focus-workspace = "down";
+        #
         # "Alt+1".action.focus-workspace = "main";
         # "Alt+2".action.focus-workspace = "main-left";
-        "Mod+Shift+1".action.move-column-to-workspace = "main-left";
-        "Mod+Shift+2".action.move-column-to-workspace = "main";
-        "Mod+Shift+3".action.move-column-to-workspace = "main-right";
-        "Mod+Shift+4".action.move-column-to-workspace = "up";
-        "Mod+Shift+5".action.move-column-to-workspace = "down";
-
-        "Mod+Alt+1".action.move-column-to-workspace = "main";
-        "Mod+Alt+2".action.move-column-to-workspace = "main-left";
-        "Mod+Alt+3".action.move-column-to-workspace = "up";
-        "Mod+Alt+4".action.move-column-to-workspace = "up-left";
-
+        # "Mod+Shift+1".action.move-column-to-workspace = "main-left";
+        # "Mod+Shift+2".action.move-column-to-workspace = "main";
+        # "Mod+Shift+3".action.move-column-to-workspace = "main-right";
+        # "Mod+Shift+4".action.move-column-to-workspace = "up";
+        # "Mod+Shift+5".action.move-column-to-workspace = "down";
+        #
+        # "Mod+Alt+1".action.move-column-to-workspace = "main";
+        # "Mod+Alt+2".action.move-column-to-workspace = "main-left";
+        # "Mod+Alt+3".action.move-column-to-workspace = "up";
+        # "Mod+Alt+4".action.move-column-to-workspace = "up-left";
+        #
         # "Mod+6".action = spawn-sh "discordpbt";
         # "Mod+7".action = spawn-sh "steam";
         # "Mod+8".action = spawn-sh "obs";
