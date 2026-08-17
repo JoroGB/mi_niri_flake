@@ -18,9 +18,6 @@
     "pnpm-10.29.2"
   ];
 
-
-
-
   hardware.opentabletdriver.enable = true;
   hardware.opentabletdriver.daemon.enable = true;
   hardware.uinput.enable = true;
@@ -40,7 +37,8 @@
 
   hardware.bluetooth.enable = true;
   hardware.enableRedistributableFirmware = true;
- hardware.firmware = with pkgs; [ linux-firmware # firmware genérico (Intel iwlwifi, Realtek, Atheros)
+  hardware.firmware = with pkgs; [
+    linux-firmware # firmware genérico (Intel iwlwifi, Realtek, Atheros)
     # broadcom-bt-firmware # descomenta si tienes WiFi Broadcom
   ];
   networking = {
@@ -57,11 +55,7 @@
       ];
       allowedUDPPortRanges = allowedTCPPortRanges;
     };
-
- 
-
   };
-
 
   # Módulo del kernel para cámara virtual de OBS
   boot.extraModulePackages = with config.boot.kernelPackages; [
@@ -84,7 +78,6 @@
     xserver = {
       enable = true;
     };
-
   };
   services = {
     udisks2 = {
@@ -123,7 +116,6 @@
     ];
   };
 
-
   programs = {
     xwayland.enable = true;
     firefox.enable = true;
@@ -134,7 +126,7 @@
         gcc
       ];
     };
-};
+  };
 
   fonts = {
     enableDefaultPackages = true;
@@ -167,7 +159,7 @@
   ];
 
   # nixpkgs.config.allowUnfree = true;
-services.power-profiles-daemon.enable = true;
+  services.power-profiles-daemon.enable = true;
 
   environment.systemPackages = with pkgs; [
     # (callPackage ./pear_desktop.nix {})
@@ -195,8 +187,8 @@ services.power-profiles-daemon.enable = true;
     anki
     zennotes-desktop
     posting
-networkmanager
-ethtool
+    networkmanager
+    ethtool
     # Terminal
     kitty
     alacritty
@@ -227,10 +219,15 @@ ethtool
     vscode
     jetbrains-toolbox
     playerctl
-
   ];
-
-  services.openssh.enable = true;
+  # Habilitar resolución DNS local
+  services.resolved.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = true;
+    };
+  };
 
   system.stateVersion = "25.05"; # pkgs version
 }
