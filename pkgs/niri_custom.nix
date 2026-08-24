@@ -16,9 +16,7 @@
     enable = true;
     # package = pkgs.niri-stable;
     # De tener problemas al hacer test cambiar "Package" por esto
-    package = inputs.niri-flake.packages.${pkgs.system}.niri-stable.overrideAttrs (oldAttrs: {
-      doCheck = false; # ← Deshabilitar tests que fallan
-    });
+    package = inputs.niri-flake.packages.${pkgs.system}.niri-unstable;
 
     settings = {
       environment = {
@@ -30,48 +28,6 @@
         theme = "Bibata-Modern-Classic";
         size = 24;
         hide-when-typing = true;
-      };
-
-
-      outputs = {
-        "DP-3" = {
-          position = {
-            x = 0;
-            y = -500;
-          };
-          transform.rotation = 90;
-
-          mode = {
-            width = 2560;
-            height = 1080;
-            refresh = 99.943;
-          };
-        };
-
-        "DP-1" = {
-          position = {
-            x = 1080;
-            y = 0;
-          };
-          focus-at-startup = true;
-          scale = 1.1;
-          mode = {
-            width = 2560;
-            height = 1440;
-            refresh = 179.999;
-          };
-        };
-        "HDMI-A-1" = {
-          position = {
-            x = 3408;
-            y = 0;
-          };
-          transform.rotation = 270;
-          mode = {
-            width = 1920;
-            height = 1080;
-          };
-        };
       };
 
       layout = {
@@ -98,12 +54,7 @@
       # Lanzar Noctalia al inicio:
       spawn-at-startup = [
         {command = ["noctalia"];}
-        # commando para apagar monirtores en 15 minutos
-        {command = ["swayidle" "-w" "timeout" "900" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"];}
-        # {command = ["linux-wallpaperengine" "--screen-root" "DP-1" "3601698982"];}
-        # {command = ["linux-wallpaperengine" "--screen-root" "DP-3" "3409130430"];}
-        # {command = ["linux-wallpaperengine" "--screen-root" "HDMI-A-1" "3474055675"];}
-        {command = ["sh" "-c" "rm /tmp/noctalia-bar-mode"];}
+        {command = ["swayidle" "-w" "timeout" "150" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"];}
         {command = ["sh" "-c" "sleep 0.5 && niri msg action focus-workspace main"];}
         {command = ["sh" "-c" "awww-daemon"];}
         {command = ["sh" "-c" "sleep 0.5 && 

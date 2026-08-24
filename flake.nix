@@ -2,9 +2,6 @@
   description = "Niri Stable + Noctaclia + Home Manager + Rust-Fenix + Personal Config";
 
   inputs = {
-    pc_control = {
-      url = "path:/home/joronix/Proyects/pc_control";
-    };
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     fenix = {
       url = "github:nix-community/fenix";
@@ -15,7 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri-flake = {
-      url = "github:sodiboo/niri-flake";
+      url = "github:sodiboo/niri-flake?rev=6bb99ff875919f03ea6054026619d999061e1170";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
