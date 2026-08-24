@@ -16,9 +16,10 @@
     enable = true;
     # package = pkgs.niri-stable;
     # De tener problemas al hacer test cambiar "Package" por esto
-    package = inputs.niri-flake.packages.${pkgs.system}.niri-stable.overrideAttrs (oldAttrs: {
-      doCheck = false; # ← Deshabilitar tests que fallan
-    });
+    package = inputs.niri-flake.packages.${pkgs.system}.niri-unstable;
+    # package = inputs.niri-flake.packages.${pkgs.system}.niri-stable.overrideAttrs (oldAttrs: {
+    #   doCheck = false; # ← Deshabilitar tests que fallan
+    # });
 
     settings = {
       environment = {
