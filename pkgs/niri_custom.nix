@@ -124,8 +124,8 @@
       # Lanzar Noctalia al inicio:
       spawn-at-startup = [
         {command = ["noctalia"];}
-        # commando para apagar monirtores en 15 minutos
-        {command = ["swayidle" "-w" "timeout" "900" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"];}
+        # commando para apagar monirtores en 10 minutos
+        {command = ["swayidle" "-w" "timeout" "600" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"];}
         # {command = ["linux-wallpaperengine" "--screen-root" "DP-1" "3601698982"];}
         # {command = ["linux-wallpaperengine" "--screen-root" "DP-3" "3409130430"];}
         # {command = ["linux-wallpaperengine" "--screen-root" "HDMI-A-1" "3474055675"];}

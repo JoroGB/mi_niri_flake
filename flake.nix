@@ -2,9 +2,9 @@
   description = "Niri Stable + Noctaclia + Home Manager + Rust-Fenix + Personal Config";
 
   inputs = {
-    pc_control = {
-      url = "path:/home/joronix/Proyects/pc_control";
-    };
+    # pc_control = {
+    #   url = "path:/home/joronix/Proyects/pc_control";
+    # };
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     fenix = {
       url = "github:nix-community/fenix";
