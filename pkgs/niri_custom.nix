@@ -16,14 +16,14 @@
     enable = true;
     # package = pkgs.niri-stable;
     # De tener problemas al hacer test cambiar "Package" por esto
-    package = inputs.niri-flake.packages.${pkgs.system}.niri-unstable;
+    package = inputs.niri-flake.packages.${pkgs.system}.niri-stable;
     # package = inputs.niri-flake.packages.${pkgs.system}.niri-stable.overrideAttrs (oldAttrs: {
     #   doCheck = false; # ← Deshabilitar tests que fallan
     # });
 
     settings = {
       environment = {
-        DISPLAY = ":1";
+        DISPLAY = ":0";
         XCURSOR_THEME = "Bibata-Modern-Classic";
         XCURSOR_SIZE = "24";
       };
@@ -152,7 +152,8 @@
       input = {
         focus-follows-mouse.enable = false;
         keyboard.xkb = {
-          layout = "us,es";
+          layout = "us,es, us";
+          variant = ",,colemak_dh";
           options = "grp:win_space_toggle";
         };
         mouse = {

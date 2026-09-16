@@ -1,24 +1,13 @@
-{pkgs, ...}: let
-  custom_theme = "hyprland_kath";
-in {
-  services.displayManager.sddm = {
+{inputs, ...}: {
+  imports = [inputs.qylock.nixosModules.default];
+
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true; # estás en Niri/Wayland
+
+  programs.qylock = {
     enable = true;
-    theme = "sddm-astronaut-theme";
-    package = pkgs.kdePackages.sddm;
-    extraPackages = [
-      (pkgs.sddm-astronaut.override {embeddedTheme = custom_theme;})
-    ];
-    # wayland.enable = true;
+    theme = "field";
+    sddm.enable = true;
+    quickshell.enable = true;
   };
-
-  environment.systemPackages = with pkgs; [
-    # Qt6 dependencies
-    qt6.qtsvg
-    qt6.qtdeclarative
-
-    # Tema
-    sddm-sugar-dark
-    kdePackages.qtmultimedia # ← también aquí
-    (sddm-astronaut.override {embeddedTheme = custom_theme;})
-  ];
 }

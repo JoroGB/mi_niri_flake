@@ -18,7 +18,6 @@
     ./pkgs/zellij.nix
     ./pkgs/alacritty_config.nix
     ./pkgs/kitty.nix
-    ./pkgs/screen_lock.nix
     ./pkgs/dot-desktop.nix
     # ./pkgs/minecraft-bedrock.nix
   ];

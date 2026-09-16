@@ -95,11 +95,11 @@
   ];
 
   # Cargar el módulo al inicio
-  boot.kernelModules = ["v4l2loopback" "ntsync" "uinput"];
+  boot.kernelModules = ["v4l2loopback" "ntsync" "uinput" "binder_linux" "ashmem_linux"];
 
   # Configuración del módulo v4l2loopback
   boot.extraModprobeConfig = ''
-    options v4l2loopback devices=1 video_nr=10 card_label="OBS Virtual Camera" exclusive_caps=1
+    options v4l2loopback devices=1 video_nr=10 card_label="OBS Virtual Camera" exclusive_caps=1 binder_linux devices=binder,hwbinder,vndbinder
   '';
 
   programs.niri = {
@@ -178,10 +178,10 @@
     ];
   };
 
-  # virtualisation.waydroid = {
-  #   enable = true;
-  #   package = pkgs.waydroid-nftables;
-  # };
+  virtualisation.waydroid = {
+    enable = true;
+    package = pkgs.waydroid-nftables;
+  };
   virtualisation.docker = {
     enable = true;
     rootless = {
@@ -204,6 +204,7 @@
     enable = true;
     address = "0.0.0.0";
     openFirewall = true;
+    port = 27701;
     users = [
       {
         username = "joro";
@@ -232,8 +233,10 @@
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
+        libGL
         glibc
         gcc
+        fontconfig
       ];
     };
   };
@@ -326,6 +329,7 @@
     pomodoro
     scrcpy
     android-tools
+    android-studio
     brave
     google-chrome
     vivaldi

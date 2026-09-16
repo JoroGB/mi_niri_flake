@@ -9,10 +9,16 @@
 
       # optionally resolve local hosts (domain is optional)
       dns.hosts = ["192.168.1.188 hostname.domain"];
-      dns.listeningMode = "LOCAL";
-      # dns.interface = "enp6s0"; # ej: enp3s0, wlan0
+      dns.listeningMode = "BIND";
+      dns.interface = "enp6s0"; # ej: enp3s0, wlan0
     };
   };
+  systemd.services.pihole-ftl = {
+    after = ["network-online.target"];
+    wants = ["network-online.target"];
+  };
+
+  systemd.network.wait-online.enable = true;
 
   services.pihole-web = {
     enable = true;

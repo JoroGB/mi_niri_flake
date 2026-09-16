@@ -10,12 +10,13 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    qylock.url = "github:Darkkal44/qylock";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri-flake = {
-      url = "github:sodiboo/niri-flake?rev=6bb99ff875919f03ea6054026619d999061e1170";
+      url = "github:epireyn/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -49,6 +50,7 @@
     niri-flake,
     fenix,
     agenix,
+    qylock,
     # hyprland,
     ...
   } @ inputs: let
@@ -70,12 +72,18 @@
       system = "x86_64-linux";
       specialArgs = {inherit inputs;};
       modules = [
-        {nixpkgs.config.allowUnfree = true;}
+        {
+          nixpkgs.config = {
+            allowUnfree = true;
+            android_sdk.accept_license = true;
+          };
+        }
         {nixpkgs.overlays = overlays_flake;}
         agenix.nixosModules.default
         home-manager.nixosModules.home-manager
         mi_home_manager
         ./config/configuration.nix
+        ./config/modules/sddm-themes.nix
       ];
     };
   };
