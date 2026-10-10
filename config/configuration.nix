@@ -37,21 +37,34 @@
     }
   ];
 
-  boot.kernel.sysctl."vm.swappiness" = 10;
-
   hardware.opentabletdriver.enable = true;
   hardware.opentabletdriver.daemon.enable = true;
   hardware.uinput.enable = true;
   time.timeZone = "America/Costa_Rica";
   time.hardwareClockInLocalTime = true; # configuration.nix o módulo equivalente
-  boot.kernel.sysctl = {
-    "net.ipv4.ip_unprivileged_port_start" = 53;
+  boot = {
+    # Configuración del módulo v4l2loopback
+    extraModprobeConfig = ''
+      options v4l2loopback devices=1 video_nr=10 card_label="OBS Virtual Camera" exclusive_caps=1 binder_linux devices=binder,hwbinder,vndbinder
+    '';
+    kernelModules = ["v4l2loopback" "ntsync" "uinput" "binder_linux" "ashmem_linux"];
+    extraModulePackages = with config.boot.kernelPackages; [
+      v4l2loopback
+    ];
+    supportedFilesystems = ["ntfs"];
+    kernel = {
+      sysctl = {
+        "vm.swappiness" = 10;
+        "net.ipv4.ip_unprivileged_port_start" = 53;
+      };
+    };
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      systemd-boot.configurationLimit = 10;
+    };
   };
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.loader.systemd-boot.configurationLimit = 10;
   nix.settings.auto-optimise-store = true;
   nix.gc = {
     automatic = true;
@@ -89,19 +102,6 @@
     # };
   };
 
-  # Módulo del kernel para cámara virtual de OBS
-  boot.extraModulePackages = with config.boot.kernelPackages; [
-    v4l2loopback
-  ];
-
-  # Cargar el módulo al inicio
-  boot.kernelModules = ["v4l2loopback" "ntsync" "uinput" "binder_linux" "ashmem_linux"];
-
-  # Configuración del módulo v4l2loopback
-  boot.extraModprobeConfig = ''
-    options v4l2loopback devices=1 video_nr=10 card_label="OBS Virtual Camera" exclusive_caps=1 binder_linux devices=binder,hwbinder,vndbinder
-  '';
-
   programs.niri = {
     enable = true;
   };
@@ -121,13 +121,9 @@
       package = pkgs.ollama-cuda;
       # enable = true;
     };
-  };
-  services = {
     udisks2 = {
       enable = true;
     };
-  };
-  services = {
     caddy = {
       enable = false;
     };
@@ -178,10 +174,10 @@
     ];
   };
 
-  virtualisation.waydroid = {
-    enable = true;
-    package = pkgs.waydroid-nftables;
-  };
+  # virtualisation.waydroid = {
+  #   enable = true;
+  #   package = pkgs.waydroid-nftables;
+  # };
   virtualisation.docker = {
     enable = true;
     rootless = {
@@ -233,10 +229,64 @@
     nix-ld = {
       enable = true;
       libraries = with pkgs; [
-        libGL
         glibc
-        gcc
+        stdenv.cc.cc.lib
+        libcxx # provee libc++
+        zlib
         fontconfig
+        freetype
+        libpng
+        libtiff
+
+        # X11 / gráficos (plugin Qt xcb los exige)
+        libX11
+        libxcb
+        libXcomposite
+        libXcursor
+        libXdamage
+        libXext
+        libXfixes
+        libXi
+        libXrandr
+        libXrender
+        libXtst
+        libSM # libSM.so.6 <- te faltaba, ldd lo pedía
+        libICE # libICE.so.6 <- te faltaba, ldd lo pedía
+        libxkbfile
+        libxshmfence # <- te faltaba (lista oficial emulator.nix)
+        libxkbcommon # <- te faltaba, Qt xcb lo exige
+        xcb-util-cursor # libxcb-cursor.so.0 <- el error original
+        xcbutilimage # libxcb-image.so.0
+        xcbutilrenderutil # libxcb-render-util.so.0
+        xcbutilkeysyms # libxcb-keysyms.so.1
+        xcbutilwm # libxcb-icccm.so.4
+        libGL
+        libGLU
+        libdrm
+        libgbm # <- te faltaba
+        mesa # <- te faltaba (gfxstream)
+        libva # <- te faltaba
+        vulkan-loader # <- te faltaba
+        wayland
+
+        # Audio (el emulador usa esto para el audio simulado del dispositivo)
+        alsa-lib
+        libpulseaudio
+
+        # Requeridas por qemu-system-x86_64 (el motor real detrás del AVD)
+        libuuid # más directo que util-linux para libuuid
+        util-linux
+        gperftools # provee libtcmalloc_minimal
+        ncurses5 # <- te faltaba (lista oficial emulator.nix)
+        libbsd
+
+        # Requeridas por el SDK/toolchain en general
+        dbus
+        systemd # libudev <- te faltaba
+        expat
+        nspr
+        nss
+        pciutils
       ];
     };
   };
@@ -274,6 +324,7 @@
 
   environment.systemPackages = with pkgs; [
     # (callPackage ./pear_desktop.nix {})
+    wtype
     pear-desktop
     gcc
     vim

@@ -136,7 +136,7 @@
                     awww img ~/mi_niri_flake/pkgs/desktop/wallpaper/997820.jpg -o 'HDMI-A-1' &&
                     awww img ~/mi_niri_flake/pkgs/desktop/wallpaper/997820.jpg -o 'DP-3' &&
                     awww img ~/mi_niri_flake/pkgs/desktop/wallpaper/1363695.png -o 'DP-1'"];}
-        {command = ["fcitx5" "-r"];}
+        {command = ["sh" "-c" "sleep 10 && fcitx5 -r"];}
         # {
         #   command = [
         #     "xwayland-satellite"
@@ -188,14 +188,21 @@
 
         # "Print".action = screenshot;
         "Mod+V".action = spawn-sh "noctalia msg panel-toggle clipboard";
+
+        #Reinicia el fcitx5
+        "Mod+6".action = spawn-sh "fcitx5 -r";
+        #copia y pega en pinyin
+        "Mod+8".action = spawn-sh " wtype -M ctrl -k c -m ctrl && wl-paste | pinyin | wl-copy && wtype -M ctrl -k v -m ctrl";
+        # el ultimo registro del clipboard se conviertre y se pega en pinyin
+        "Mod+0".action = spawn-sh "wl-paste | pinyin | wl-copy && wtype -M ctrl -k v -m ctrl";
+        #copia y convierte en pinyin
+        "Mod+Y".action = spawn-sh "wtype -M ctrl -k c -m ctrl && wl-paste | pinyin | wl-copy";
+
+        #obtiene el pinyin
         "Mod+apostrophe".action.spawn = [
           "sh"
           "-c"
-          "cliphist list | 
-            rofi -dmenu -display-columns 2 -location 7 -xoffset 10 -yoffset -10 |
-              cliphist decode | 
-                wl-copy | 
-                  wl-paste"
+          "wl-paste | pinyin | wl-copy"
         ];
 
         "Mod+Print".action.spawn = [

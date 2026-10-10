@@ -7,9 +7,9 @@
   programs.rofi = {
     enable = true;
     package = pkgs.rofi;
-    terminal = "${pkgs.alacritty}/bin/alacritty";
 
-    extraConfig = {
+    settings = {
+      terminal = "${pkgs.alacritty}/bin/alacritty";
       modi = "drun";
       show-icons = true;
       drun-display-format = "{name}";

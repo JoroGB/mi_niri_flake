@@ -61,6 +61,7 @@
     (callPackage ./pkgs/zennotes.nix {})
     (python3.withPackages (ps:
       with ps; [
+        pypinyin
         jupyter-client
         pynvim
         ipykernel
@@ -70,6 +71,20 @@
         pandas
         matplotlib
       ]))
+    (pkgs.writeShellApplication {
+      name = "pinyin";
+      runtimeInputs = [(pkgs.python3.withPackages (ps: [ps.pypinyin]))];
+      text = ''
+              if [ $# -gt 0 ]; then
+                input="$*"
+              else
+                input="$(cat)"
+              fi
+              python -c 'import sys
+        from pypinyin import pinyin
+        print(" ".join(s[0] for s in pinyin(sys.argv[1])))' "$input"
+      '';
+    })
   ];
 
   services.mako.enable = false;

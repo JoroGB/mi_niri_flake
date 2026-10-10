@@ -11,7 +11,7 @@
     hash = "sha256:cba2d2b878302db4f3ce7dba4dc618673fe28ec22c3d6c4bffcfd26aa7eaa07e";
   };
 
-  appimageContents = appimageTools.extractType1 {inherit pname version src;};
+  appimageContents = appimageTools.extract {inherit pname version src;};
 in
   appimageTools.wrapType2 rec {
     inherit name pname version src;
