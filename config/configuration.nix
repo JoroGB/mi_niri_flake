@@ -102,10 +102,6 @@
     # };
   };
 
-  programs.niri = {
-    enable = true;
-  };
-
   # Habilitar Wayland y sesión de login
   # Si hay problemas con aplicaciones con xserver
   # Revisar si se esta ejecutando alguana instancia si no, es problema de variable de entorno
@@ -214,6 +210,8 @@
   # '';
   #
   programs = {
+    niri.enable = true;
+    mango.enable = true;
     kdeconnect.enable = true;
     xwayland.enable = true;
     firefox.enable = true;

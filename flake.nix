@@ -5,6 +5,10 @@
     # pc_control = {
     #   url = "path:/home/joronix/Proyects/pc_control";
     # };
+    mangowm = {
+      url = "github:mangowm/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     fenix = {
       url = "github:nix-community/fenix";
@@ -51,6 +55,7 @@
     fenix,
     agenix,
     qylock,
+    mangowm,
     # hyprland,
     ...
   } @ inputs: let
@@ -88,6 +93,7 @@
             android_sdk.accept_license = true;
           };
         }
+        mangowm.nixosModules.mango
         {nixpkgs.overlays = overlays_flake;}
         agenix.nixosModules.default
         home-manager.nixosModules.home-manager

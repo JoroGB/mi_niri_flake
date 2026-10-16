@@ -8,6 +8,8 @@
     inputs.zen-browser.homeModules.twilight
     inputs.niri-flake.homeModules.niri
     ./pkgs/niri_custom.nix
+    inputs.mangowm.hmModules.mango
+    ./pkgs/mango.nix
 
     inputs.noctalia.homeModules.default
     ./pkgs/noctalia.nix
@@ -19,6 +21,7 @@
     ./pkgs/alacritty_config.nix
     ./pkgs/kitty.nix
     ./pkgs/dot-desktop.nix
+    # ./pkgs/waybar.nix
     # ./pkgs/minecraft-bedrock.nix
   ];
   home.file.".profile".force = true;

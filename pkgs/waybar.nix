@@ -1,71 +1,169 @@
-{ ... }: {
-
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.waybar = {
-     # enable = true;
-     systemd.enable = true;
-     settings = [{
-       layer = "top";
-       position = "top";
-       height = 30;
+    enable = true;
+    systemd = {
+      enable = false;
+      target = "graphical-session.target";
+    };
+    settings = {
+      mainBar = {
+        layer = "top";
+        modules-left = ["custom/nix" "ext/workspaces" "custom/cava-internal"];
+        modules-center = ["clock"];
+        modules-right = ["cpu" "memory" "backlight" "pulseaudio" "bluetooth" "network" "battery"];
 
-       modules-left = [ "hyprland/workspaces" "hyprland/window" ];
-       modules-center = [ "clock" ];
-       modules-right = [ "pulseaudio" "network" "cpu" "memory" "battery" "tray" ];
+        "custom/nix" = {
+          "format" = "   ";
+          "tooltip" = false;
+          "on-click" = "sh $HOME/.config/rofi/bin/powermenu";
+        };
+        "ext/workspaces" = {
+          "format" = "{icon}";
+          "all-outputs" = true;
+          "format-icons" = {
+            "1" = "一";
+            "2" = "二";
+            "3" = "三";
+            "4" = "四";
+            "5" = "五";
+            "6" = "六";
+            "7" = "七";
+            "8" = "八";
+            "9" = "九";
+            "10" = "十";
+          };
+        };
+        "custom/cava-internal" = {
+          "exec" = "sleep 1s && cava-internal";
+          "tooltip" = false;
+        };
 
-       "hyprland/workspaces" = {
-         format = "{name}";
-         on-click = "activate";
-       };
+        "clock" = {
+          "format" = "<span color='#b4befe'> </span>{:%H:%M}";
+          "tooltip" = true;
+          "tooltip-format" = "{:%Y-%m-%d %a}";
+          "on-click-middle" = "exec default_wallpaper";
+          "on-click-right" = "exec wallpaper_random";
+        };
 
-       clock = {
-         format = "{:%H:%M}";
-         format-alt = "{:%Y-%m-%d}";
-       };
+        "cpu" = {"format" = "<span color='#b4befe'> </span>{usage}%";};
+        "memory" = {
+          "interval" = 1;
+          "format" = "<span color='#b4befe'> </span>{used:0.1f}G/{total:0.1f}G";
+        };
+        "backlight" = {
+          "device" = "intel_backlight";
+          "format" = "<span color='#b4befe'>{icon}</span> {percent}%";
+          "format-icons" = ["" "" "" "" "" "" "" "" ""];
+        };
+        "pulseaudio" = {
+          "format" = "<span color='#b4befe'>{icon}</span> {volume}%";
+          "format-muted" = "";
+          "tooltip" = false;
+          "format-icons" = {
+            "headphone" = "";
+            "default" = ["" "" "󰕾" "󰕾" "󰕾" "" "" ""];
+          };
+          "scroll-step" = 1;
+          "on-click" = "pavucontrol";
+        };
+        "bluetooth" = {
+          "format" = "<span color='#b4befe'></span> {status}";
+          "format-disabled" = "";
+          "format-connected" = "<span color='#b4befe'></span> {num_connections}";
+          "tooltip-format" = "{device_enumerate}";
+          "tooltip-format-enumerate-connected" = "{device_alias}   {device_address}";
+        };
+        "network" = {
+          "interface" = "wlp3s0";
+          "format" = "{ifname}";
+          "format-wifi" = "<span color='#b4befe'> </span>{essid}";
+          "format-ethernet" = "{ipaddr}/{cidr} ";
+          "format-disconnected" = "<span color='#b4befe'>󰖪 </span>No Network";
+          "tooltip" = false;
+        };
+      };
+    };
 
+    style = ''
+      * {
+        border: none;
+        font-family: 'Fira Code', 'Symbols Nerd Font Mono';
+        font-size: 16px;
+        font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+        min-height: 40px;
+      }
 
-       network = {
-         format-wifi = " {signalStrength}%";
-         format-ethernet = " Connected";
-         format-disconnected = "⚠ Disconnected";
-       };
+      window#waybar {
+        background: transparent;
+      }
 
-       pulseaudio = {
-         format = "{icon} {volume}%";
-         format-muted = " Muted";
-         format-icons = {
-           default = [ "" "" "" ];
-         };
-       };
-     }];
+      #custom-nix,
+      #workspaces {
+        border-radius: 10px;
+        background-color: #11111b;
+        color: #b4befe;
+        margin-top: 5px;
+        margin-right: 5px;
+        padding-top: 1px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
 
-     style = ''
-       * {
-         font-family: "JetBrains Mono", monospace;
-         font-size: 13px;
-         min-height: 0;
-       }
+      #custom-nix {
+        font-size: 10px;
+        margin-left: 10px;
+        color: #b4befe;
+      }
 
-       window#waybar {
-         background: rgba(30, 30, 46, 0.9);
-         color: #cdd6f4;
-       }
+      #custom-cava-internal {
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 1px;
+        font-family: "Hack Nerd Font";
+        color: #b4befe;
+        background-color: #11111b;
+        margin-top: 5px;
+        border-radius: 10px;
+      }
 
-       #workspaces button {
-         padding: 0 10px;
-         color: #cdd6f4;
-         background: transparent;
-         border: none;
-       }
+      #workspaces button.active {
+        background: #11111b;
+        color: #b4befe;
+      }
 
-       #workspaces button.active {
-         background: rgba(137, 180, 250, 0.3);
-       }
+      #clock, #backlight, #pulseaudio, #bluetooth, #network, #battery, #cpu, #memory{
+        border-radius: 10px;
+        background-color: #11111b;
+        color: #cdd6f4;
+        margin-top: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-right: 5px;
+      }
 
-       #clock, #cpu, #memory, #network, #pulseaudio, #tray {
-         padding: 0 10px;
-         margin: 0 5px;
-       }
-     '';
-   };
+      #backlight, #bluetooth {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        padding-right: 5px;
+        margin-right: 0
+      }
 
+      #pulseaudio, #network {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        padding-left: 5px;
+        margin-right:30px
+      }
+
+      #clock {
+        margin-right: 0;
+      }
+    '';
+  };
 }
