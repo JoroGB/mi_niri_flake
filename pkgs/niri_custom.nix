@@ -123,12 +123,13 @@
       };
       # Lanzar Noctalia al inicio:
       spawn-at-startup = [
-        {command = ["noctalia"];}
+        # {command = ["noctalia"];}
+        {command = ["waybar"];}
+        {command = ["swaync"];}
+        {command = ["wl-paste" "--type" "text" "--watch" "cliphist" "store"];}
+        {command = ["wl-paste" "--type" "image" "--watch" "cliphist" "store"];}
         # commando para apagar monirtores en 10 minutos
         {command = ["swayidle" "-w" "timeout" "600" "niri msg action power-off-monitors" "resume" "niri msg action power-on-monitors"];}
-        # {command = ["linux-wallpaperengine" "--screen-root" "DP-1" "3601698982"];}
-        # {command = ["linux-wallpaperengine" "--screen-root" "DP-3" "3409130430"];}
-        # {command = ["linux-wallpaperengine" "--screen-root" "HDMI-A-1" "3474055675"];}
         {command = ["sh" "-c" "rm /tmp/noctalia-bar-mode"];}
         {command = ["sh" "-c" "sleep 0.5 && niri msg action focus-workspace main"];}
         {command = ["sh" "-c" "awww-daemon"];}
@@ -187,7 +188,7 @@
         "XF86AudioStop".action = spawn-sh "playerctl stop";
 
         # "Print".action = screenshot;
-        "Mod+V".action = spawn-sh "noctalia msg panel-toggle clipboard";
+        "Mod+V".action.spawn = ["kitty" "--class" "clipse" "-e" "clipse"];
 
         #Reinicia el fcitx5
         "Mod+6".action = spawn-sh "fcitx5 -r";
@@ -423,6 +424,17 @@
             top-right = 5.0;
           };
           clip-to-geometry = true;
+        }
+        {
+          matches = [{app-id = "^clipse$";}];
+          open-floating = true;
+          default-column-width = {fixed = 600;};
+          default-window-height = {fixed = 300;};
+          default-floating-position = {
+            x = 16;
+            y = 16;
+            relative-to = "bottom-left";
+          };
         }
 
         {

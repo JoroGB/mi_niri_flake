@@ -1,0 +1,71 @@
+* {
+  font-family: "JetBrainsMono Nerd Font", sans-serif;
+  font-size: 16px;
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+}
+
+window#waybar {
+  background: rgba(48, 0, 18, 1);
+  color: #dddddd;
+}
+
+#workspaces button.focused {
+  background: rgba(117, 0, 44, 0.5);
+}
+/* workspace activo (el enfocado) */
+#workspaces button.active {
+  color: #ff5555;
+  font-weight: bold;
+  border-bottom: 2px solid #aaaaaa;
+}
+
+/* workspace con ventanas, pero no enfocado */
+#workspaces button.occupied {
+  color: #dfb;
+}
+
+/* workspace vacío */
+#workspaces button.empty {
+  color: #444444;
+}
+
+/* workspace urgente */
+#workspaces button.urgent {
+  color: #ff5555;
+}
+
+/* hover */
+#workspaces button:hover {
+  color: darkred;
+  background: rgba(255, 255, 255, 0.1);
+}
+#tags button {
+  padding: 0 10px;
+  color: black;
+  background: transparent;
+}
+#tags button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+#clock,
+#cpu,
+#memory,
+#battery,
+#network,
+#pulseaudio,
+#tray,
+#window,
+#custom-notification {
+  padding: 0 5px;
+  padding-right: 10px;
+}
+
+#network.disconnected {
+  color: #f7768e;
+}
+#pulseaudio.muted {
+  color: #f79;
+}

@@ -30,6 +30,7 @@
   home.stateVersion = "25.05";
   home.packages = with pkgs; [
     #productividad
+    clipse
     onlyoffice-desktopeditors
     opencode
     foliate
@@ -44,6 +45,8 @@
     # Launchers y notificaciones
     wofi
     libnotify
+    swaynotificationcenter
+    prismlauncher
 
     # audio
     pavucontrol
@@ -91,7 +94,19 @@
   ];
 
   services.mako.enable = false;
-
+  services.clipse = {
+    enable = true;
+    settings = {
+      allowDuplicates = false;
+      maxHistory = 100;
+      imageDisplay = {
+        type = "sixel";
+        scaleX = 9;
+        scaleY = 9;
+        heightCut = 2;
+      };
+    };
+  };
   programs = {
     nushell = {
       extraEnv = ''

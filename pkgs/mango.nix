@@ -32,6 +32,17 @@
       animation_duration_open = 400;
       animation_duration_close = 800;
 
+      mouse = {
+        accel_profile = 1;
+        accel_speed = -0.1;
+      };
+      xkb_rules = {
+        layout = "us,es";
+        options = "grp:win_space_toggle";
+      };
+      sloppy_focus = 0;
+      cursor_hide_on_keypress = 1;
+
       # Or use nested attrs (will be flattened with underscores)
       animation_curve = {
         open = "0.46,1.0,0.29,1";
@@ -43,7 +54,12 @@
       #   "name:^HDMI-A-1$,width:1920,height:1080,refresh:60,x:3408,y:0,scale:1,vrr:0,rr:3"
       # ];
       # Use lists for duplicate keys like bind and tag_rule
+      # circle_layout = "";
       bind = [
+        # Layouts
+        "SUPER,x,switch_layout"
+        "SUPER,4,setlayout, scroller "
+        "SUPER,5,setlayout, monocle "
         # Monitores
         "SUPER+ALT,h,focusmon,left"
         "SUPER+ALT,l,focusmon,right"
