@@ -176,6 +176,13 @@
 
       # Keybindings
       binds = with config.lib.niri.actions; {
+        # Function keys
+        "Mod+F2".action = spawn-sh ''
+          mkdir -p /tmp/ocr_t \
+            && grim -g "$(slurp)" /tmp/ocr_t/data.png \
+            && ocr -p /tmp/ocr_t/data.png | wl-copy
+        '';
+        "Mod+F3".action = spawn-sh "CONTENT_IMG_N=$(ocr-tr -t es -r) && notify-send Traduccion \"$CONTENT_IMG_N\" && wl-copy \"$CONTENT_IMG_N\"";
         #Multimedia
         "XF86AudioRaiseVolume".action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.01+";
         "XF86AudioLowerVolume".action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.01-";

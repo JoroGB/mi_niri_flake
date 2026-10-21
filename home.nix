@@ -3,14 +3,34 @@
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  azure-translate = pkgs.callPackage ./pkgs/azure-tr-bin.nix {};
+  paddle-ocr-stable = inputs.ocrs-legacy.legacyPackages.${pkgs.system}.rust-paddle-ocr;
+  pinyin-c = pkgs.writeShellApplication {
+    name = "pinyin";
+    runtimeInputs = [(pkgs.python3.withPackages (ps: [ps.pypinyin]))];
+    text = ''
+            if [ $# -gt 0 ]; then
+              input="$*"
+            else
+              input="$(cat)"
+            fi
+            python -c 'import sys
+      from pypinyin import pinyin
+      print(" ".join(s[0] for s in pinyin(sys.argv[1])))' "$input"
+    '';
+  };
+  ocr-tr = pkgs.callPackage ./pkgs/ocr-tr.nix {
+    inherit azure-translate;
+    inherit paddle-ocr-stable;
+  };
+in {
   imports = [
     inputs.zen-browser.homeModules.twilight
     inputs.niri-flake.homeModules.niri
     ./pkgs/niri_custom.nix
     inputs.mangowm.hmModules.mango
     ./pkgs/mango.nix
-
     inputs.noctalia.homeModules.default
     ./pkgs/noctalia.nix
     ./pkgs/fenix.nix
@@ -37,6 +57,7 @@
     obsidian
     super-productivity
     krita
+
     # wallpaper
     awww
     mpvpaper
@@ -64,6 +85,11 @@
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     noto-fonts-color-emoji
+    azure-translate
+    paddle-ocr-stable
+    pinyin-c
+    ocr-tr
+
     (callPackage ./pkgs/zennotes.nix {})
     (python3.withPackages (ps:
       with ps; [
@@ -77,20 +103,6 @@
         pandas
         matplotlib
       ]))
-    (pkgs.writeShellApplication {
-      name = "pinyin";
-      runtimeInputs = [(pkgs.python3.withPackages (ps: [ps.pypinyin]))];
-      text = ''
-              if [ $# -gt 0 ]; then
-                input="$*"
-              else
-                input="$(cat)"
-              fi
-              python -c 'import sys
-        from pypinyin import pinyin
-        print(" ".join(s[0] for s in pinyin(sys.argv[1])))' "$input"
-      '';
-    })
   ];
 
   services.mako.enable = false;

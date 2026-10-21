@@ -10,6 +10,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+
+    ocrs-legacy.url = "github:nixos/nixpkgs?ref=nixos-26.05";
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";

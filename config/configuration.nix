@@ -49,7 +49,13 @@
     '';
     kernelModules = ["v4l2loopback" "ntsync" "uinput" "binder_linux" "ashmem_linux"];
     extraModulePackages = with config.boot.kernelPackages; [
-      v4l2loopback
+      (config.boot.kernelPackages.v4l2loopback.overrideAttrs (old: {
+        postInstall =
+          (old.postInstall or "")
+          + ''
+            rm -f $out/lib/modules/*/modules.*
+          '';
+      }))
     ];
     supportedFilesystems = ["ntfs"];
     kernel = {
